@@ -3,8 +3,8 @@ import Link from 'next/link';
 import { getCriterionRankings, rankingPath } from '@/data/rankings';
 
 export const metadata: Metadata = {
-  title: 'Coaching Rankings by Criterion',
-  description: 'Criterion-wise coaching rankings — results, faculty, mocks, alumni and more.',
+  title: 'Coaching Rankings by Criterion | Results, Faculty, Mocks & Batch Size',
+  description: 'Criterion-wise coaching rankings on CoachingRank.in — filter institutes by results, faculty experience, mock series, alumni, and batch size.',
   alternates: { canonical: '/criterion' },
 };
 
@@ -16,45 +16,63 @@ export default function CriterionIndexPage() {
     <>
       <section className="page-hero">
         <div className="container">
-          <nav className="breadcrumb">
+          <nav className="breadcrumb-nav">
             <Link href="/">Home</Link>
-            <span>/</span>
-            <span>Criterion</span>
+            <span className="separator">/</span>
+            <span className="current">Criterion Hubs</span>
           </nav>
-          <h1>Rankings by criterion</h1>
+
+          <span className="eyebrow">
+            🎯 Specialized Lenses · 2026 Audit
+          </span>
+
+          <h1>Coaching Rankings by Specific Criterion</h1>
           <p className="prose-lead">
-            Shortlists focused on one factor — toppers, faculty, mocks, batch size and more.
+            When one specific factor matters most to your entrance exam journey — evaluate centres through dedicated audit lenses.
           </p>
         </div>
       </section>
+
       <section className="section">
         <div className="container">
           <div className="section-head">
-            <div>
-              <span className="eyebrow">Lenses</span>
-              <h2>Browse by criterion</h2>
+            <div className="section-head-info">
+              <span className="eyebrow">Audit Metrics</span>
+              <h2>Select an Evaluation Criterion</h2>
             </div>
+            <p>Every criterion lens re-scores institutes based on specific verifiable evidence.</p>
           </div>
-          <div className="chooser-list chooser-grid">
+
+          <div className="chooser-grid">
             {criteria.map((c) => (
-              <Link key={c} href={`/criterion/best-coaching-as-per-${c}`} className="chooser-item">
-                <div>
-                  <h3>{c.replace(/-/g, ' ')}</h3>
-                  <p>Rankings judged by this factor</p>
+              <Link key={c} href={`/criterion/best-coaching-as-per-${c}`} className="exam-card">
+                <div className="exam-card-info">
+                  <span className="exam-card-badge">🎯 Evaluation Metric</span>
+                  <h3 style={{ textTransform: 'capitalize' }}>As per {c.replace(/-/g, ' ')}</h3>
+                  <p>Audited shortlists judged strictly by this parameter</p>
                 </div>
-                <span className="chooser-arrow" aria-hidden>
-                  →
-                </span>
+                <div className="exam-card-arrow">→</div>
               </Link>
             ))}
           </div>
 
-          <div className="stack-lg">
-            <span className="eyebrow">All criterion pages</span>
-            <div className="link-rail stack-sm">
-              {pages.slice(0, 40).map((p) => (
-                <Link key={p.slug} href={rankingPath(p.slug)}>
-                  {p.title.replace(/\s+\|.*/, '').slice(0, 52)}
+          <div style={{ marginTop: '56px' }}>
+            <div className="section-head">
+              <div className="section-head-info">
+                <span className="eyebrow">Directory</span>
+                <h2>All Criterion Shortlists ({pages.length})</h2>
+              </div>
+            </div>
+
+            <div className="filter-pills-row" style={{ justifyContent: 'flex-start', gap: '10px' }}>
+              {pages.map((p) => (
+                <Link
+                  key={p.slug}
+                  href={rankingPath(p.slug)}
+                  className="filter-pill"
+                  style={{ padding: '8px 14px', fontSize: '0.88rem' }}
+                >
+                  {p.title.replace(/\s+\|.*/, '').slice(0, 48)} →
                 </Link>
               ))}
             </div>

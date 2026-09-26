@@ -1,12 +1,13 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import { ALL_RANKINGS, rankingPath } from '@/data/rankings';
+import { ALL_RANKINGS } from '@/data/rankings';
 import { RankingCards } from '@/components/RankingUI';
+import SearchFilter from '@/components/SearchFilter';
 
 export const metadata: Metadata = {
-  title: 'All Coaching Rankings',
+  title: 'All Coaching Rankings & National Shortlists',
   description:
-    'Browse national and city coaching rankings across CLAT, AILET, DU LLB, UPSC, IPMAT, share market and more on CoachingRank.in.',
+    'Browse verified national and city coaching rankings across CLAT, AILET, DU LLB, UPSC, IPMAT, share market and more on CoachingRank.in.',
   alternates: { canonical: '/rankings' },
 };
 
@@ -18,48 +19,70 @@ export default function RankingsIndexPage() {
     <>
       <section className="page-hero">
         <div className="container">
-          <nav className="breadcrumb">
+          <nav className="breadcrumb-nav">
             <Link href="/">Home</Link>
-            <span>/</span>
-            <span>Rankings</span>
+            <span className="separator">/</span>
+            <span className="current">Rankings Directory</span>
           </nav>
-          <h1>Coaching rankings directory</h1>
-          <p className="prose-lead">National and city shortlists across major entrance exams.</p>
+          <h1>National & Regional Coaching Directory</h1>
+          <p className="prose-lead">
+            Explore verified shortlists with #1 and #2 ranks across India’s premier competitive exams.
+          </p>
+
+          <div style={{ marginTop: '24px' }}>
+            <SearchFilter rankings={ALL_RANKINGS} showPills={false} placeholder="Filter rankings by name, exam or city..." />
+          </div>
         </div>
       </section>
 
+      {/* National Shortlists */}
       <section className="section">
         <div className="container">
           <div className="section-head">
-            <div>
-              <span className="eyebrow">National lists</span>
-              <h2>Flagship ranking pages</h2>
+            <div className="section-head-info">
+              <span className="eyebrow">National Benchmarks</span>
+              <h2>Flagship National Shortlists</h2>
             </div>
+            <p>Pan-India rankings audited for faculty pedigree, verified selections, and study material rigor.</p>
           </div>
-          <RankingCards pages={national} />
+
+          <RankingCards pages={national} cols3 />
         </div>
       </section>
 
+      {/* Filter by Exam Rail */}
       <section className="section section-alt">
         <div className="container">
           <div className="section-head">
-            <div>
-              <span className="eyebrow">Filter by exam</span>
-              <h2>Every exam cluster</h2>
+            <div className="section-head-info">
+              <span className="eyebrow">Exam Hubs</span>
+              <h2>Browse By Entrance Exam</h2>
             </div>
           </div>
-          <div className="link-rail">
+
+          <div className="filter-pills-row" style={{ justifyContent: 'flex-start' }}>
             {byExam.map((exam) => (
-              <Link key={exam} href={`/exam/${exam}-coaching-rankings`}>
-                {exam.replace(/-/g, ' ')}
+              <Link
+                key={exam}
+                href={`/exam/${exam}-coaching-rankings`}
+                className="filter-pill"
+                style={{ padding: '8px 16px' }}
+              >
+                {exam.replace(/-/g, ' ').toUpperCase()} →
               </Link>
             ))}
           </div>
-          <p className="stack-md prose-lead">
-            {ALL_RANKINGS.length} ranking pages · example{' '}
-            <Link href={rankingPath('best-clat-coaching-in-delhi')} className="text-link">
-              /rankings/best-clat-coaching-in-delhi
+
+          <p className="prose-lead" style={{ marginTop: '24px', fontSize: '0.95rem' }}>
+            Looking for city-level classroom rankings? Explore our{' '}
+            <Link href="/city" className="text-link">
+              32 Indian Coaching Cities
+            </Link>{' '}
+            or compare specific institutes in the{' '}
+            <Link href="/compare" className="text-link">
+              Comparison Engine
             </Link>
+            .
           </p>
         </div>
       </section>

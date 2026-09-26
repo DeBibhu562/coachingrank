@@ -2,12 +2,8 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { SITE } from '@/data/site';
-import {
-  ALL_RANKINGS,
-  getRanking,
-  rankingPath,
-} from '@/data/rankings';
-import { AnswerBlock, FaqBlock, RankingTable } from '@/components/RankingUI';
+import { ALL_RANKINGS, getRanking, rankingPath } from '@/data/rankings';
+import { AnswerBlock, FaqBlock, RankingTable, RankingCards } from '@/components/RankingUI';
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -65,7 +61,7 @@ export default async function RankingSlugPage({ params }: Props) {
 
   const related = ALL_RANKINGS.filter(
     (r) => r.exam === page.exam && r.slug !== page.slug && !r.criterion,
-  ).slice(0, 8);
+  ).slice(0, 6);
 
   return (
     <>
@@ -76,48 +72,68 @@ export default async function RankingSlugPage({ params }: Props) {
 
       <section className="page-hero">
         <div className="container">
-          <nav className="breadcrumb" aria-label="Breadcrumb">
+          <nav className="breadcrumb-nav" aria-label="Breadcrumb">
             <Link href="/">Home</Link>
-            <span>/</span>
+            <span className="separator">/</span>
             <Link href="/rankings">Rankings</Link>
-            <span>/</span>
-            <span>{page.exam}</span>
+            <span className="separator">/</span>
+            <span className="current">{page.exam.toUpperCase()}</span>
           </nav>
-          <h1>{page.title}</h1>
-          <div className="meta-row">
-            <span>Updated for {SITE.year}</span>
-            {page.city ? <span>· City: {page.city.replace(/-/g, ' ')}</span> : <span>· National</span>}
-            {page.criterion ? <span>· Criterion: {page.criterion.replace(/-/g, ' ')}</span> : null}
+
+          <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '8px' }}>
+            <span className="eyebrow">
+              ★ Audited Shortlist · {SITE.year}
+            </span>
           </div>
+
+          <h1>{page.title}</h1>
+
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '12px', fontSize: '0.9rem', color: 'var(--ink-muted)', marginTop: '8px' }}>
+            <span>📅 Verified for {SITE.year}</span>
+            {page.city ? <span>· 📍 City: <strong>{page.city.replace(/-/g, ' ').toUpperCase()}</strong></span> : <span>· 🇮🇳 Pan-India</span>}
+            {page.criterion ? <span>· 🎯 Criterion: <strong>{page.criterion.replace(/-/g, ' ')}</strong></span> : null}
+            <span>· 🏛️ {page.institutes.length} Institutes Audited</span>
+          </div>
+
           <AnswerBlock page={page} />
         </div>
       </section>
 
-      <section className="section section-tight">
+      <section className="section">
         <div className="container">
+          <div className="section-head">
+            <div className="section-head-info">
+              <span className="eyebrow">Official Rankings</span>
+              <h2>Audited Ranking Table & Breakdown</h2>
+            </div>
+            <p>Ranks reflect comprehensive scoring on results evidence, faculty experience, and mock test rigor.</p>
+          </div>
+
           <RankingTable page={page} />
 
+          {/* FAQ Accordions */}
           {page.faqs.length > 0 ? (
-            <div className="stack-lg">
-              <span className="eyebrow">FAQ</span>
-              <h2 className="section-title stack-sm">People also ask</h2>
-              <div className="stack-sm">
-                <FaqBlock page={page} />
+            <div style={{ marginTop: '48px' }}>
+              <div className="section-head">
+                <div className="section-head-info">
+                  <span className="eyebrow">Frequently Asked</span>
+                  <h2>People Also Ask About {page.exam.toUpperCase()}</h2>
+                </div>
               </div>
+              <FaqBlock page={page} />
             </div>
           ) : null}
 
+          {/* Related Rankings Cards */}
           {related.length > 0 ? (
-            <div className="stack-lg">
-              <span className="eyebrow">Related</span>
-              <h2 className="section-title stack-sm">More {page.exam.replace(/-/g, ' ')} rankings</h2>
-              <div className="link-rail stack-sm">
-                {related.map((r) => (
-                  <Link key={r.slug} href={rankingPath(r.slug)}>
-                    {r.title.replace(/\s+\|.*/, '').slice(0, 48)}
-                  </Link>
-                ))}
+            <div style={{ marginTop: '56px' }}>
+              <div className="section-head">
+                <div className="section-head-info">
+                  <span className="eyebrow">Explore More</span>
+                  <h2>Related {page.exam.replace(/-/g, ' ').toUpperCase()} Shortlists</h2>
+                </div>
               </div>
+              <RankingCards pages={related} cols3 />
             </div>
           ) : null}
         </div>

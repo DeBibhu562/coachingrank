@@ -21,8 +21,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!exam) return {};
   const label = exam.replace(/-/g, ' ');
   return {
-    title: `${label} coaching rankings hub`,
-    description: `Explore ${label} coaching rankings by city and criterion on CoachingRank.in.`,
+    title: `${label.toUpperCase()} Coaching Rankings Hub | 2026 Shortlists`,
+    description: `Explore ${label} coaching rankings by city, national benchmarks, and criterion filters on CoachingRank.in.`,
     alternates: { canonical: `/exam/${slug}` },
   };
 }
@@ -42,65 +42,89 @@ export default async function ExamHubPage({ params }: Props) {
     <>
       <section className="page-hero">
         <div className="container">
-          <nav className="breadcrumb">
+          <nav className="breadcrumb-nav">
             <Link href="/">Home</Link>
-            <span>/</span>
-            <Link href="/exam">Exam</Link>
-            <span>/</span>
-            <span>{label}</span>
+            <span className="separator">/</span>
+            <Link href="/exam">Exam Hubs</Link>
+            <span className="separator">/</span>
+            <span className="current">{label.toUpperCase()}</span>
           </nav>
-          <h1>{label} coaching rankings</h1>
-          <aside className="answer-block">
-            <strong>Direct answer</strong>
-            <p>
-              CoachingRank’s {label} hub groups national, city and criterion shortlists
+
+          <span className="eyebrow">
+            ★ Exam Master Hub · 2026 Audit
+          </span>
+
+          <h1>{label.toUpperCase()} Coaching Rankings</h1>
+          <p className="prose-lead">
+            Audited national benchmarks, city classroom shortlists, and criterion-wise evaluations for {label.toUpperCase()}.
+          </p>
+
+          <div className="answer-box">
+            <div className="answer-header">
+              <span className="answer-badge">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3">
+                  <polyline points="20 6 9 17 4 12" />
+                </svg>
+                Direct Answer
+              </span>
+              <span style={{ fontSize: '0.8rem', color: 'var(--ink-muted)' }}>Updated 2026</span>
+            </div>
+            <p className="answer-text">
+              CoachingRank’s {label.toUpperCase()} master hub tracks verified coaching centres across India
               {national[0]?.institutes[0]
-                ? ` — national #1 is ${national[0].institutes[0].name}${national[0].institutes[1] ? `, #2 ${national[0].institutes[1].name}` : ''}`
+                ? ` — Pan-India #1 is ${national[0].institutes[0].name}${national[0].institutes[1] ? `, followed by #2 ${national[0].institutes[1].name}` : ''}`
                 : ''}
               .
             </p>
-          </aside>
+          </div>
         </div>
       </section>
 
       <section className="section">
         <div className="container">
-          {national.length > 0 ? (
-            <>
+          {national.length > 0 && (
+            <div style={{ marginBottom: '48px' }}>
               <div className="section-head">
-                <div>
-                  <span className="eyebrow">National</span>
-                  <h2>Flagship {label} lists</h2>
+                <div className="section-head-info">
+                  <span className="eyebrow">Pan-India</span>
+                  <h2>National {label.toUpperCase()} Shortlists</h2>
                 </div>
               </div>
-              <RankingCards pages={national} />
-            </>
-          ) : null}
-
-          {cities.length > 0 ? (
-            <div className="stack-lg">
-              <div className="section-head">
-                <div>
-                  <span className="eyebrow">Cities</span>
-                  <h2>{label} coaching by city</h2>
-                </div>
-              </div>
-              <RankingCards pages={cities} />
+              <RankingCards pages={national} cols3 />
             </div>
-          ) : null}
+          )}
 
-          {criteria.length > 0 ? (
-            <div className="stack-lg">
-              <span className="eyebrow">By criterion</span>
-              <div className="link-rail stack-sm">
+          {cities.length > 0 && (
+            <div style={{ marginBottom: '48px' }}>
+              <div className="section-head">
+                <div className="section-head-info">
+                  <span className="eyebrow">City Hubs</span>
+                  <h2>{label.toUpperCase()} Coaching by City</h2>
+                </div>
+                <p>Classroom shortlists verified for physical presence, faculty, and batch sizes.</p>
+              </div>
+              <RankingCards pages={cities} cols3 />
+            </div>
+          )}
+
+          {criteria.length > 0 && (
+            <div>
+              <div className="section-head">
+                <div className="section-head-info">
+                  <span className="eyebrow">Criterion Lenses</span>
+                  <h2>Rankings by Specific Criterion</h2>
+                </div>
+                <p>Filter by alumni track record, mock tests, and faculty stability.</p>
+              </div>
+              <div className="filter-pills-row" style={{ justifyContent: 'flex-start' }}>
                 {criteria.map((p) => (
-                  <Link key={p.slug} href={rankingPath(p.slug)}>
-                    {p.criterion?.replace(/-/g, ' ')}
+                  <Link key={p.slug} href={rankingPath(p.slug)} className="filter-pill" style={{ padding: '8px 16px' }}>
+                    {p.criterion?.replace(/-/g, ' ').toUpperCase()} Rankings →
                   </Link>
                 ))}
               </div>
             </div>
-          ) : null}
+          )}
         </div>
       </section>
     </>

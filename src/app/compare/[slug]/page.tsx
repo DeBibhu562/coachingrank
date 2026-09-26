@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import { ALL_RANKINGS, getRanking } from '@/data/rankings';
+import { ALL_RANKINGS, getRanking, rankingPath } from '@/data/rankings';
 import { AnswerBlock, RankingTable } from '@/components/RankingUI';
 
 type Props = { params: Promise<{ slug: string }> };
@@ -24,8 +24,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const a = page.institutes[0]?.name;
   const b = page.institutes[1]?.name;
   return {
-    title: `${a} vs ${b} coaching comparison`,
-    description: `Compare ${a} and ${b} using the ${page.title} shortlist on CoachingRank.in.`,
+    title: `${a} vs ${b} Coaching Comparison | Head-to-Head 2026`,
+    description: `Compare ${a} and ${b} side-by-side using the audited ${page.title} shortlist on CoachingRank.in.`,
     alternates: { canonical: `/compare/${slug}` },
   };
 }
@@ -43,38 +43,87 @@ export default async function ComparePage({ params }: Props) {
     <>
       <section className="page-hero">
         <div className="container">
-          <nav className="breadcrumb">
+          <nav className="breadcrumb-nav">
             <Link href="/">Home</Link>
-            <span>/</span>
+            <span className="separator">/</span>
             <Link href="/compare">Compare</Link>
-            <span>/</span>
-            <span>
+            <span className="separator">/</span>
+            <span className="current">
               {a.name} vs {b.name}
             </span>
           </nav>
+
+          <span className="eyebrow">
+            ⚖️ Head-to-Head Showdown · 2026 Audit
+          </span>
+
           <h1>
-            {a.name} vs {b.name}
+            {a.name} <span style={{ color: 'var(--brand-primary)' }}>vs</span> {b.name}
           </h1>
+          <p className="prose-lead">
+            Comprehensive comparison between the top 2 ranked institutes for {page.title}.
+          </p>
+
           <AnswerBlock page={page} />
         </div>
       </section>
-      <section className="section section-tight">
+
+      <section className="section">
         <div className="container">
-          <div className="compare-duo">
-            <article className="compare-side top">
+          {/* Side-by-side Cards */}
+          <div className="compare-grid">
+            <article className="compare-card top-rank">
+              <div className="compare-card-head">
+                <span className="medal-badge gold">#1</span>
+                <span className="verified-pill">Top Overall Pick</span>
+              </div>
               <h3>
-                #{a.rank} {a.name}
+                <Link href={`/institute/${a.slug}`}>{a.name}</Link>
               </h3>
-              <p>{a.blurb || 'Top-ranked on this CoachingRank shortlist.'}</p>
+              <p style={{ marginTop: '8px' }}>
+                {a.blurb || 'Top-ranked on this CoachingRank shortlist based on faculty stability, results, and mock series.'}
+              </p>
+              <div style={{ marginTop: '16px' }}>
+                <Link href={`/institute/${a.slug}`} className="btn btn-primary btn-sm">
+                  View {a.name} Profile →
+                </Link>
+              </div>
             </article>
-            <article className="compare-side">
+
+            <article className="compare-card">
+              <div className="compare-card-head">
+                <span className="medal-badge silver">#2</span>
+                <span className="verified-pill" style={{ color: 'var(--ink-secondary)', background: 'var(--bg-surface-subtle)', borderColor: 'var(--border-medium)' }}>
+                  Runner-Up Benchmark
+                </span>
+              </div>
               <h3>
-                #{b.rank} {b.name}
+                <Link href={`/institute/${b.slug}`}>{b.name}</Link>
               </h3>
-              <p>{b.blurb || 'Second on this CoachingRank shortlist.'}</p>
+              <p style={{ marginTop: '8px' }}>
+                {b.blurb || 'Second-ranked on this CoachingRank shortlist with proven track record and national footprint.'}
+              </p>
+              <div style={{ marginTop: '16px' }}>
+                <Link href={`/institute/${b.slug}`} className="btn btn-ghost btn-sm">
+                  View {b.name} Profile →
+                </Link>
+              </div>
             </article>
           </div>
-          <RankingTable page={page} />
+
+          {/* Full Shortlist Table */}
+          <div style={{ marginTop: '48px' }}>
+            <div className="section-head">
+              <div className="section-head-info">
+                <span className="eyebrow">Complete Hub</span>
+                <h2>Full {page.title} Shortlist</h2>
+              </div>
+              <Link href={rankingPath(page.slug)} className="btn btn-ghost btn-sm">
+                Open Full Ranking Hub →
+              </Link>
+            </div>
+            <RankingTable page={page} />
+          </div>
         </div>
       </section>
     </>

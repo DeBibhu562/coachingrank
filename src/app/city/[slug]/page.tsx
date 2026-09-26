@@ -21,8 +21,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!city) return {};
   const label = city.replace(/-/g, ' ');
   return {
-    title: `Best coaching institutes in ${label}`,
-    description: `City hub for coaching rankings in ${label} across major entrance exams.`,
+    title: `Best Coaching Institutes in ${label.toUpperCase()} | 2026 Rankings`,
+    description: `Audited city hub for top coaching rankings in ${label} across law, civil services, management, engineering, and foundation.`,
     alternates: { canonical: `/city/${slug}` },
   };
 }
@@ -39,25 +39,52 @@ export default async function CityHubPage({ params }: Props) {
     <>
       <section className="page-hero">
         <div className="container">
-          <nav className="breadcrumb">
+          <nav className="breadcrumb-nav">
             <Link href="/">Home</Link>
-            <span>/</span>
-            <Link href="/city">City</Link>
-            <span>/</span>
-            <span>{label}</span>
+            <span className="separator">/</span>
+            <Link href="/city">City Hubs</Link>
+            <span className="separator">/</span>
+            <span className="current" style={{ textTransform: 'capitalize' }}>{label}</span>
           </nav>
-          <h1>Best coaching institutes in {label}</h1>
-          <aside className="answer-block">
-            <strong>Direct answer</strong>
-            <p>
-              This {label} hub collects exam-wise coaching shortlists for students comparing centres in the city.
+
+          <span className="eyebrow">
+            📍 Hyperlocal City Hub · 2026
+          </span>
+
+          <h1 style={{ textTransform: 'capitalize' }}>Best Coaching Institutes in {label}</h1>
+          <p className="prose-lead">
+            Audited classroom shortlists across all major entrance exams for students in {label.toUpperCase()}.
+          </p>
+
+          <div className="answer-box">
+            <div className="answer-header">
+              <span className="answer-badge">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3">
+                  <polyline points="20 6 9 17 4 12" />
+                </svg>
+                Direct Answer
+              </span>
+              <span style={{ fontSize: '0.8rem', color: 'var(--ink-muted)' }}>Verified 2026</span>
+            </div>
+            <p className="answer-text">
+              This {label.toUpperCase()} hub indexes verified coaching shortlists across {pages.length} exam categories,
+              with #1 and #2 classroom picks evaluated for faculty presence, batch limits, and transparent fees.
             </p>
-          </aside>
+          </div>
         </div>
       </section>
+
       <section className="section">
         <div className="container">
-          <RankingCards pages={pages} />
+          <div className="section-head">
+            <div className="section-head-info">
+              <span className="eyebrow">Audited Portals</span>
+              <h2>{pages.length} Exam Rankings in {label.toUpperCase()}</h2>
+            </div>
+            <p>Click any card to view the full classroom audit, top ranks, and address contact details.</p>
+          </div>
+
+          <RankingCards pages={pages} cols3 />
         </div>
       </section>
     </>
