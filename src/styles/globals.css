@@ -1485,16 +1485,16 @@ h1, h2, h3, h4, h5, h6 {
 .ranking-sidebar {
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: 18px;
 }
 
 @media (min-width: 1024px) {
   .ranking-sidebar {
     position: sticky;
-    top: calc(var(--header-h) + 24px);
-    max-height: calc(100vh - var(--header-h) - 32px);
+    top: calc(var(--header-h) + 20px);
+    max-height: calc(100vh - var(--header-h) - 28px);
     overflow-y: auto;
-    padding-bottom: 24px;
+    padding-bottom: 20px;
     scrollbar-width: thin;
     scrollbar-color: var(--border-subtle) transparent;
   }
@@ -1924,38 +1924,38 @@ h1, h2, h3, h4, h5, h6 {
   background: var(--bg-surface);
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-md);
-  padding: 22px;
+  padding: 18px;
   box-shadow: var(--shadow-sm);
 }
 .sidebar-widget-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding-bottom: 14px;
+  padding-bottom: 11px;
   border-bottom: 1px solid var(--border-subtle);
-  margin-bottom: 16px;
+  margin-bottom: 13px;
 }
 .sidebar-widget-title {
-  font-size: 0.92rem;
+  font-size: 0.86rem;
   font-weight: 700;
   color: var(--ink-primary);
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 7px;
   text-transform: uppercase;
   letter-spacing: 0.04em;
 }
 .sidebar-summary-list {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 9px;
 }
 .sidebar-summary-row {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  font-size: 0.88rem;
-  gap: 12px;
+  font-size: 0.84rem;
+  gap: 10px;
 }
 .sidebar-summary-row .label {
   color: var(--ink-muted);
@@ -1972,15 +1972,15 @@ h1, h2, h3, h4, h5, h6 {
   list-style: none;
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 4px;
 }
 .sidebar-toc-item a {
   display: flex;
   align-items: center;
-  gap: 10px;
-  padding: 8px 12px;
+  gap: 8px;
+  padding: 6px 10px;
   border-radius: var(--radius-sm);
-  font-size: 0.88rem;
+  font-size: 0.84rem;
   font-weight: 600;
   color: var(--ink-secondary);
   transition: all 0.15s ease;
