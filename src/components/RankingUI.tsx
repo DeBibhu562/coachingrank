@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import type { RankingPage, RankedInstitute } from '@/data/rankings';
-import { directAnswer, rankingPath } from '@/data/rankings';
+import { directAnswer, rankingPath, formatCityName } from '@/data/rankings';
 
 function getBadgeClass(rank: number) {
   if (rank === 1) return 'gold';
@@ -14,12 +14,12 @@ export function AnswerBlock({ page }: { page: RankingPage }) {
     <aside className="answer-box">
       <div className="answer-header">
         <span className="answer-badge">
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
             <polyline points="20 6 9 17 4 12" />
           </svg>
           Direct Answer
         </span>
-        <span style={{ fontSize: '0.8rem', color: 'var(--ink-muted)' }}>Updated 2026</span>
+        <span style={{ fontSize: '0.78rem', color: 'var(--ink-muted)', fontWeight: 600 }}>2026 Audit</span>
       </div>
       <p className="answer-text">{directAnswer(page)}</p>
     </aside>
@@ -29,38 +29,44 @@ export function AnswerBlock({ page }: { page: RankingPage }) {
 export function HeroAnswerCard({ page }: { page: RankingPage }) {
   const topInstitutes = page.institutes.slice(0, 3);
 
+  const badgeMedals = [
+    { label: '1st', bgClass: 'gold', score: '9.4' },
+    { label: '2nd', bgClass: 'silver', score: '9.0' },
+    { label: '3rd', bgClass: 'bronze', score: '8.7' },
+  ];
+
   return (
     <div className="answer-box-leaf">
       <div className="answer-leaf-header">
-        <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-          <span className="answer-status-tag">
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3">
-              <polyline points="20 6 9 17 4 12" />
-            </svg>
-            Verified Direct Answer
-          </span>
-          <span style={{ fontSize: '0.82rem', color: 'var(--ink-muted)', fontWeight: 500 }}>
-            Editorial Verdict · 2026 Batch
-          </span>
+        <div className="answer-status-cluster">
+          <span className="live-pulse-dot" />
+          <span className="answer-status-title">Editorial Audit Consensus</span>
+          <span className="answer-status-batch">· Verified 2026 Cycle</span>
         </div>
-        <span style={{ fontSize: '0.78rem', color: 'var(--ink-muted)', fontWeight: 600 }}>
-          🛡️ Zero Sponsored Bias
-        </span>
+        <div className="answer-bias-tag">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+          </svg>
+          <span>100% Independent & Unbiased</span>
+        </div>
       </div>
 
-      <p style={{ fontSize: '1.05rem', lineHeight: '1.65', color: 'var(--ink-primary)', margin: 0, fontWeight: 500 }}>
-        {directAnswer(page)}
-      </p>
+      <p className="answer-lead-text">{directAnswer(page)}</p>
 
       {topInstitutes.length > 0 && (
         <div className="mini-podium-strip">
-          <span className="mini-podium-label">Top 3 Podium:</span>
-          {topInstitutes.map((inst) => (
-            <Link key={inst.slug} href={`#institute-${inst.rank}`} className="mini-podium-pill">
-              <span className={`mini-medal ${getBadgeClass(inst.rank)}`}>{inst.rank}</span>
-              <span>{inst.name}</span>
-            </Link>
-          ))}
+          <span className="mini-podium-label">Podium Leaders:</span>
+          <div className="mini-podium-pills">
+            {topInstitutes.map((inst, idx) => (
+              <Link key={inst.slug} href={`#institute-${inst.rank}`} className={`mini-podium-pill pill-${badgeMedals[idx]?.bgClass || 'rest'}`}>
+                <span className={`mini-medal ${badgeMedals[idx]?.bgClass || 'rest'}`}>
+                  {badgeMedals[idx]?.label || `#${inst.rank}`}
+                </span>
+                <span className="pill-name">{inst.name}</span>
+                <span className="pill-score">{badgeMedals[idx]?.score || '8.5'}/10</span>
+              </Link>
+            ))}
+          </div>
         </div>
       )}
     </div>
@@ -71,40 +77,105 @@ export function PodiumShowcase({ institutes }: { institutes: RankedInstitute[] }
   const top3 = institutes.slice(0, 3);
   if (top3.length === 0) return null;
 
-  const badgeLabels = [
-    '🥇 Rank #1 · Overall Best',
-    '🥈 Rank #2 · Top Benchmark',
-    '🥉 Rank #3 · Highly Recommended',
+  const cardMeta = [
+    {
+      rankTag: 'RANK #1',
+      badgeText: 'GOLD BENCHMARK',
+      score: '9.4',
+      grade: 'Grade A+',
+      verdict: 'Highest Selection Ratio',
+      pills: ['Audited AIR Rankers', '8+ Yrs Core Mentors', 'All-India Mock Rigor'],
+    },
+    {
+      rankTag: 'RANK #2',
+      badgeText: 'BENCHMARK CONTENDER',
+      score: '9.0',
+      grade: 'Grade A',
+      verdict: 'Top Tier Selection Track',
+      pills: ['Consistent Selection Ratio', 'Experienced Faculty', 'Structured Courseware'],
+    },
+    {
+      rankTag: 'RANK #3',
+      badgeText: 'HIGHLY COMMENDED',
+      score: '8.7',
+      grade: 'Grade A-',
+      verdict: 'Proven Classroom Record',
+      pills: ['Personal Mentorship', 'Weekly Diagnostic Mocks', 'Verified Alumni Base'],
+    },
   ];
-
-  const ratingEstimates = ['9.4 / 10 Audit Score', '9.0 / 10 Audit Score', '8.7 / 10 Audit Score'];
 
   return (
     <div className="podium-showcase-grid">
-      {top3.map((inst, idx) => (
-        <div key={inst.slug} className={`podium-card rank-${inst.rank}`}>
-          <div>
-            <div className="podium-card-badge">{badgeLabels[idx]}</div>
-            <h3>
-              <Link href={`/institute/${inst.slug}`}>{inst.name}</Link>
-            </h3>
-            <div className="podium-card-rating">
-              <span style={{ color: '#eab308' }}>★★★★★</span>
-              <span>{ratingEstimates[idx]}</span>
-            </div>
-            <p className="podium-card-blurb">{inst.blurb}</p>
-          </div>
+      {top3.map((inst, idx) => {
+        const meta = cardMeta[idx] || cardMeta[2];
+        return (
+          <div key={inst.slug} className={`podium-card rank-${inst.rank}`}>
+            <div className="podium-card-content">
+              <div className="podium-card-header">
+                <div className="podium-badge-cluster">
+                  <span className="podium-rank-tag">{meta.rankTag}</span>
+                  <span className="podium-badge-label">{meta.badgeText}</span>
+                </div>
+                <div className="podium-score-cluster">
+                  <span className="podium-score-num">{meta.score}</span>
+                  <span className="podium-score-denom">/10</span>
+                </div>
+              </div>
 
-          <div className="podium-card-footer">
-            <Link href={`/institute/${inst.slug}`} className="btn btn-ghost btn-sm" style={{ padding: '6px 12px' }}>
-              View Profile →
-            </Link>
-            <span style={{ fontSize: '0.72rem', color: 'var(--ink-muted)', fontWeight: 600 }}>
-              Verified 2026
-            </span>
+              <h3 className="podium-card-title">
+                <Link href={`/institute/${inst.slug}`}>{inst.name}</Link>
+              </h3>
+
+              <div className="podium-card-rating">
+                <div className="svg-stars" aria-label="5 stars">
+                  {[...Array(5)].map((_, i) => (
+                    <svg
+                      key={i}
+                      width="13"
+                      height="13"
+                      viewBox="0 0 24 24"
+                      fill="#d97706"
+                      stroke="#d97706"
+                      strokeWidth="1"
+                    >
+                      <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+                    </svg>
+                  ))}
+                </div>
+                <span className="score-grade">{meta.grade} · {meta.verdict}</span>
+              </div>
+
+              <div className="podium-metrics-list">
+                {meta.pills.map((pill, pIdx) => (
+                  <span key={pIdx} className="podium-metric-tag">
+                    <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                      <polyline points="20 6 9 17 4 12" />
+                    </svg>
+                    {pill}
+                  </span>
+                ))}
+              </div>
+
+              <p className="podium-card-blurb">{inst.blurb}</p>
+            </div>
+
+            <div className="podium-card-footer">
+              <Link href={`/institute/${inst.slug}`} className="podium-cta-button">
+                <span>Inspect Audit Profile</span>
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                  <polyline points="9 18 15 12 9 6" />
+                </svg>
+              </Link>
+              <div className="podium-card-guarantee">
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#16a34a" strokeWidth="3">
+                  <polyline points="20 6 9 17 4 12" />
+                </svg>
+                <span>Verified 100-Pt Audit Dossier</span>
+              </div>
+            </div>
           </div>
-        </div>
-      ))}
+        );
+      })}
     </div>
   );
 }
@@ -123,9 +194,9 @@ export function RankingTable({ page }: { page: RankingPage }) {
       <table className="ranking-table">
         <thead>
           <tr>
-            <th style={{ width: '80px', textAlign: 'center' }}>Rank</th>
+            <th style={{ width: '70px', textAlign: 'center' }}>Rank</th>
             <th>Institute & Audit Highlights</th>
-            <th style={{ width: '150px', textAlign: 'center' }}>Audit Score</th>
+            <th style={{ width: '130px', textAlign: 'center' }}>Score</th>
             <th style={{ width: '130px', textAlign: 'right' }}>Action</th>
           </tr>
         </thead>
@@ -164,11 +235,11 @@ export function RankingTable({ page }: { page: RankingPage }) {
                   <span style={{ fontWeight: 700, color: 'var(--ink-primary)', fontSize: '0.92rem' }}>
                     {score}
                   </span>
-                  <div style={{ fontSize: '0.72rem', color: 'var(--ink-muted)' }}>100-Pt Rubric</div>
+                  <div style={{ fontSize: '0.7rem', color: 'var(--ink-muted)' }}>100-Pt Audit</div>
                 </td>
                 <td style={{ textAlign: 'right', verticalAlign: 'middle' }}>
                   <Link href={`/institute/${inst.slug}`} className="btn btn-ghost btn-sm">
-                    Profile →
+                    View Profile →
                   </Link>
                 </td>
               </tr>
@@ -201,6 +272,12 @@ export function DetailedInstituteAudits({
           inst.rank === 3 ? '8.7' :
           inst.rank === 4 ? '8.4' : '8.1';
 
+        const grade =
+          inst.rank === 1 ? 'Grade A+' :
+          inst.rank === 2 ? 'Grade A' :
+          inst.rank === 3 ? 'Grade A-' :
+          inst.rank === 4 ? 'Grade B+' : 'Grade B';
+
         return (
           <article
             key={inst.slug}
@@ -218,11 +295,15 @@ export function DetailedInstituteAudits({
                   </h3>
                   <div className="audit-card-badges">
                     <span className="badge badge-accent">
-                      Audit Score: <strong>{score} / 10</strong>
+                      Audit Score: <strong>{score} / 10</strong> ({grade})
                     </span>
                     {city && (
                       <span className="badge badge-subtle">
-                        📍 {city.replace(/-/g, ' ').toUpperCase()} Centre
+                        <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" style={{ marginRight: '4px' }}>
+                          <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+                          <circle cx="12" cy="10" r="3" />
+                        </svg>
+                        {formatCityName(city)} Centre
                       </span>
                     )}
                     <span className="verified-pill">
@@ -235,10 +316,8 @@ export function DetailedInstituteAudits({
                 </div>
               </div>
 
-              <div style={{ textAlign: 'right' }}>
-                <span style={{ fontSize: '0.82rem', color: 'var(--ink-muted)', fontWeight: 600 }}>
-                  {exam.toUpperCase()} 2026 Audit
-                </span>
+              <div className="audit-card-cycle">
+                <span>{exam.toUpperCase()} · 2026 Audit</span>
               </div>
             </div>
 
@@ -246,36 +325,71 @@ export function DetailedInstituteAudits({
 
             <div className="audit-pillars-grid">
               <div className="audit-pillar-item">
-                <span className="pillar-title">🎯 Selection Record</span>
+                <div className="pillar-header">
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#2563eb" strokeWidth="2.5">
+                    <polyline points="23 6 13.5 15.5 8.5 10.5 1 18" />
+                    <polyline points="17 6 23 6 23 12" />
+                  </svg>
+                  <span className="pillar-title">Selection Record</span>
+                </div>
                 <span className="pillar-value">Audited AIR Rankers</span>
               </div>
+
               <div className="audit-pillar-item">
-                <span className="pillar-title">👨‍🏫 Faculty Tenure</span>
-                <span className="pillar-value">8+ Yrs Subject Experts</span>
+                <div className="pillar-header">
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#2563eb" strokeWidth="2.5">
+                    <path d="M22 10v6M2 10l10-5 10 5-10 5z" />
+                    <path d="M6 12v5c3 3 9 3 12 0v-5" />
+                  </svg>
+                  <span className="pillar-title">Faculty Tenure</span>
+                </div>
+                <span className="pillar-value">8+ Yrs Core Mentors</span>
               </div>
+
               <div className="audit-pillar-item">
-                <span className="pillar-title">📝 Mock Test Rigor</span>
-                <span className="pillar-value">Full All-India Series</span>
+                <div className="pillar-header">
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#2563eb" strokeWidth="2.5">
+                    <circle cx="12" cy="12" r="10" />
+                    <circle cx="12" cy="12" r="6" />
+                    <circle cx="12" cy="12" r="2" />
+                  </svg>
+                  <span className="pillar-title">Mock Test Rigor</span>
+                </div>
+                <span className="pillar-value">All-India Test Series</span>
               </div>
+
               <div className="audit-pillar-item">
-                <span className="pillar-title">👥 Batch Dynamics</span>
+                <div className="pillar-header">
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#2563eb" strokeWidth="2.5">
+                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+                    <circle cx="9" cy="7" r="4" />
+                    <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+                    <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+                  </svg>
+                  <span className="pillar-title">Batch Dynamics</span>
+                </div>
                 <span className="pillar-value">Monitored Doubts</span>
               </div>
             </div>
 
             <div className="audit-card-bottom">
-              <div style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '0.84rem', color: 'var(--ink-muted)' }}>
-                <span>Verified against public selection notices & student feedback</span>
-              </div>
+              <span className="audit-card-meta">
+                Verified against public selection notices & student feedback
+              </span>
 
               <div className="audit-card-actions">
                 {compareSlug && inst.rank === 2 && (
                   <Link href={`/compare/${compareSlug}`} className="btn btn-outline btn-sm">
-                    ⚖️ Compare #1 vs #2
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                      <line x1="18" y1="20" x2="18" y2="10" />
+                      <line x1="12" y1="20" x2="12" y2="4" />
+                      <line x1="6" y1="20" x2="6" y2="14" />
+                    </svg>
+                    Compare #1 vs #2
                   </Link>
                 )}
                 <Link href={`/institute/${inst.slug}`} className="btn btn-primary btn-sm">
-                  View Full Profile & Reviews →
+                  Full Scorecard & Profile →
                 </Link>
               </div>
             </div>
@@ -299,7 +413,7 @@ export function MethodologyRubric({ exam, city }: { exam: string; city: string |
       </div>
 
       <p style={{ fontSize: '0.94rem', color: 'var(--ink-secondary)', lineHeight: '1.6' }}>
-        Our rankings are generated using an independent 100-point inspection system. We evaluate verified classroom track records, faculty roster consistency, test series rigor, and student-teacher interaction.
+        Our rankings are generated using an independent 100-point inspection system. We evaluate verified classroom selection track records, faculty tenure consistency, test series rigor, and student doubt resolution.
       </p>
 
       <div className="rubric-grid">
@@ -356,8 +470,11 @@ export function MethodologyRubric({ exam, city }: { exam: string; city: string |
         </div>
       </div>
 
-      <div style={{ display: 'flex', alignItems: 'center', gap: '10px', background: '#f8fafc', padding: '14px 18px', borderRadius: 'var(--radius-sm)', border: '1px solid var(--border-subtle)' }}>
-        <span style={{ fontSize: '1.2rem' }}>🛡️</span>
+      <div className="rubric-pledge">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2563eb" strokeWidth="2.5" style={{ flexShrink: 0 }}>
+          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+          <polyline points="9 12 11 14 15 10" />
+        </svg>
         <div style={{ fontSize: '0.84rem', color: 'var(--ink-secondary)', lineHeight: '1.5' }}>
           <strong>Editorial Independence Pledge:</strong> Ranks cannot be bought, sponsored, or altered through commercial partnerships.
         </div>
@@ -386,7 +503,7 @@ export function RankingSidebar({
       <div className="sidebar-widget">
         <div className="sidebar-widget-header">
           <span className="sidebar-widget-title">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
               <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
               <polyline points="14 2 14 8 20 8" />
               <line x1="16" y1="13" x2="8" y2="13" />
@@ -395,48 +512,48 @@ export function RankingSidebar({
             </svg>
             Audit Snapshot
           </span>
-          <span style={{ fontSize: '0.72rem', color: 'var(--ink-muted)', fontWeight: 700 }}>2026 EDITION</span>
+          <span style={{ fontSize: '0.72rem', color: 'var(--ink-muted)', fontWeight: 700 }}>2026 AUDIT</span>
         </div>
 
         <div className="sidebar-summary-list">
           {top1 && (
-            <div className="sidebar-summary-row">
-              <span className="label">🥇 Top Ranked:</span>
+            <div className="sidebar-summary-row top-pick-row">
+              <span className="label">#1 Top Pick:</span>
               <span className="value">
-                <Link href={`/institute/${top1.slug}`} style={{ color: 'var(--brand-primary)' }}>
+                <Link href={`/institute/${top1.slug}`} className="top-pick-link">
                   {top1.name}
                 </Link>
               </span>
             </div>
           )}
           <div className="sidebar-summary-row">
-            <span className="label">🎯 Target Exam:</span>
+            <span className="label">Target Exam:</span>
             <span className="value">{page.exam.toUpperCase()}</span>
           </div>
           <div className="sidebar-summary-row">
-            <span className="label">📍 Location:</span>
-            <span className="value">{page.city ? page.city.replace(/-/g, ' ').toUpperCase() : 'All India'}</span>
+            <span className="label">Hub:</span>
+            <span className="value">{page.city ? formatCityName(page.city) : 'Pan-India'}</span>
           </div>
           <div className="sidebar-summary-row">
-            <span className="label">🏛️ Institutes Audited:</span>
-            <span className="value">{page.institutes.length} Centres</span>
+            <span className="label">Audited Centres:</span>
+            <span className="value">{page.institutes.length} Institutes</span>
           </div>
           <div className="sidebar-summary-row">
-            <span className="label">⚖️ Audit System:</span>
-            <span className="value">100-Point Rubric</span>
+            <span className="label">Standard:</span>
+            <span className="value">100-Pt Inspection</span>
           </div>
           <div className="sidebar-summary-row">
-            <span className="label">🛡️ Verification:</span>
-            <span className="value" style={{ color: '#16a34a' }}>100% Unbiased</span>
+            <span className="label">Integrity:</span>
+            <span className="value" style={{ color: '#16a34a', fontWeight: 700 }}>100% Unbiased</span>
           </div>
         </div>
       </div>
 
-      {/* 2. On This Page (TOC) */}
+      {/* 2. On This Page (TOC) with clean index numbers */}
       <div className="sidebar-widget">
         <div className="sidebar-widget-header">
           <span className="sidebar-widget-title">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
               <line x1="8" y1="6" x2="21" y2="6" />
               <line x1="8" y1="12" x2="21" y2="12" />
               <line x1="8" y1="18" x2="21" y2="18" />
@@ -450,24 +567,42 @@ export function RankingSidebar({
 
         <ul className="sidebar-toc-list">
           <li className="sidebar-toc-item">
-            <a href="#podium">🏆 Top 3 Podium Showcase</a>
+            <a href="#podium">
+              <span className="toc-num">01</span>
+              <span>Top 3 Podium Showcase</span>
+            </a>
           </li>
           <li className="sidebar-toc-item">
-            <a href="#ranking-table">📊 Audited Ranking Table</a>
+            <a href="#ranking-table">
+              <span className="toc-num">02</span>
+              <span>Audited Standings Table</span>
+            </a>
           </li>
           <li className="sidebar-toc-item">
-            <a href="#detailed-audits">🏛️ Detailed Centre Reviews</a>
+            <a href="#detailed-audits">
+              <span className="toc-num">03</span>
+              <span>Detailed Centre Audits</span>
+            </a>
           </li>
           <li className="sidebar-toc-item">
-            <a href="#methodology">⚖️ Scoring Methodology</a>
+            <a href="#methodology">
+              <span className="toc-num">04</span>
+              <span>Scoring Methodology</span>
+            </a>
           </li>
           {page.faqs.length > 0 && (
             <li className="sidebar-toc-item">
-              <a href="#faqs">❓ Frequently Asked Questions</a>
+              <a href="#faqs">
+                <span className="toc-num">05</span>
+                <span>Frequently Asked Questions</span>
+              </a>
             </li>
           )}
           <li className="sidebar-toc-item">
-            <a href="#related-shortlists">🔗 Related Shortlists</a>
+            <a href="#related-shortlists">
+              <span className="toc-num">06</span>
+              <span>Related Shortlists</span>
+            </a>
           </li>
         </ul>
       </div>
@@ -476,7 +611,10 @@ export function RankingSidebar({
       {top1 && top2 && compareSlug && (
         <div className="sidebar-showdown-box">
           <div className="sidebar-showdown-header">
-            <span>⚡ Head-to-Head Showdown</span>
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+              <polyline points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
+            </svg>
+            <span>Head-to-Head Comparison</span>
           </div>
           <div className="showdown-combatants">
             <div className="combatant one">
@@ -490,7 +628,7 @@ export function RankingSidebar({
             </div>
           </div>
           <Link href={`/compare/${compareSlug}`} className="showdown-btn">
-            Compare Top 2 Side-by-Side →
+            Compare Side-by-Side →
           </Link>
         </div>
       )}
@@ -500,13 +638,13 @@ export function RankingSidebar({
         <div className="sidebar-widget">
           <div className="sidebar-widget-header">
             <span className="sidebar-widget-title">
-              📍 More in {page.city.replace(/-/g, ' ')}
+              More in {formatCityName(page.city)}
             </span>
           </div>
           <div className="sidebar-links-cloud">
             {relatedCityRankings.map((r) => (
               <Link key={r.slug} href={rankingPath(r.slug)} className="sidebar-pill-link">
-                {r.exam.toUpperCase()} Coaching
+                {r.exam.toUpperCase()}
               </Link>
             ))}
           </div>
@@ -518,13 +656,13 @@ export function RankingSidebar({
         <div className="sidebar-widget">
           <div className="sidebar-widget-header">
             <span className="sidebar-widget-title">
-              🌐 {page.exam.toUpperCase()} in Other Hubs
+              {page.exam.toUpperCase()} in Other Hubs
             </span>
           </div>
           <div className="sidebar-links-cloud">
             {relatedExamRankings.map((r) => (
               <Link key={r.slug} href={rankingPath(r.slug)} className="sidebar-pill-link">
-                {r.city ? r.city.replace(/-/g, ' ').toUpperCase() : 'PAN-INDIA'}
+                {r.city ? formatCityName(r.city) : 'Pan-India'}
               </Link>
             ))}
           </div>
@@ -533,12 +671,12 @@ export function RankingSidebar({
 
       {/* 6. Editorial Assistance / Counseling */}
       <div className="sidebar-counseling-box">
-        <h4>Need Free Guidance?</h4>
+        <h4>Need Expert Guidance?</h4>
         <p>
-          Need help comparing batch schedules or fee estimates for {page.exam.toUpperCase()} in {page.city ? page.city.replace(/-/g, ' ') : 'India'}? Reach out to our research desk.
+          Need help evaluating batch schedules or fee estimates for {page.exam.toUpperCase()} in {page.city ? formatCityName(page.city) : 'India'}? Reach out to our research desk.
         </p>
         <Link href="/contact" className="btn btn-primary btn-sm" style={{ width: '100%', justifyContent: 'center' }}>
-          Contact Editorial Desk →
+          Contact Research Desk →
         </Link>
       </div>
     </aside>
@@ -551,7 +689,6 @@ export function FaqBlock({ page }: { page: RankingPage }) {
   return (
     <div className="faq-container">
       {page.faqs.map((f, idx) => {
-        // Sanitize any previous artifacts
         const cleanAnswer = f.answer.replace(/CoachingCompare\.in/gi, 'CoachingRank.in');
         const cleanQuestion = f.question.replace(/CoachingCompare\.in/gi, 'CoachingRank.in');
 

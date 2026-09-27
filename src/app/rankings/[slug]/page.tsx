@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { SITE } from '@/data/site';
-import { ALL_RANKINGS, getRanking, rankingPath } from '@/data/rankings';
+import { ALL_RANKINGS, getRanking, rankingPath, formatCityName } from '@/data/rankings';
 import {
   HeroAnswerCard,
   PodiumShowcase,
@@ -81,7 +81,7 @@ export default async function RankingSlugPage({ params }: Props) {
     (r) => r.exam === page.exam && r.slug !== page.slug && !r.criterion,
   ).slice(0, 6);
 
-  const cityLabel = page.city ? page.city.replace(/-/g, ' ').toUpperCase() : null;
+  const cityLabel = page.city ? formatCityName(page.city) : null;
   const examLabel = page.exam.replace(/-/g, ' ').toUpperCase();
 
   return (
@@ -92,7 +92,7 @@ export default async function RankingSlugPage({ params }: Props) {
       ) : null}
 
       {/* Hero Header Section */}
-      <section className="page-hero" style={{ paddingBottom: '36px' }}>
+      <section className="page-hero">
         <div className="container">
           <nav className="breadcrumb-nav" aria-label="Breadcrumb">
             <Link href="/">Home</Link>
@@ -110,28 +110,43 @@ export default async function RankingSlugPage({ params }: Props) {
             <span className="current">Shortlist</span>
           </nav>
 
-          <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: '8px', marginBottom: '12px' }}>
+          <div className="hero-audit-badges">
             <span className="eyebrow" style={{ display: 'inline-flex', alignItems: 'center', gap: '6px' }}>
               <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
                 <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
               </svg>
-              Audited Ranking · {SITE.year} Edition
+              100-Pt Audited · {SITE.year} Edition
             </span>
+
             <span className="badge badge-subtle">
-              {cityLabel ? `📍 ${cityLabel} Hub` : '🇮🇳 Pan-India'}
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" style={{ marginRight: '5px' }}>
+                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+                <circle cx="12" cy="10" r="3" />
+              </svg>
+              {cityLabel ? `${cityLabel} Hub` : 'Pan-India'}
             </span>
+
             <span className="badge badge-accent">
-              🎯 {examLabel} Preparation
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" style={{ marginRight: '5px' }}>
+                <circle cx="12" cy="12" r="10" />
+                <circle cx="12" cy="12" r="6" />
+                <circle cx="12" cy="12" r="2" />
+              </svg>
+              {examLabel} Preparation
             </span>
+
             <span className="badge badge-subtle">
-              🏛️ {page.institutes.length} Institutes Audited
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" style={{ marginRight: '5px' }}>
+                <path d="M3 21h18M3 7v14M21 7v14M6 21V11M10 21V11M14 21V11M18 21V11M12 3l9 4H3l9-4z" />
+              </svg>
+              {page.institutes.length} Institutes Audited
             </span>
           </div>
 
-          <h1 style={{ marginBottom: '14px', maxWidth: '960px' }}>{page.title}</h1>
+          <h1 className="hero-page-title">{page.title}</h1>
 
-          <p className="prose-lead" style={{ maxWidth: '880px', marginBottom: '8px' }}>
-            Independent editorial audit ranking top-tier coaching academies for {examLabel} aspirants
+          <p className="prose-lead" style={{ maxWidth: '860px', marginBottom: '16px' }}>
+            Independent editorial audit ranking premier coaching academies for {examLabel} aspirants
             {cityLabel ? ` located in and around ${cityLabel}` : ' across India'}. Every centre is evaluated on historical ranker selection rates, faculty tenure, test series rigor, and student feedback.
           </p>
 
@@ -148,14 +163,14 @@ export default async function RankingSlugPage({ params }: Props) {
               {/* Quick Jump Bar */}
               <nav className="ranking-quick-nav" aria-label="Jump to section">
                 <span className="quick-nav-label">Jump to:</span>
-                <a href="#podium" className="quick-nav-link">🏆 Top 3 Podium</a>
-                <a href="#ranking-table" className="quick-nav-link">📊 Ranking Table</a>
-                <a href="#detailed-audits" className="quick-nav-link">🏛️ Centre Audits</a>
-                <a href="#methodology" className="quick-nav-link">⚖️ Rubric</a>
+                <a href="#podium" className="quick-nav-link">Podium Showcase</a>
+                <a href="#ranking-table" className="quick-nav-link">Ranking Standings</a>
+                <a href="#detailed-audits" className="quick-nav-link">Centre Audits</a>
+                <a href="#methodology" className="quick-nav-link">Methodology Rubric</a>
                 {page.faqs.length > 0 && (
-                  <a href="#faqs" className="quick-nav-link">❓ FAQs</a>
+                  <a href="#faqs" className="quick-nav-link">Common FAQs</a>
                 )}
-                <a href="#related-shortlists" className="quick-nav-link">🔗 Related Hubs</a>
+                <a href="#related-shortlists" className="quick-nav-link">Related Hubs</a>
               </nav>
 
               {/* 1. Top 3 Podium Showcase */}
@@ -175,7 +190,7 @@ export default async function RankingSlugPage({ params }: Props) {
                 <div className="section-head">
                   <div className="section-head-info">
                     <span className="eyebrow">Full Standings</span>
-                    <h2>Complete Ranking Standings ({page.institutes.length} Centres)</h2>
+                    <h2>Official Ranking Standings ({page.institutes.length} Centres)</h2>
                   </div>
                   <p>Comprehensive overview of all audited institutes with scores and verified badges.</p>
                 </div>

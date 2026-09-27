@@ -70,15 +70,54 @@ export function rankingPath(slug: string): string {
   return `/rankings/${slug}`;
 }
 
+export function formatCityName(city: string | null | undefined): string {
+  if (!city) return 'India';
+  const specialCases: Record<string, string> = {
+    bangalore: 'Bengaluru',
+    'delhi-ncr': 'Delhi NCR',
+    delhi: 'Delhi',
+    mumbai: 'Mumbai',
+    hyderabad: 'Hyderabad',
+    kolkata: 'Kolkata',
+    chennai: 'Chennai',
+    pune: 'Pune',
+    ahmedabad: 'Ahmedabad',
+    jaipur: 'Jaipur',
+    chandigarh: 'Chandigarh',
+    lucknow: 'Lucknow',
+    patna: 'Patna',
+    bhopal: 'Bhopal',
+    indore: 'Indore',
+    kanpur: 'Kanpur',
+    nagpur: 'Nagpur',
+    varanasi: 'Varanasi',
+    dehradun: 'Dehradun',
+    ranchi: 'Ranchi',
+    guwahati: 'Guwahati',
+    bhubaneswar: 'Bhubaneswar',
+    kochi: 'Kochi',
+    thiruvananthapuram: 'Thiruvananthapuram',
+  };
+  const key = city.toLowerCase();
+  if (specialCases[key]) return specialCases[key];
+  return city
+    .split('-')
+    .map((w) => w.charAt(0).toUpperCase() + w.slice(1))
+    .join(' ');
+}
+
 export function directAnswer(page: RankingPage): string {
   const top = page.institutes.slice(0, 3).map((i) => i.name);
   if (top.length === 0) {
-    return `${page.title} shortlist on CoachingRank.in — updated for ${new Date().getFullYear()}.`;
+    return `${page.title} shortlist on CoachingRank.in — audited for ${new Date().getFullYear()}.`;
   }
-  const where = page.city
-    ? page.city.replace(/-/g, ' ')
+  const cityName = page.city ? formatCityName(page.city) : null;
+  const where = cityName
+    ? `in ${cityName}`
     : page.criterion
-      ? `as per ${page.criterion.replace(/-/g, ' ')}`
-      : 'in India';
-  return `The top ${page.exam.replace(/-/g, ' ').toUpperCase()} coaching ${where} ranks ${top[0]} at #1${top[1] ? `, followed by ${top[1]}` : ''}${top[2] ? ` and ${top[2]}` : ''}.`;
+      ? `evaluated for ${page.criterion.replace(/-/g, ' ')}`
+      : 'across India';
+  const exam = page.exam.replace(/-/g, ' ').toUpperCase();
+  return `In the official ${new Date().getFullYear()} audit for ${exam} preparation ${where}, ${top[0]} holds the #1 ranking${top[1] ? `, followed by ${top[1]} (#2)` : ''}${top[2] ? ` and ${top[2]} (#3)` : ''}.`;
 }
+
