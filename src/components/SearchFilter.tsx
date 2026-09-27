@@ -4,6 +4,7 @@ import { useState, useMemo, useRef, useEffect } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import type { RankingPage } from '@/data/rankings';
+import { formatCityName, formatExamName } from '@/data/rankings';
 
 interface SearchFilterProps {
   rankings: RankingPage[];
@@ -148,7 +149,7 @@ export default function SearchFilter({
                 </div>
               </div>
               <span className="search-item-meta">
-                {result.city ? result.city.toUpperCase() : result.exam.toUpperCase()} →
+                {result.city ? formatCityName(result.city) : formatExamName(result.exam)} →
               </span>
             </Link>
           ))}

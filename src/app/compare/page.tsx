@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import { ALL_RANKINGS } from '@/data/rankings';
+import { ALL_RANKINGS, formatCityName, formatExamName } from '@/data/rankings';
 
 export const metadata: Metadata = {
   title: 'Compare Coaching Shortlists | Side-by-Side Institute Analysis',
@@ -21,13 +21,14 @@ export default function CompareIndexPage() {
             <span className="current">Compare Shortlists</span>
           </nav>
 
-          <span className="eyebrow">
-            ⚖️ Side-by-Side Analysis · 2026
-          </span>
+          <div className="hero-status-pill">
+            <span className="live-pulse-dot" />
+            <span>Head-to-Head Institute Showdowns · 2026 Audit</span>
+          </div>
 
           <h1>Compare Top Coaching Institutes</h1>
           <p className="prose-lead">
-            Side-by-side #1 vs #2 showdowns from each ranking shortlist to help you choose the best classroom for your goals.
+            Side-by-side #1 vs #2 showdowns from each ranking shortlist to help students and families evaluate faculty tenure, selection ratios, and mock series.
           </p>
         </div>
       </section>
@@ -46,45 +47,43 @@ export default function CompareIndexPage() {
             {pages.map((p) => {
               const inst1 = p.institutes[0];
               const inst2 = p.institutes[1];
+              const cityName = p.city ? formatCityName(p.city) : null;
+              const examName = formatExamName(p.exam);
+              const cleanTitle = p.title.replace(/\s+2026.*/, '').replace(/\s+\|.*/, '');
 
               return (
                 <Link
                   key={p.slug}
                   href={`/compare/${p.slug}-comparison`}
-                  className="exam-card"
-                  style={{ flexDirection: 'column', alignItems: 'stretch', gap: '12px' }}
+                  className="showdown-card"
                 >
-                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-                    <span className="exam-card-badge">
-                      {p.city ? `${p.city} · ` : ''}{p.exam.toUpperCase()}
-                    </span>
-                    <span style={{ fontSize: '0.75rem', fontWeight: '700', color: 'var(--brand-primary)' }}>
-                      VS SHOWDOWN
+                  <div className="showdown-card-top">
+                    <div className="showdown-badge-group">
+                      <span className="showdown-exam-tag">{examName}</span>
+                      {cityName && <span className="showdown-city-tag">{cityName}</span>}
+                    </div>
+                    <span className="showdown-vs-tag">
+                      #1 VS #2
                     </span>
                   </div>
 
-                  <div>
-                    <h3 style={{ fontSize: '1.08rem', lineHeight: '1.4' }}>
-                      {inst1?.name} <span style={{ color: 'var(--brand-primary)' }}>vs</span> {inst2?.name}
-                    </h3>
-                    <p style={{ marginTop: '4px', fontSize: '0.86rem' }}>{p.title}</p>
+                  <div className="showdown-contenders">
+                    <div className="contender-name">
+                      <span className="medal-dot gold">1</span>
+                      <span>{inst1?.name}</span>
+                    </div>
+                    <span className="contender-vs">vs</span>
+                    <div className="contender-name">
+                      <span className="medal-dot silver">2</span>
+                      <span>{inst2?.name}</span>
+                    </div>
                   </div>
 
-                  <div
-                    style={{
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'space-between',
-                      marginTop: '8px',
-                      paddingTop: '10px',
-                      borderTop: '1px solid var(--border-subtle)',
-                      fontSize: '0.85rem',
-                      fontWeight: '700',
-                      color: 'var(--ink-primary)',
-                    }}
-                  >
-                    <span>View Breakdown</span>
-                    <span style={{ color: 'var(--brand-primary)' }}>→</span>
+                  <p className="showdown-title-meta">{cleanTitle}</p>
+
+                  <div className="showdown-card-footer">
+                    <span>Inspect Breakdown</span>
+                    <span className="showdown-arrow">→</span>
                   </div>
                 </Link>
               );

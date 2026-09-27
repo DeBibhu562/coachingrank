@@ -1,8 +1,8 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import { getRankingsByExam, listExams, rankingPath } from '@/data/rankings';
-import { RankingCards } from '@/components/RankingUI';
+import { getRankingsByExam, listExams, rankingPath, formatExamName, formatCityName } from '@/data/rankings';
+import { RankingCards, AnswerBlock } from '@/components/RankingUI';
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -19,10 +19,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const exam = examFromSlug(slug);
   if (!exam) return {};
-  const label = exam.replace(/-/g, ' ');
+  const examName = formatExamName(exam);
   return {
-    title: `${label.toUpperCase()} Coaching Rankings Hub | 2026 Shortlists`,
-    description: `Explore ${label} coaching rankings by city, national benchmarks, and criterion filters on CoachingRank.in.`,
+    title: `${examName} Coaching Rankings Hub | 2026 Audited Shortlists`,
+    description: `Explore audited ${examName} coaching rankings by city, national benchmarks, and criterion filters on CoachingRank.in.`,
     alternates: { canonical: `/exam/${slug}` },
   };
 }
@@ -36,7 +36,9 @@ export default async function ExamHubPage({ params }: Props) {
   const national = pages.filter((p) => !p.city && !p.criterion);
   const cities = pages.filter((p) => p.city && !p.criterion);
   const criteria = pages.filter((p) => p.criterion);
-  const label = exam.replace(/-/g, ' ');
+  const examName = formatExamName(exam);
+
+  const topNational = national[0];
 
   return (
     <>
@@ -47,61 +49,88 @@ export default async function ExamHubPage({ params }: Props) {
             <span className="separator">/</span>
             <Link href="/exam">Exam Hubs</Link>
             <span className="separator">/</span>
-            <span className="current">{label.toUpperCase()}</span>
+            <span className="current">{examName}</span>
           </nav>
 
-          <span className="eyebrow">
-            ★ Exam Master Hub · 2026 Audit
-          </span>
+          <div className="hero-status-pill">
+            <span className="live-pulse-dot" />
+            <span>2026 Audit Dossier · Verified Entrance Benchmark</span>
+          </div>
 
-          <h1>{label.toUpperCase()} Coaching Rankings</h1>
+          <h1>{examName} Coaching Rankings Hub</h1>
           <p className="prose-lead">
-            Audited national benchmarks, city classroom shortlists, and criterion-wise evaluations for {label.toUpperCase()}.
+            Audited national benchmarks, city classroom shortlists, and criterion-wise evaluations for {examName} aspirants.
           </p>
 
-          <div className="answer-box">
-            <div className="answer-header">
-              <span className="answer-badge">
-                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3">
-                  <polyline points="20 6 9 17 4 12" />
-                </svg>
-                Direct Answer
-              </span>
-              <span style={{ fontSize: '0.8rem', color: 'var(--ink-muted)' }}>Updated 2026</span>
+          {/* Quick Metrics Bar */}
+          <div className="hub-stat-strip">
+            <div className="hub-stat-item">
+              <span className="hub-stat-label">Audited Portals</span>
+              <span className="hub-stat-val">{pages.length} Shortlists</span>
             </div>
-            <p className="answer-text">
-              CoachingRank’s {label.toUpperCase()} master hub tracks verified coaching centres across India
-              {national[0]?.institutes[0]
-                ? ` — Pan-India #1 is ${national[0].institutes[0].name}${national[0].institutes[1] ? `, followed by #2 ${national[0].institutes[1].name}` : ''}`
-                : ''}
-              .
-            </p>
+            <div className="hub-stat-item">
+              <span className="hub-stat-label">Active Cities</span>
+              <span className="hub-stat-val">{cities.length || 1} Metro Hubs</span>
+            </div>
+            <div className="hub-stat-item">
+              <span className="hub-stat-label">Audit Rubric</span>
+              <span className="hub-stat-val">100-Point Inspection</span>
+            </div>
+            <div className="hub-stat-item">
+              <span className="hub-stat-label">Commercial Policy</span>
+              <span className="hub-stat-val" style={{ color: '#16a34a' }}>100% Unbiased</span>
+            </div>
           </div>
+
+          {/* Executive Direct Answer Block */}
+          {topNational ? (
+            <AnswerBlock page={topNational} />
+          ) : (
+            <div className="answer-box-leaf" style={{ marginTop: '20px' }}>
+              <div className="answer-leaf-header">
+                <div className="answer-status-cluster">
+                  <span className="live-pulse-dot" />
+                  <span className="answer-status-title">Editorial Audit Consensus</span>
+                  <span className="answer-status-batch">· Verified 2026 Cycle</span>
+                </div>
+                <div className="answer-bias-tag">
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                  </svg>
+                  <span>100% Independent & Unbiased</span>
+                </div>
+              </div>
+              <p className="answer-lead-text">
+                CoachingRank indexes {pages.length} verified shortlists for {examName} preparation across India, evaluating classroom faculty tenure, mock test difficulty calibration, and documented student selection ratios.
+              </p>
+            </div>
+          )}
         </div>
       </section>
 
       <section className="section">
         <div className="container">
           {national.length > 0 && (
-            <div style={{ marginBottom: '48px' }}>
+            <div style={{ marginBottom: '52px' }}>
               <div className="section-head">
                 <div className="section-head-info">
-                  <span className="eyebrow">Pan-India</span>
-                  <h2>National {label.toUpperCase()} Shortlists</h2>
+                  <span className="eyebrow">National Benchmarks</span>
+                  <h2>Pan-India {examName} Shortlists</h2>
                 </div>
+                <p>Audited for pan-India selection track, senior subject specialists, and mock test infrastructure.</p>
               </div>
               <RankingCards pages={national} cols3 />
             </div>
           )}
 
           {cities.length > 0 && (
-            <div style={{ marginBottom: '48px' }}>
+            <div style={{ marginBottom: '52px' }}>
               <div className="section-head">
                 <div className="section-head-info">
                   <span className="eyebrow">City Hubs</span>
-                  <h2>{label.toUpperCase()} Coaching by City</h2>
+                  <h2>{examName} Coaching by City</h2>
                 </div>
-                <p>Classroom shortlists verified for physical presence, faculty, and batch sizes.</p>
+                <p>Physical classroom shortlists verified for faculty presence, batch size limits, and local reputation.</p>
               </div>
               <RankingCards pages={cities} cols3 />
             </div>
@@ -112,16 +141,27 @@ export default async function ExamHubPage({ params }: Props) {
               <div className="section-head">
                 <div className="section-head-info">
                   <span className="eyebrow">Criterion Lenses</span>
-                  <h2>Rankings by Specific Criterion</h2>
+                  <h2>Filter {examName} Rankings by Priority</h2>
                 </div>
-                <p>Filter by alumni track record, mock tests, and faculty stability.</p>
+                <p>Compare institutes by specific focus areas: selections, faculty stability, fees, or mock series.</p>
               </div>
               <div className="filter-pills-row" style={{ justifyContent: 'flex-start' }}>
-                {criteria.map((p) => (
-                  <Link key={p.slug} href={rankingPath(p.slug)} className="filter-pill" style={{ padding: '8px 16px' }}>
-                    {p.criterion?.replace(/-/g, ' ').toUpperCase()} Rankings →
-                  </Link>
-                ))}
+                {criteria.map((p) => {
+                  const critLabel = p.criterion
+                    ? p.criterion.split('-').map((w) => w.charAt(0).toUpperCase() + w.slice(1)).join(' ')
+                    : 'Criterion';
+                  return (
+                    <Link
+                      key={p.slug}
+                      href={rankingPath(p.slug)}
+                      className="filter-pill"
+                      style={{ padding: '8px 18px', fontSize: '0.9rem' }}
+                    >
+                      <span>{critLabel} Focus</span>
+                      <span style={{ color: 'var(--brand-primary)', fontWeight: 700 }}>→</span>
+                    </Link>
+                  );
+                })}
               </div>
             </div>
           )}

@@ -106,6 +106,33 @@ export function formatCityName(city: string | null | undefined): string {
     .join(' ');
 }
 
+export function formatExamName(exam: string | null | undefined): string {
+  if (!exam) return 'Competitive Exam';
+  const specialMap: Record<string, string> = {
+    clat: 'CLAT',
+    ailet: 'AILET',
+    'du-llb': 'DU LLB',
+    upsc: 'UPSC CSE',
+    ipmat: 'IPMAT',
+    'share-market': 'Share Market & Trading',
+    cuet: 'CUET',
+    cat: 'CAT',
+    neet: 'NEET',
+    jee: 'JEE',
+    ssc: 'SSC CGL',
+    banking: 'Banking',
+    nda: 'NDA',
+    cds: 'CDS',
+    judiciary: 'Judiciary',
+  };
+  const key = exam.toLowerCase();
+  if (specialMap[key]) return specialMap[key];
+  const parts = exam.split('-');
+  return parts
+    .map((p) => (p.length <= 4 ? p.toUpperCase() : p.charAt(0).toUpperCase() + p.slice(1)))
+    .join(' ');
+}
+
 export function directAnswer(page: RankingPage): string {
   const top = page.institutes.slice(0, 3).map((i) => i.name);
   if (top.length === 0) {
@@ -117,7 +144,8 @@ export function directAnswer(page: RankingPage): string {
     : page.criterion
       ? `evaluated for ${page.criterion.replace(/-/g, ' ')}`
       : 'across India';
-  const exam = page.exam.replace(/-/g, ' ').toUpperCase();
-  return `In the official ${new Date().getFullYear()} audit for ${exam} preparation ${where}, ${top[0]} holds the #1 ranking${top[1] ? `, followed by ${top[1]} (#2)` : ''}${top[2] ? ` and ${top[2]} (#3)` : ''}.`;
+  const exam = formatExamName(page.exam);
+  return `In the audited ${new Date().getFullYear()} benchmark for ${exam} preparation ${where}, ${top[0]} holds the #1 ranking${top[1] ? `, followed by ${top[1]} (#2)` : ''}${top[2] ? ` and ${top[2]} (#3)` : ''}. Rankings are determined by verified selections, faculty tenure, and mock test caliber.`;
 }
+
 

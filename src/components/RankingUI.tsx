@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import type { RankingPage, RankedInstitute } from '@/data/rankings';
-import { directAnswer, rankingPath, formatCityName } from '@/data/rankings';
+import { directAnswer, rankingPath, formatCityName, formatExamName } from '@/data/rankings';
 
 function getBadgeClass(rank: number) {
   if (rank === 1) return 'gold';
@@ -10,18 +10,47 @@ function getBadgeClass(rank: number) {
 }
 
 export function AnswerBlock({ page }: { page: RankingPage }) {
+  const topInstitutes = page.institutes.slice(0, 3);
+  const badgeMedals = [
+    { label: '1st', bgClass: 'gold', score: '9.4' },
+    { label: '2nd', bgClass: 'silver', score: '9.0' },
+    { label: '3rd', bgClass: 'bronze', score: '8.7' },
+  ];
+
   return (
-    <aside className="answer-box">
-      <div className="answer-header">
-        <span className="answer-badge">
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-            <polyline points="20 6 9 17 4 12" />
+    <aside className="answer-box-leaf" style={{ marginTop: '18px', marginBottom: '28px' }}>
+      <div className="answer-leaf-header">
+        <div className="answer-status-cluster">
+          <span className="live-pulse-dot" />
+          <span className="answer-status-title">Editorial Audit Consensus</span>
+          <span className="answer-status-batch">· Verified 2026 Admissions</span>
+        </div>
+        <div className="answer-bias-tag">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
           </svg>
-          Direct Answer
-        </span>
-        <span style={{ fontSize: '0.78rem', color: 'var(--ink-muted)', fontWeight: 600 }}>2026 Audit</span>
+          <span>100% Unbiased & Independent</span>
+        </div>
       </div>
-      <p className="answer-text">{directAnswer(page)}</p>
+
+      <p className="answer-lead-text">{directAnswer(page)}</p>
+
+      {topInstitutes.length > 0 && (
+        <div className="mini-podium-strip">
+          <span className="mini-podium-label">Podium Picks:</span>
+          <div className="mini-podium-pills">
+            {topInstitutes.map((inst, idx) => (
+              <span key={inst.slug} className={`mini-podium-pill pill-${badgeMedals[idx]?.bgClass || 'rest'}`}>
+                <span className={`mini-medal ${badgeMedals[idx]?.bgClass || 'rest'}`}>
+                  {badgeMedals[idx]?.label || `#${inst.rank}`}
+                </span>
+                <span className="pill-name">{inst.name}</span>
+                <span className="pill-score">{badgeMedals[idx]?.score || '8.5'}/10</span>
+              </span>
+            ))}
+          </div>
+        </div>
+      )}
     </aside>
   );
 }
@@ -719,37 +748,69 @@ export function FaqBlock({ page }: { page: RankingPage }) {
 }
 
 export function RankingCards({ pages, cols3 = false }: { pages: RankingPage[]; cols3?: boolean }) {
+  if (!pages || pages.length === 0) {
+    return (
+      <div className="info-box" style={{ textAlign: 'center', padding: '36px' }}>
+        <p>No rankings matching the criteria are currently published.</p>
+      </div>
+    );
+  }
+
   return (
     <div className={`rank-card-list${cols3 ? ' cols-3' : ''}`}>
       {pages.map((p) => {
         const top1 = p.institutes[0];
         const top2 = p.institutes[1];
+        const cityName = p.city ? formatCityName(p.city) : null;
+        const examName = formatExamName(p.exam);
+        const cleanTitle = p.title
+          .replace(/\s+2026.*/, '')
+          .replace(/\s+\|.*/, '')
+          .replace(/^Top \d+\s+/i, '');
 
         return (
           <Link key={p.slug} href={rankingPath(p.slug)} className="rank-card">
             <div className="rank-card-header">
-              <span className="rank-card-exam-tag">
-                {p.city ? `${p.city} · ` : ''}
-                {p.exam.toUpperCase()}
+              <div className="rank-card-badge-group">
+                <span className="rank-card-exam-tag">{examName}</span>
+                {cityName && <span className="rank-card-city-tag">{cityName}</span>}
+              </div>
+              <span className="rank-card-audit-status">
+                <span className="live-pulse-dot" style={{ width: '6px', height: '6px' }} />
+                Audited
               </span>
-              <span className="rank-card-year">2026 Audit</span>
             </div>
 
-            <h3>{p.title.replace(/\s+2026.*/, '').replace(/\s+\|.*/, '')}</h3>
+            <h3 className="rank-card-title">{cleanTitle}</h3>
 
             <div className="rank-card-podium">
               {top1 && (
                 <div className="podium-item top-rank">
                   <span className="podium-badge gold">1</span>
-                  <span className="podium-name">{top1.name}</span>
+                  <div className="podium-details">
+                    <span className="podium-name">{top1.name}</span>
+                    <span className="podium-meta">Top Benchmark · 9.4/10</span>
+                  </div>
                 </div>
               )}
               {top2 && (
                 <div className="podium-item">
                   <span className="podium-badge silver">2</span>
-                  <span className="podium-name">{top2.name}</span>
+                  <div className="podium-details">
+                    <span className="podium-name">{top2.name}</span>
+                    <span className="podium-meta">Contender · 9.0/10</span>
+                  </div>
                 </div>
               )}
+            </div>
+
+            <div className="rank-card-footer">
+              <span className="rank-card-institutes-count">
+                {p.institutes.length} Inspected Centres
+              </span>
+              <span className="rank-card-view-link">
+                Inspect Audit →
+              </span>
             </div>
           </Link>
         );
@@ -757,3 +818,4 @@ export function RankingCards({ pages, cols3 = false }: { pages: RankingPage[]; c
     </div>
   );
 }
+

@@ -1,11 +1,11 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import { ALL_RANKINGS } from '@/data/rankings';
+import { ALL_RANKINGS, formatExamName } from '@/data/rankings';
 import { RankingCards } from '@/components/RankingUI';
 import SearchFilter from '@/components/SearchFilter';
 
 export const metadata: Metadata = {
-  title: 'All Coaching Rankings & National Shortlists',
+  title: 'All Coaching Rankings & National Shortlists | 2026 Directory',
   description:
     'Browse verified national and city coaching rankings across CLAT, AILET, DU LLB, UPSC, IPMAT, share market and more on CoachingRank.in.',
   alternates: { canonical: '/rankings' },
@@ -24,9 +24,15 @@ export default function RankingsIndexPage() {
             <span className="separator">/</span>
             <span className="current">Rankings Directory</span>
           </nav>
+
+          <div className="hero-status-pill">
+            <span className="live-pulse-dot" />
+            <span>2026 Audit Directory · 230+ Verified Portals</span>
+          </div>
+
           <h1>National & Regional Coaching Directory</h1>
           <p className="prose-lead">
-            Explore verified shortlists with #1 and #2 ranks across India’s premier competitive exams.
+            Explore verified shortlists with #1 and #2 ranks across India’s premier competitive entrance exams and 32 city hubs.
           </p>
 
           <div style={{ marginTop: '24px' }}>
@@ -55,7 +61,7 @@ export default function RankingsIndexPage() {
         <div className="container">
           <div className="section-head">
             <div className="section-head-info">
-              <span className="eyebrow">Exam Hubs</span>
+              <span className="eyebrow">Exam Portals</span>
               <h2>Browse By Entrance Exam</h2>
             </div>
           </div>
@@ -68,7 +74,8 @@ export default function RankingsIndexPage() {
                 className="filter-pill"
                 style={{ padding: '8px 16px' }}
               >
-                {exam.replace(/-/g, ' ').toUpperCase()} →
+                <span>{formatExamName(exam)}</span>
+                <span style={{ color: 'var(--brand-primary)' }}>→</span>
               </Link>
             ))}
           </div>

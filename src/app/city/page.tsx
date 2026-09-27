@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import { listCities } from '@/data/rankings';
+import { listCities, formatCityName, getCityRankings } from '@/data/rankings';
 
 export const metadata: Metadata = {
   title: 'City Coaching Ranking Hubs | Best Centres in 32+ Cities',
@@ -20,9 +20,15 @@ export default function CityIndexPage() {
             <span className="separator">/</span>
             <span className="current">City Hubs</span>
           </nav>
+
+          <div className="hero-status-pill">
+            <span className="live-pulse-dot" />
+            <span>Hyperlocal Classroom Audits · 32 Cities</span>
+          </div>
+
           <h1>Best Coaching Institutes by City</h1>
           <p className="prose-lead">
-            Explore verified classroom audits and exam-wise shortlists across {cities.length} major Indian educational hubs.
+            Explore verified physical classroom audits, faculty credentials, and exam-wise shortlists across {cities.length} major Indian educational hubs.
           </p>
         </div>
       </section>
@@ -31,23 +37,39 @@ export default function CityIndexPage() {
         <div className="container">
           <div className="section-head">
             <div className="section-head-info">
-              <span className="eyebrow">Hyperlocal Portals</span>
-              <h2>Select an Educational City</h2>
+              <span className="eyebrow">Metro Portals</span>
+              <h2>Select Your Coaching City</h2>
             </div>
             <p>Every city hub features verified classroom locations, local faculty credentials, and fee benchmarks.</p>
           </div>
 
           <div className="chooser-grid">
-            {cities.map((city) => (
-              <Link key={city} href={`/city/best-coaching-institutes-in-${city}`} className="exam-card">
-                <div className="exam-card-info">
-                  <span className="exam-card-badge">📍 City Hub</span>
-                  <h3 style={{ textTransform: 'capitalize' }}>{city.replace(/-/g, ' ')}</h3>
-                  <p>Exam shortlists & classroom rankings</p>
-                </div>
-                <div className="exam-card-arrow">→</div>
-              </Link>
-            ))}
+            {cities.map((city) => {
+              const cityName = formatCityName(city);
+              const count = getCityRankings(city).filter((r) => !r.criterion).length;
+
+              return (
+                <Link key={city} href={`/city/best-coaching-institutes-in-${city}`} className="city-portal-card">
+                  <div className="city-portal-header">
+                    <span className="city-portal-badge">
+                      <span className="live-pulse-dot" style={{ width: '5px', height: '5px' }} />
+                      Audited Hub
+                    </span>
+                    <span className="city-portal-count">{count} Exam Shortlists</span>
+                  </div>
+
+                  <h3 className="city-portal-name">{cityName}</h3>
+                  <p className="city-portal-desc">
+                    Audited classrooms across law, civil services, management & competitive exams.
+                  </p>
+
+                  <div className="city-portal-footer">
+                    <span>Explore {cityName} Portals</span>
+                    <span className="city-portal-arrow">→</span>
+                  </div>
+                </Link>
+              );
+            })}
           </div>
         </div>
       </section>
