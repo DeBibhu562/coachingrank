@@ -21,7 +21,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!city) return {};
   const cityName = formatCityName(city);
   return {
-    title: `Best Coaching Institutes in ${cityName} | 2026 Audited Rankings`,
+    title: `Best Coaching Institutes in ${cityName} | 2027 Audited Rankings`,
     description: `Audited city hub for top coaching rankings in ${cityName} across law, civil services, management, engineering, and competitive exams.`,
     alternates: { canonical: `/city/${slug}` },
   };
@@ -49,7 +49,7 @@ export default async function CityHubPage({ params }: Props) {
 
           <div className="hero-status-pill">
             <span className="live-pulse-dot" />
-            <span>Hyperlocal Classroom Audit · 2026 Cycle</span>
+            <span>Hyperlocal Classroom Audit · 2027 Cycle</span>
           </div>
 
           <h1>Best Coaching Institutes in {cityName}</h1>

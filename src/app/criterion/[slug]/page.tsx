@@ -22,7 +22,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!criterion) return {};
   const label = criterion.replace(/-/g, ' ');
   return {
-    title: `Best Coaching as per ${label.toUpperCase()} | 2026 Rankings`,
+    title: `Best Coaching as per ${label.toUpperCase()} | 2027 Rankings`,
     description: `Audited coaching rankings judged strictly by ${label}. Compare institutes based on verifiable performance evidence.`,
     alternates: { canonical: `/criterion/${slug}` },
   };
@@ -47,9 +47,10 @@ export default async function CriterionHubPage({ params }: Props) {
             <span className="current" style={{ textTransform: 'capitalize' }}>{label}</span>
           </nav>
 
-          <span className="eyebrow">
-            🎯 Criterion Audit · 2026
-          </span>
+          <div className="hero-status-pill">
+            <span className="live-pulse-dot" />
+            <span>Criterion Audit · 2027 Cycle</span>
+          </div>
 
           <h1 style={{ textTransform: 'capitalize' }}>Best Coaching as per {label}</h1>
           <p className="prose-lead">
@@ -64,7 +65,7 @@ export default async function CriterionHubPage({ params }: Props) {
                 </svg>
                 Direct Answer
               </span>
-              <span style={{ fontSize: '0.8rem', color: 'var(--ink-muted)' }}>Audited 2026</span>
+              <span style={{ fontSize: '0.8rem', color: 'var(--ink-muted)' }}>Audited 2027</span>
             </div>
             <p className="answer-text">
               These {pages.length} shortlists reorder coaching academies across Indian cities based on verified{' '}

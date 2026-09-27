@@ -6,7 +6,7 @@ export const SITE = {
   tagline: 'India’s coaching rankings — exam-wise, city-wise, criterion-wise shortlists students trust.',
   description:
     'CoachingRank.in publishes exam and city coaching rankings with clear shortlists, hub pages, and answer-first guides built for Google, AI Overviews, and ChatGPT-style search.',
-  year: 2026,
+  year: 2027,
 } as const;
 
 export const CATEGORIES = [

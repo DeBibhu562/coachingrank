@@ -5,7 +5,7 @@ import { RankingCards } from '@/components/RankingUI';
 import SearchFilter from '@/components/SearchFilter';
 
 export const metadata: Metadata = {
-  title: 'All Coaching Rankings & National Shortlists | 2026 Directory',
+  title: 'All Coaching Rankings & National Shortlists | 2027 Directory',
   description:
     'Browse verified national and city coaching rankings across CLAT, AILET, DU LLB, UPSC, IPMAT, share market and more on CoachingRank.in.',
   alternates: { canonical: '/rankings' },
@@ -27,7 +27,7 @@ export default function RankingsIndexPage() {
 
           <div className="hero-status-pill">
             <span className="live-pulse-dot" />
-            <span>2026 Audit Directory · 230+ Verified Portals</span>
+            <span>2027 Audit Directory · 230+ Verified Portals</span>
           </div>
 
           <h1>National & Regional Coaching Directory</h1>

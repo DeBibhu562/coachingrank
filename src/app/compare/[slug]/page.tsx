@@ -24,7 +24,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const a = page.institutes[0]?.name;
   const b = page.institutes[1]?.name;
   return {
-    title: `${a} vs ${b} Coaching Comparison | Head-to-Head 2026`,
+    title: `${a} vs ${b} Coaching Comparison | Head-to-Head 2027`,
     description: `Compare ${a} and ${b} side-by-side using the audited ${page.title} shortlist on CoachingRank.in.`,
     alternates: { canonical: `/compare/${slug}` },
   };
@@ -53,9 +53,10 @@ export default async function ComparePage({ params }: Props) {
             </span>
           </nav>
 
-          <span className="eyebrow">
-            ⚖️ Head-to-Head Showdown · 2026 Audit
-          </span>
+          <div className="hero-status-pill">
+            <span className="live-pulse-dot" />
+            <span>Head-to-Head Showdown · 2027 Audit</span>
+          </div>
 
           <h1>
             {a.name} <span style={{ color: 'var(--brand-primary)' }}>vs</span> {b.name}

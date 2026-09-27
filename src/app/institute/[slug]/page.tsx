@@ -15,7 +15,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const inst = institutesIndex().find((i) => i.slug === slug);
   if (!inst) return {};
   return {
-    title: `${inst.name} Coaching Rankings, Audits & Scorecard | 2026`,
+    title: `${inst.name} Coaching Rankings, Audits & Scorecard | 2027`,
     description: `${inst.name} appears on CoachingRank shortlists with a peak rank of #${inst.topRank} across ${inst.appearances} ranking pages.`,
     alternates: { canonical: `/institute/${slug}` },
   };
@@ -97,7 +97,7 @@ export default async function InstitutePage({ params }: Props) {
                 </svg>
                 Direct Answer
               </span>
-              <span style={{ fontSize: '0.8rem', color: 'var(--ink-muted)' }}>Verified 2026</span>
+              <span style={{ fontSize: '0.8rem', color: 'var(--ink-muted)' }}>Verified 2027</span>
             </div>
             <p className="answer-text">
               {inst.name} holds a peak CoachingRank audit position of #{inst.topRank} and is currently featured across{' '}
@@ -131,7 +131,7 @@ export default async function InstitutePage({ params }: Props) {
 
                 <h3 style={{ fontSize: '1.05rem', lineHeight: '1.35', marginBottom: '8px' }}>
                   <Link href={rankingPath(page.slug)} style={{ color: 'var(--ink-primary)' }}>
-                    #{rank} on {page.title.replace(/\s+2026.*/, '').replace(/\s+\|.*/, '')}
+                    #{rank} on {page.title.replace(/\s+202[67].*/, '').replace(/\s+\|.*/, '')}
                   </Link>
                 </h3>
 

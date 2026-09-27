@@ -48,7 +48,7 @@ export default function Header() {
           <Logo />
           <div className="header-status-badge">
             <span className="live-pulse-dot" style={{ width: '6px', height: '6px' }} />
-            <span>2026 Audit</span>
+            <span>2027 Audit</span>
           </div>
         </div>
 
@@ -91,7 +91,7 @@ export default function Header() {
               <div className="nav-dropdown-menu exam-dropdown">
                 <div className="dropdown-header">
                   <span>Priority Entrance Hubs</span>
-                  <span className="dropdown-count">2026 Benchmarks</span>
+                  <span className="dropdown-count">2027 Benchmarks</span>
                 </div>
                 <div className="dropdown-grid">
                   {PRIORITY_EXAMS.map((exam) => (

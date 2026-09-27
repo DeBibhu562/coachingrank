@@ -24,7 +24,7 @@ export default function ExamIndexPage() {
 
           <div className="hero-status-pill">
             <span className="live-pulse-dot" />
-            <span>2026 Admissions · 28+ Audited Competitions</span>
+            <span>2027 Admissions · 28+ Audited Competitions</span>
           </div>
 
           <h1>Competitive Exam Coaching Hubs</h1>

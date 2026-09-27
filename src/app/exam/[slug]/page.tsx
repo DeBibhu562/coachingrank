@@ -21,7 +21,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!exam) return {};
   const examName = formatExamName(exam);
   return {
-    title: `${examName} Coaching Rankings Hub | 2026 Audited Shortlists`,
+    title: `${examName} Coaching Rankings Hub | 2027 Audited Shortlists`,
     description: `Explore audited ${examName} coaching rankings by city, national benchmarks, and criterion filters on CoachingRank.in.`,
     alternates: { canonical: `/exam/${slug}` },
   };
@@ -54,7 +54,7 @@ export default async function ExamHubPage({ params }: Props) {
 
           <div className="hero-status-pill">
             <span className="live-pulse-dot" />
-            <span>2026 Audit Dossier · Verified Entrance Benchmark</span>
+            <span>2027 Audit Dossier · Verified Entrance Benchmark</span>
           </div>
 
           <h1>{examName} Coaching Rankings Hub</h1>
@@ -91,7 +91,7 @@ export default async function ExamHubPage({ params }: Props) {
                 <div className="answer-status-cluster">
                   <span className="live-pulse-dot" />
                   <span className="answer-status-title">Editorial Audit Consensus</span>
-                  <span className="answer-status-batch">· Verified 2026 Cycle</span>
+                  <span className="answer-status-batch">· Verified 2027 Cycle</span>
                 </div>
                 <div className="answer-bias-tag">
                   <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">

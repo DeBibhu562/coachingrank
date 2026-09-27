@@ -67,7 +67,7 @@ export default function HomePage() {
         <div className="container hero-content">
           <div className="hero-status-pill">
             <span className="live-pulse-dot" />
-            <span>2026 Admissions & Audit Cycle · Verified Consensus</span>
+            <span>2027 Admissions & Audit Cycle · Verified Consensus</span>
           </div>
 
           <h1>
@@ -87,7 +87,7 @@ export default function HomePage() {
             <div className="metric-card">
               <span className="metric-num">230+</span>
               <span className="metric-label">Audited Shortlists</span>
-              <span className="metric-sub">Updated for 2026</span>
+              <span className="metric-sub">Updated for 2027</span>
             </div>
             <div className="metric-card">
               <span className="metric-num">28+</span>

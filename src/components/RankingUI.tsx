@@ -23,7 +23,7 @@ export function AnswerBlock({ page }: { page: RankingPage }) {
         <div className="answer-status-cluster">
           <span className="live-pulse-dot" />
           <span className="answer-status-title">Editorial Audit Consensus</span>
-          <span className="answer-status-batch">· Verified 2026 Admissions</span>
+          <span className="answer-status-batch">· Verified 2027 Admissions</span>
         </div>
         <div className="answer-bias-tag">
           <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
@@ -70,7 +70,7 @@ export function HeroAnswerCard({ page }: { page: RankingPage }) {
         <div className="answer-status-cluster">
           <span className="live-pulse-dot" />
           <span className="answer-status-title">Editorial Audit Consensus</span>
-          <span className="answer-status-batch">· Verified 2026 Cycle</span>
+          <span className="answer-status-batch">· Verified 2027 Cycle</span>
         </div>
         <div className="answer-bias-tag">
           <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
@@ -346,7 +346,7 @@ export function DetailedInstituteAudits({
               </div>
 
               <div className="audit-card-cycle">
-                <span>{exam.toUpperCase()} · 2026 Audit</span>
+                <span>{exam.toUpperCase()} · 2027 Audit</span>
               </div>
             </div>
 
@@ -541,7 +541,7 @@ export function RankingSidebar({
             </svg>
             Audit Snapshot
           </span>
-          <span style={{ fontSize: '0.72rem', color: 'var(--ink-muted)', fontWeight: 700 }}>2026 AUDIT</span>
+          <span style={{ fontSize: '0.72rem', color: 'var(--ink-muted)', fontWeight: 700 }}>2027 AUDIT</span>
         </div>
 
         <div className="sidebar-summary-list">
@@ -764,7 +764,7 @@ export function RankingCards({ pages, cols3 = false }: { pages: RankingPage[]; c
         const cityName = p.city ? formatCityName(p.city) : null;
         const examName = formatExamName(p.exam);
         const cleanTitle = p.title
-          .replace(/\s+2026.*/, '')
+          .replace(/\s+202[67].*/, '')
           .replace(/\s+\|.*/, '')
           .replace(/^Top \d+\s+/i, '');
 

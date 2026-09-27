@@ -143,7 +143,7 @@ export default function SearchFilter({
               onClick={() => setIsOpen(false)}
             >
               <div>
-                <div>{result.title.replace(/\s+2026.*/, '').replace(/\s+\|.*/, '')}</div>
+                <div>{result.title.replace(/\s+202[67].*/, '').replace(/\s+\|.*/, '')}</div>
                 <div className="search-item-meta">
                   {result.institutes[0]?.name ? `#1 ${result.institutes[0].name}` : 'Rankings list'}
                 </div>

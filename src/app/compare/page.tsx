@@ -23,7 +23,7 @@ export default function CompareIndexPage() {
 
           <div className="hero-status-pill">
             <span className="live-pulse-dot" />
-            <span>Head-to-Head Institute Showdowns · 2026 Audit</span>
+            <span>Head-to-Head Institute Showdowns · 2027 Audit</span>
           </div>
 
           <h1>Compare Top Coaching Institutes</h1>
@@ -49,7 +49,7 @@ export default function CompareIndexPage() {
               const inst2 = p.institutes[1];
               const cityName = p.city ? formatCityName(p.city) : null;
               const examName = formatExamName(p.exam);
-              const cleanTitle = p.title.replace(/\s+2026.*/, '').replace(/\s+\|.*/, '');
+              const cleanTitle = p.title.replace(/\s+202[67].*/, '').replace(/\s+\|.*/, '');
 
               return (
                 <Link

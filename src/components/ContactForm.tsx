@@ -147,7 +147,7 @@ export default function ContactForm() {
               id="contact-inst"
               type="text"
               className="form-input"
-              placeholder="e.g. Knowledge Nation Law Centre, CLAT 2026, Delhi"
+              placeholder="e.g. Knowledge Nation Law Centre, CLAT 2027, Delhi"
               value={institute}
               onChange={(e) => setInstitute(e.target.value)}
             />

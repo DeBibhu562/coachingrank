@@ -22,9 +22,10 @@ export default function CriterionIndexPage() {
             <span className="current">Criterion Hubs</span>
           </nav>
 
-          <span className="eyebrow">
-            🎯 Specialized Lenses · 2026 Audit
-          </span>
+          <div className="hero-status-pill">
+            <span className="live-pulse-dot" />
+            <span>Specialized Lenses · 2027 Audit</span>
+          </div>
 
           <h1>Coaching Rankings by Specific Criterion</h1>
           <p className="prose-lead">

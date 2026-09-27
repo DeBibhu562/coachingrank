@@ -21,9 +21,10 @@ export default function ContactPage() {
             <span className="current">Contact Desk</span>
           </nav>
 
-          <span className="eyebrow">
-            ✉️ Editorial & Verification Support · 2026
-          </span>
+          <div className="hero-status-pill">
+            <span className="live-pulse-dot" />
+            <span>Editorial & Verification Support · 2027</span>
+          </div>
 
           <h1>Contact CoachingRank.in</h1>
           <p className="prose-lead">
