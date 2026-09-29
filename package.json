@@ -5,7 +5,11 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "crawl": "node scripts/crawl-coachingcompare.mjs",
+    "batch:status": "node scripts/batch-pages.mjs status",
+    "batch:create": "node scripts/batch-pages.mjs create",
+    "deploy": "ssh -i ~/.ssh/id_ed25519_hal root@129.121.98.177 \"cd /opt/coachingrank && git fetch && git reset --hard origin/main && docker compose up -d --build coachingrank\""
   },
   "dependencies": {
     "lucide-react": "^1.41.0",

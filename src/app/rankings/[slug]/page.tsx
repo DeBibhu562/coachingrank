@@ -8,6 +8,7 @@ import {
   PodiumShowcase,
   RankingTable,
   DetailedInstituteAudits,
+  EditorialDeepDive,
   MethodologyRubric,
   RankingSidebar,
   FaqBlock,
@@ -166,6 +167,9 @@ export default async function RankingSlugPage({ params }: Props) {
                 <a href="#podium" className="quick-nav-link">Podium Showcase</a>
                 <a href="#ranking-table" className="quick-nav-link">Ranking Standings</a>
                 <a href="#detailed-audits" className="quick-nav-link">Centre Audits</a>
+                {page.editorialGuide && (
+                  <a href="#editorial-guide" className="quick-nav-link">Decision Guide</a>
+                )}
                 <a href="#methodology" className="quick-nav-link">Methodology Rubric</a>
                 {page.faqs.length > 0 && (
                   <a href="#faqs" className="quick-nav-link">Common FAQs</a>
@@ -214,12 +218,15 @@ export default async function RankingSlugPage({ params }: Props) {
                 />
               </section>
 
-              {/* 4. Scoring Methodology Rubric */}
+              {/* 4. Editorial Deep Dive & Decision Framework */}
+              {page.editorialGuide && <EditorialDeepDive page={page} />}
+
+              {/* 5. Scoring Methodology Rubric */}
               <section id="methodology" style={{ scrollMarginTop: '100px' }}>
                 <MethodologyRubric exam={page.exam} city={page.city} />
               </section>
 
-              {/* 5. FAQs Section */}
+              {/* 6. FAQs Section */}
               {page.faqs.length > 0 && (
                 <section id="faqs" style={{ scrollMarginTop: '100px' }}>
                   <div className="section-head">
@@ -232,38 +239,9 @@ export default async function RankingSlugPage({ params }: Props) {
                   <FaqBlock page={page} />
                 </section>
               )}
-
-              {/* 6. Related Rankings Shortlists */}
-              <section id="related-shortlists" style={{ scrollMarginTop: '100px' }}>
-                {relatedExamRankings.length > 0 && (
-                  <div style={{ marginBottom: '40px' }}>
-                    <div className="section-head">
-                      <div className="section-head-info">
-                        <span className="eyebrow">National Coverage</span>
-                        <h2>{examLabel} Coaching Across India</h2>
-                      </div>
-                      <p>Compare top {examLabel} institutes in major education hubs.</p>
-                    </div>
-                    <RankingCards pages={relatedExamRankings} cols3 />
-                  </div>
-                )}
-
-                {relatedCityRankings.length > 0 && page.city && (
-                  <div>
-                    <div className="section-head">
-                      <div className="section-head-info">
-                        <span className="eyebrow">City Hub</span>
-                        <h2>Other Top Coaching Rankings in {cityLabel}</h2>
-                      </div>
-                      <p>Top-ranked preparation centres for other competitive entrance exams in {cityLabel}.</p>
-                    </div>
-                    <RankingCards pages={relatedCityRankings} cols3 />
-                  </div>
-                )}
-              </section>
             </main>
 
-            {/* Right Sticky Sidebar */}
+            {/* Right Sticky Sidebar (Sticks cleanly alongside main audit sections) */}
             <RankingSidebar
               page={page}
               compareSlug={compareSlug}
@@ -273,6 +251,48 @@ export default async function RankingSlugPage({ params }: Props) {
           </div>
         </div>
       </section>
+
+      {/* Full-Width Related Shortlists & National Hubs (Independent section preventing sidebar collision) */}
+      {(relatedExamRankings.length > 0 || (relatedCityRankings.length > 0 && page.city)) && (
+        <section
+          id="related-shortlists"
+          className="section section-alt"
+          style={{
+            borderTop: '1px solid var(--border-subtle)',
+            paddingTop: '60px',
+            paddingBottom: '80px',
+            scrollMarginTop: '80px',
+          }}
+        >
+          <div className="container">
+            {relatedExamRankings.length > 0 && (
+              <div style={{ marginBottom: relatedCityRankings.length > 0 && page.city ? '52px' : '0' }}>
+                <div className="section-head">
+                  <div className="section-head-info">
+                    <span className="eyebrow">National Coverage</span>
+                    <h2>{examLabel} Coaching Across India</h2>
+                  </div>
+                  <p>Compare top {examLabel} institutes in major education hubs with audited rankings.</p>
+                </div>
+                <RankingCards pages={relatedExamRankings} cols3 />
+              </div>
+            )}
+
+            {relatedCityRankings.length > 0 && page.city && (
+              <div>
+                <div className="section-head">
+                  <div className="section-head-info">
+                    <span className="eyebrow">City Hub</span>
+                    <h2>Other Top Coaching Rankings in {cityLabel}</h2>
+                  </div>
+                  <p>Top-ranked preparation centres for other competitive entrance exams in {cityLabel}.</p>
+                </div>
+                <RankingCards pages={relatedCityRankings} cols3 />
+              </div>
+            )}
+          </div>
+        </section>
+      )}
     </>
   );
 }

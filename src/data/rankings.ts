@@ -5,6 +5,25 @@ export type RankedInstitute = {
   name: string;
   slug: string;
   blurb: string;
+  inspectionScore?: number | null;
+  rating?: number | null;
+  reviewCount?: number | null;
+  phone?: string | null;
+  email?: string | null;
+  website?: string | null;
+  address?: string | null;
+  locality?: string | null;
+  batchSize?: string | null;
+  feesEstimate?: string | null;
+  highlights?: string[] | null;
+};
+
+export type EditorialGuide = {
+  summary: string;
+  comparisonAnalysis: string;
+  feeStructureGuidance: string;
+  preparationRoadmap: string;
+  admissionChecklist: string[];
 };
 
 export type RankingPage = {
@@ -15,6 +34,10 @@ export type RankingPage = {
   criterion: string | null;
   institutes: RankedInstitute[];
   faqs: { question: string; answer: string }[];
+  sourceUrl?: string;
+  metaDescription?: string;
+  isOnline?: boolean;
+  editorialGuide?: EditorialGuide;
 };
 
 export const ALL_RANKINGS = rankingsJson as RankingPage[];

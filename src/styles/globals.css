@@ -826,18 +826,19 @@ h1, h2, h3, h4, h5, h6, .font-display {
 .rank-card-list {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 16px;
+  gap: 20px;
+  width: 100%;
 }
 
-@media (min-width: 720px) {
+@media (min-width: 640px) {
   .rank-card-list {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
 @media (min-width: 1024px) {
   .rank-card-list.cols-3 {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 }
 
@@ -852,6 +853,9 @@ h1, h2, h3, h4, h5, h6, .font-display {
   transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
   text-decoration: none;
   position: relative;
+  min-width: 0;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .rank-card:hover {
@@ -1505,6 +1509,7 @@ h1, h2, h3, h4, h5, h6, .font-display {
   grid-template-columns: 1fr;
   gap: 36px;
   align-items: start;
+  width: 100%;
 }
 
 @media (min-width: 1024px) {
@@ -1516,6 +1521,8 @@ h1, h2, h3, h4, h5, h6, .font-display {
 
 .ranking-main {
   min-width: 0;
+  max-width: 100%;
+  width: 100%;
   display: flex;
   flex-direction: column;
   gap: 44px;
@@ -1525,6 +1532,8 @@ h1, h2, h3, h4, h5, h6, .font-display {
   display: flex;
   flex-direction: column;
   gap: 16px;
+  min-width: 0;
+  width: 100%;
 }
 
 @media (min-width: 1024px) {

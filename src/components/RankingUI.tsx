@@ -231,11 +231,12 @@ export function RankingTable({ page }: { page: RankingPage }) {
         </thead>
         <tbody>
           {page.institutes.map((inst) => {
-            const score =
-              inst.rank === 1 ? '9.4 / 10' :
-              inst.rank === 2 ? '9.0 / 10' :
-              inst.rank === 3 ? '8.7 / 10' :
-              inst.rank === 4 ? '8.4 / 10' : '8.1 / 10';
+            const score = inst.inspectionScore
+              ? `${(inst.inspectionScore / 10).toFixed(1)} / 10`
+              : inst.rank === 1 ? '9.4 / 10' :
+                inst.rank === 2 ? '9.0 / 10' :
+                inst.rank === 3 ? '8.7 / 10' :
+                inst.rank === 4 ? '8.4 / 10' : '8.1 / 10';
 
             return (
               <tr key={`${inst.rank}-${inst.slug}`} className={inst.rank === 1 ? 'top-pick' : undefined}>
@@ -258,13 +259,21 @@ export function RankingTable({ page }: { page: RankingPage }) {
                       )}
                     </div>
                     {inst.blurb && <p className="institute-blurb">{inst.blurb}</p>}
+                    {(inst.feesEstimate || inst.batchSize) && (
+                      <div style={{ display: 'flex', gap: '12px', marginTop: '6px', fontSize: '0.8rem', color: 'var(--ink-muted)' }}>
+                        {inst.feesEstimate && <span>💰 {inst.feesEstimate}</span>}
+                        {inst.batchSize && <span>👥 {inst.batchSize}</span>}
+                      </div>
+                    )}
                   </div>
                 </td>
                 <td style={{ textAlign: 'center', verticalAlign: 'middle' }}>
                   <span style={{ fontWeight: 700, color: 'var(--ink-primary)', fontSize: '0.92rem' }}>
                     {score}
                   </span>
-                  <div style={{ fontSize: '0.7rem', color: 'var(--ink-muted)' }}>100-Pt Audit</div>
+                  <div style={{ fontSize: '0.7rem', color: 'var(--ink-muted)' }}>
+                    {inst.inspectionScore ? `${inst.inspectionScore} / 100 Audit` : '100-Pt Audit'}
+                  </div>
                 </td>
                 <td style={{ textAlign: 'right', verticalAlign: 'middle' }}>
                   <Link href={`/institute/${inst.slug}`} className="btn btn-ghost btn-sm">
@@ -295,17 +304,19 @@ export function DetailedInstituteAudits({
     <div className="detailed-audits-list">
       {institutes.map((inst) => {
         const isGold = inst.rank === 1;
-        const score =
-          inst.rank === 1 ? '9.4' :
-          inst.rank === 2 ? '9.0' :
-          inst.rank === 3 ? '8.7' :
-          inst.rank === 4 ? '8.4' : '8.1';
+        const score = inst.inspectionScore
+          ? (inst.inspectionScore / 10).toFixed(1)
+          : inst.rank === 1 ? '9.4' :
+            inst.rank === 2 ? '9.0' :
+            inst.rank === 3 ? '8.7' :
+            inst.rank === 4 ? '8.4' : '8.1';
 
-        const grade =
-          inst.rank === 1 ? 'Grade A+' :
-          inst.rank === 2 ? 'Grade A' :
-          inst.rank === 3 ? 'Grade A-' :
-          inst.rank === 4 ? 'Grade B+' : 'Grade B';
+        const grade = inst.inspectionScore
+          ? (inst.inspectionScore >= 95 ? 'Grade A+' : inst.inspectionScore >= 90 ? 'Grade A' : inst.inspectionScore >= 85 ? 'Grade A-' : 'Grade B+')
+          : inst.rank === 1 ? 'Grade A+' :
+            inst.rank === 2 ? 'Grade A' :
+            inst.rank === 3 ? 'Grade A-' :
+            inst.rank === 4 ? 'Grade B+' : 'Grade B';
 
         return (
           <article
@@ -353,6 +364,31 @@ export function DetailedInstituteAudits({
             <p className="audit-card-blurb">{inst.blurb}</p>
 
             <div className="audit-pillars-grid">
+              {inst.feesEstimate && (
+                <div className="audit-pillar-item">
+                  <div className="pillar-header">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#2563eb" strokeWidth="2.5">
+                      <circle cx="12" cy="12" r="10" />
+                      <line x1="12" y1="8" x2="12" y2="16" />
+                      <line x1="8" y1="12" x2="16" y2="12" />
+                    </svg>
+                    <span className="pillar-title">Fee Range</span>
+                  </div>
+                  <span className="pillar-value">{inst.feesEstimate}</span>
+                </div>
+              )}
+              {inst.batchSize && (
+                <div className="audit-pillar-item">
+                  <div className="pillar-header">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#2563eb" strokeWidth="2.5">
+                      <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+                      <circle cx="9" cy="7" r="4" />
+                    </svg>
+                    <span className="pillar-title">Batch Size</span>
+                  </div>
+                  <span className="pillar-value">{inst.batchSize}</span>
+                </div>
+              )}
               <div className="audit-pillar-item">
                 <div className="pillar-header">
                   <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#2563eb" strokeWidth="2.5">
@@ -363,18 +399,6 @@ export function DetailedInstituteAudits({
                 </div>
                 <span className="pillar-value">Audited AIR Rankers</span>
               </div>
-
-              <div className="audit-pillar-item">
-                <div className="pillar-header">
-                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#2563eb" strokeWidth="2.5">
-                    <path d="M22 10v6M2 10l10-5 10 5-10 5z" />
-                    <path d="M6 12v5c3 3 9 3 12 0v-5" />
-                  </svg>
-                  <span className="pillar-title">Faculty Tenure</span>
-                </div>
-                <span className="pillar-value">8+ Yrs Core Mentors</span>
-              </div>
-
               <div className="audit-pillar-item">
                 <div className="pillar-header">
                   <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#2563eb" strokeWidth="2.5">
@@ -385,19 +409,6 @@ export function DetailedInstituteAudits({
                   <span className="pillar-title">Mock Test Rigor</span>
                 </div>
                 <span className="pillar-value">All-India Test Series</span>
-              </div>
-
-              <div className="audit-pillar-item">
-                <div className="pillar-header">
-                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#2563eb" strokeWidth="2.5">
-                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
-                    <circle cx="9" cy="7" r="4" />
-                    <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
-                    <path d="M16 3.13a4 4 0 0 1 0 7.75" />
-                  </svg>
-                  <span className="pillar-title">Batch Dynamics</span>
-                </div>
-                <span className="pillar-value">Monitored Doubts</span>
               </div>
             </div>
 
@@ -509,6 +520,80 @@ export function MethodologyRubric({ exam, city }: { exam: string; city: string |
         </div>
       </div>
     </div>
+  );
+}
+
+export function EditorialDeepDive({
+  page,
+}: {
+  page: RankingPage;
+}) {
+  const guide = page.editorialGuide;
+  if (!guide) return null;
+
+  return (
+    <section id="editorial-guide" style={{ scrollMarginTop: '100px', marginTop: '48px', marginBottom: '36px' }}>
+      <div className="section-head">
+        <div className="section-head-info">
+          <span className="eyebrow">Aspirant Decision Guide</span>
+          <h2>Comprehensive Analysis & Editorial Framework</h2>
+        </div>
+        <p>In-depth editorial benchmarks, fee transparency audits, and preparation strategy for {page.title}.</p>
+      </div>
+
+      <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
+        {/* 1. Overview */}
+        <div style={{ background: '#ffffff', border: '1px solid #e2e8f0', borderRadius: '12px', padding: '24px', boxShadow: '0 1px 3px rgba(0,0,0,0.05)' }}>
+          <h3 style={{ fontSize: '1.15rem', fontWeight: 700, marginBottom: '12px', color: '#0f172a', display: 'flex', alignItems: 'center', gap: '8px' }}>
+            <span style={{ fontSize: '1.25rem' }}>🎯</span> Executive Editorial Overview & Consensus
+          </h3>
+          <p style={{ lineHeight: 1.7, color: '#334155', fontSize: '0.98rem' }}>{guide.summary}</p>
+        </div>
+
+        {/* 2. Comparison Matrix */}
+        <div style={{ background: '#ffffff', border: '1px solid #e2e8f0', borderRadius: '12px', padding: '24px', boxShadow: '0 1px 3px rgba(0,0,0,0.05)' }}>
+          <h3 style={{ fontSize: '1.15rem', fontWeight: 700, marginBottom: '12px', color: '#0f172a', display: 'flex', alignItems: 'center', gap: '8px' }}>
+            <span style={{ fontSize: '1.25rem' }}>⚖️</span> Comparative Evaluation & Faculty Pedigree
+          </h3>
+          <p style={{ lineHeight: 1.7, color: '#334155', fontSize: '0.98rem' }}>{guide.comparisonAnalysis}</p>
+        </div>
+
+        {/* 3. Fee Structure Guidance */}
+        <div style={{ background: '#ffffff', border: '1px solid #e2e8f0', borderRadius: '12px', padding: '24px', boxShadow: '0 1px 3px rgba(0,0,0,0.05)' }}>
+          <h3 style={{ fontSize: '1.15rem', fontWeight: 700, marginBottom: '12px', color: '#0f172a', display: 'flex', alignItems: 'center', gap: '8px' }}>
+            <span style={{ fontSize: '1.25rem' }}>💳</span> Fee Structure Realities & Hidden Cost Safeguards
+          </h3>
+          <p style={{ lineHeight: 1.7, color: '#334155', fontSize: '0.98rem' }}>{guide.feeStructureGuidance}</p>
+        </div>
+
+        {/* 4. Strategic Preparation Roadmap */}
+        <div style={{ background: '#ffffff', border: '1px solid #e2e8f0', borderRadius: '12px', padding: '24px', boxShadow: '0 1px 3px rgba(0,0,0,0.05)' }}>
+          <h3 style={{ fontSize: '1.15rem', fontWeight: 700, marginBottom: '12px', color: '#0f172a', display: 'flex', alignItems: 'center', gap: '8px' }}>
+            <span style={{ fontSize: '1.25rem' }}>🗺️</span> Audited Preparation Strategy & Milestone Roadmap
+          </h3>
+          <p style={{ lineHeight: 1.7, color: '#334155', fontSize: '0.98rem' }}>{guide.preparationRoadmap}</p>
+        </div>
+
+        {/* 5. Crucial Admission Checklist */}
+        {guide.admissionChecklist && guide.admissionChecklist.length > 0 && (
+          <div style={{ background: 'linear-gradient(180deg, #f8fafc 0%, #f1f5f9 100%)', border: '1px solid #cbd5e1', borderRadius: '12px', padding: '24px' }}>
+            <h3 style={{ fontSize: '1.15rem', fontWeight: 700, marginBottom: '16px', color: '#0f172a', display: 'flex', alignItems: 'center', gap: '8px' }}>
+              <span style={{ color: '#16a34a' }}>✅</span> 5 Verification Checks Before Paying Enrolment Fees
+            </h3>
+            <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '12px' }}>
+              {guide.admissionChecklist.map((item, idx) => (
+                <li key={idx} style={{ display: 'flex', alignItems: 'flex-start', gap: '10px', fontSize: '0.95rem', color: '#1e293b', lineHeight: 1.5 }}>
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#16a34a" strokeWidth="3" style={{ flexShrink: 0, marginTop: '2px' }}>
+                    <polyline points="20 6 9 17 4 12" />
+                  </svg>
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
+      </div>
+    </section>
   );
 }
 
