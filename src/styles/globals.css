@@ -3307,6 +3307,11 @@ h1, h2, h3, h4, h5, h6, .font-display {
   padding: 2px 7px;
   border-radius: var(--radius-xs);
 }
+.rank-card-city-tag.national {
+  color: #334155;
+  background: #f1f5f9;
+  border-color: #e2e8f0;
+}
 .rank-card-audit-status {
   display: inline-flex;
   align-items: center;
@@ -3325,11 +3330,83 @@ h1, h2, h3, h4, h5, h6, .font-display {
   font-weight: 800;
   color: var(--ink-primary);
   line-height: 1.4;
-  margin-bottom: 12px;
+  margin-bottom: 6px;
   transition: color 0.15s ease;
 }
 .rank-card:hover .rank-card-title {
   color: var(--brand-primary);
+}
+.rank-card-sub {
+  font-size: 0.79rem;
+  font-weight: 500;
+  color: var(--ink-muted);
+  line-height: 1.4;
+  margin: 0 0 12px 0;
+}
+.rank-card-audit-box {
+  margin-top: auto;
+  background: #f8fafc;
+  border: 1px solid #f1f5f9;
+  border-radius: 10px;
+  padding: 10px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  transition: all 0.15s ease;
+}
+.rank-card:hover .rank-card-audit-box {
+  background: #f1f5f9;
+  border-color: #e2e8f0;
+}
+.audit-criteria-list {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.audit-criterion-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 7px;
+  font-size: 0.76rem;
+  font-weight: 500;
+  color: #334155;
+  line-height: 1.35;
+}
+.audit-check-dot {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: #ecfdf5;
+  color: #059669;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+.audit-criterion-text {
+  flex: 1;
+}
+.audit-card-footer-strip {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 6px;
+  border-top: 1px dashed #cbd5e1;
+  margin-top: 2px;
+}
+.audit-meta-tag {
+  font-family: var(--font-display);
+  font-size: 0.67rem;
+  font-weight: 800;
+  color: var(--brand-primary);
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+.audit-scope-tag {
+  font-size: 0.71rem;
+  font-weight: 600;
+  color: #64748b;
 }
 .podium-details {
   display: flex;
@@ -3352,11 +3429,16 @@ h1, h2, h3, h4, h5, h6, .font-display {
 .rank-card-institutes-count {
   color: var(--ink-muted);
   font-weight: 600;
+  display: flex;
+  align-items: center;
 }
 .rank-card-view-link {
   font-family: var(--font-display);
   font-weight: 700;
   color: var(--brand-primary);
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
   transition: transform 0.15s ease;
 }
 .rank-card:hover .rank-card-view-link {

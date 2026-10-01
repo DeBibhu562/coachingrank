@@ -832,7 +832,65 @@ export function FaqBlock({ page }: { page: RankingPage }) {
   );
 }
 
-export function RankingCards({ pages, cols3 = false }: { pages: RankingPage[]; cols3?: boolean }) {
+function getAuditHighlights(page: RankingPage): string[] {
+  const exam = (page.exam || '').toLowerCase();
+
+  if (['clat', 'ailet', 'du-llb', 'law', 'judiciary', 'cuet-law'].some((k) => exam.includes(k))) {
+    return [
+      'NLU Top-100 AIR Selections & Merit Rolls',
+      'Senior Legal Faculty Stability & Pedagogy',
+      'Classroom Batch Size Limits ≤ 35 Students',
+    ];
+  }
+
+  if (['upsc', 'ias', 'civil-services', 'cse'].some((k) => exam.includes(k))) {
+    return [
+      'Final CSE Selection Roll & Interview Qualifiers',
+      'General Studies Permanent Faculty Tenure',
+      '48-Hour Answer Writing Evaluation Speed',
+    ];
+  }
+
+  if (['ipmat', 'cat', 'iim', 'mba'].some((k) => exam.includes(k))) {
+    return [
+      'Verified IIM IPM & CAT Final Call Conversion',
+      'Higher Math & Data Interpretation Mentors',
+      'Adaptive Computer-Based Test Series Rigor',
+    ];
+  }
+
+  if (['share-market', 'trading', 'finance', 'stock'].some((k) => exam.includes(k))) {
+    return [
+      'Live Trading Lab Infrastructure & Order Execution',
+      'SEBI / NISM Certified Instructor Mentors',
+      'Capital Preservation & Risk Management Models',
+    ];
+  }
+
+  if (['banking', 'ssc', 'rbi', 'govt'].some((k) => exam.includes(k))) {
+    return [
+      'Speed-Math & Reasoning Accuracy Audits',
+      'Sectional Cutoff Analysis & CBT Engines',
+      'Classroom Batch Caps & Doubt Resolution',
+    ];
+  }
+
+  return [
+    'Verified Selection Ratios & AIR Qualifiers',
+    'Faculty Tenure Stability (8+ Yrs Benchmark)',
+    'Classroom Batch Size Ceilings & Mentorship',
+  ];
+}
+
+export function RankingCards({
+  pages,
+  cols3 = false,
+  showPodiumPreview = false,
+}: {
+  pages: RankingPage[];
+  cols3?: boolean;
+  showPodiumPreview?: boolean;
+}) {
   if (!pages || pages.length === 0) {
     return (
       <div className="info-box" style={{ textAlign: 'center', padding: '36px' }}>
@@ -852,13 +910,19 @@ export function RankingCards({ pages, cols3 = false }: { pages: RankingPage[]; c
           .replace(/\s+202[67].*/, '')
           .replace(/\s+\|.*/, '')
           .replace(/^Top \d+\s+/i, '');
+        const auditHighlights = getAuditHighlights(p);
+        const scopeLabel = cityName ? `${cityName} Metro Hub` : 'Pan-India Consensus';
 
         return (
           <Link key={p.slug} href={rankingPath(p.slug)} className="rank-card">
             <div className="rank-card-header">
               <div className="rank-card-badge-group">
                 <span className="rank-card-exam-tag">{examName}</span>
-                {cityName && <span className="rank-card-city-tag">{cityName}</span>}
+                {cityName ? (
+                  <span className="rank-card-city-tag">{cityName}</span>
+                ) : (
+                  <span className="rank-card-city-tag national">National</span>
+                )}
               </div>
               <span className="rank-card-audit-status">
                 <span className="live-pulse-dot" style={{ width: '6px', height: '6px' }} />
@@ -868,33 +932,99 @@ export function RankingCards({ pages, cols3 = false }: { pages: RankingPage[]; c
 
             <h3 className="rank-card-title">{cleanTitle}</h3>
 
-            <div className="rank-card-podium">
-              {top1 && (
-                <div className="podium-item top-rank">
-                  <span className="podium-badge gold">1</span>
-                  <div className="podium-details">
-                    <span className="podium-name">{top1.name}</span>
-                    <span className="podium-meta">Top Benchmark · 9.4/10</span>
+            <p className="rank-card-sub">
+              {p.institutes.length} physical &amp; online centres evaluated across 8 forensic criteria
+            </p>
+
+            {showPodiumPreview ? (
+              <div className="rank-card-podium">
+                {top1 && (
+                  <div className="podium-item top-rank">
+                    <span className="podium-badge gold">1</span>
+                    <div className="podium-details">
+                      <span className="podium-name">{top1.name}</span>
+                      <span className="podium-meta">Top Benchmark · 9.4/10</span>
+                    </div>
                   </div>
-                </div>
-              )}
-              {top2 && (
-                <div className="podium-item">
-                  <span className="podium-badge silver">2</span>
-                  <div className="podium-details">
-                    <span className="podium-name">{top2.name}</span>
-                    <span className="podium-meta">Contender · 9.0/10</span>
+                )}
+                {top2 && (
+                  <div className="podium-item">
+                    <span className="podium-badge silver">2</span>
+                    <div className="podium-details">
+                      <span className="podium-name">{top2.name}</span>
+                      <span className="podium-meta">Contender · 9.0/10</span>
+                    </div>
                   </div>
+                )}
+              </div>
+            ) : (
+              <div className="rank-card-audit-box">
+                <div className="audit-criteria-list">
+                  {auditHighlights.map((highlight, idx) => (
+                    <div key={idx} className="audit-criterion-row">
+                      <span className="audit-check-dot">
+                        <svg
+                          width="9"
+                          height="9"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth="3.2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          aria-hidden="true"
+                        >
+                          <polyline points="20 6 9 17 4 12" />
+                        </svg>
+                      </span>
+                      <span className="audit-criterion-text">{highlight}</span>
+                    </div>
+                  ))}
                 </div>
-              )}
-            </div>
+
+                <div className="audit-card-footer-strip">
+                  <span className="audit-meta-tag">100-Pt Forensic Audit</span>
+                  <span className="audit-scope-tag">{scopeLabel}</span>
+                </div>
+              </div>
+            )}
 
             <div className="rank-card-footer">
               <span className="rank-card-institutes-count">
+                <svg
+                  width="13"
+                  height="13"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2.2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  style={{ marginRight: '5px' }}
+                  aria-hidden="true"
+                >
+                  <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+                  <circle cx="9" cy="7" r="4" />
+                  <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
+                  <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+                </svg>
                 {p.institutes.length} Inspected Centres
               </span>
               <span className="rank-card-view-link">
-                Inspect Audit →
+                <span>View Full Rankings</span>
+                <svg
+                  width="12"
+                  height="12"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  aria-hidden="true"
+                >
+                  <polyline points="9 18 15 12 9 6" />
+                </svg>
               </span>
             </div>
           </Link>

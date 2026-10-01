@@ -76,7 +76,7 @@ export default function HomePage() {
           </h1>
 
           <p className="hero-lead">
-            Independent, data-backed shortlists with locked #1 and #2 benchmark ranks across India’s premier entrance exams, legal hubs, and civil service academies.
+            Independent, forensic evaluation shortlists and academic audit consensus across India’s premier entrance exams, legal academies, and civil service coaching institutes.
           </p>
 
           {/* Interactive Search Engine */}
