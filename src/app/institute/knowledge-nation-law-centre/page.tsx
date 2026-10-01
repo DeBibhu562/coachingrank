@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { ALL_RANKINGS, rankingPath } from '@/data/rankings';
 import { SITE } from '@/data/site';
+import InstStickyNav from '@/components/InstStickyNav';
 
 export const metadata: Metadata = {
   title: 'Knowledge Nation Law Centre Review 2027 – Fees, Faculty, Results & Rankings | CoachingRank',
@@ -147,7 +148,7 @@ export default function KnowledgeNationPage() {
       ))}
 
       {/* ── HERO BANNER ──────────────────────────────────────────── */}
-      <section className="inst-hero">
+      <section className="inst-hero" id="overview">
         <div className="container">
           <nav className="breadcrumb-nav">
             <Link href="/">Home</Link>
@@ -245,22 +246,26 @@ export default function KnowledgeNationPage() {
       </section>
 
       {/* ── STICKY IN-PAGE NAVIGATION ─────────────────────────────── */}
-      <nav className="inst-sticky-nav" aria-label="Page Sections">
-        <div className="inst-sticky-inner">
-          <a href="#overview" className="inst-nav-tab">Overview</a>
-          <a href="#dossier" className="inst-nav-tab">At a Glance</a>
-          <a href="#scorecard" className="inst-nav-tab">Audit Scorecard</a>
-          <a href="#courses" className="inst-nav-tab">Courses &amp; Fees</a>
-          <a href="#differentiators" className="inst-nav-tab">Why KN Law</a>
-          <a href="#nlu-results" className="inst-nav-tab">NLU Selections</a>
-          <a href="#faq" className="inst-nav-tab">FAQs</a>
-          <a href="#shortlists" className="inst-nav-tab">Rankings ({appearances.length})</a>
-          <a href="#contact" className="inst-nav-tab">Contact Desk</a>
-        </div>
-      </nav>
+      <InstStickyNav
+        items={[
+          { id: 'overview', label: 'Overview' },
+          { id: 'dossier', label: 'At a Glance' },
+          { id: 'scorecard', label: 'Audit Scorecard' },
+          { id: 'courses', label: 'Courses & Fees' },
+          { id: 'differentiators', label: 'Why KN Law' },
+          { id: 'nlu-results', label: 'NLU Selections' },
+          { id: 'faq', label: 'FAQs' },
+          ...(appearances.length > 0
+            ? [{ id: 'shortlists', label: 'Rankings', badge: appearances.length }]
+            : []),
+          { id: 'contact', label: 'Contact Desk' },
+        ]}
+        ctaText="Contact Desk"
+        ctaHref="#contact"
+      />
 
       {/* ── INSTITUTIONAL DOSSIER ─────────────────────────────────── */}
-      <section id="dossier" className="section" style={{ background: 'var(--bg-surface)', scrollMarginTop: '64px' }}>
+      <section id="dossier" className="section" style={{ background: 'var(--bg-surface)' }}>
         <div className="container">
           <div className="section-head">
             <div className="section-head-info">
@@ -379,7 +384,7 @@ export default function KnowledgeNationPage() {
       </section>
 
       {/* ── EDITORIAL AUDIT SCORECARD ────────────────────────────── */}
-      <section id="scorecard" className="section" style={{ scrollMarginTop: '64px' }}>
+      <section id="scorecard" className="section">
         <div className="container">
           <div className="section-head">
             <div className="section-head-info">
@@ -467,7 +472,7 @@ export default function KnowledgeNationPage() {
       </section>
 
       {/* ── BALANCED COURSES & PROGRAMS ─────────────────────────── */}
-      <section id="courses" className="section" style={{ background: 'var(--bg-surface)', scrollMarginTop: '64px' }}>
+      <section id="courses" className="section" style={{ background: 'var(--bg-surface)' }}>
         <div className="container">
           <div className="section-head">
             <div className="section-head-info">
@@ -613,7 +618,7 @@ export default function KnowledgeNationPage() {
       </section>
 
       {/* ── BALANCED 3x2 COMPETITIVE DIFFERENTIATORS ─────────────── */}
-      <section id="differentiators" className="section" style={{ scrollMarginTop: '64px' }}>
+      <section id="differentiators" className="section">
         <div className="container">
           <div className="section-head">
             <div className="section-head-info">
@@ -670,7 +675,7 @@ export default function KnowledgeNationPage() {
       </section>
 
       {/* ── NLU RESULTS HIGHLIGHT ───────────────────────────────── */}
-      <section id="nlu-results" className="section" style={{ background: 'var(--bg-surface)', paddingBottom: '48px', scrollMarginTop: '64px' }}>
+      <section id="nlu-results" className="section" style={{ background: 'var(--bg-surface)', paddingBottom: '48px' }}>
         <div className="container">
           <div className="section-head">
             <div className="section-head-info">
@@ -741,7 +746,7 @@ export default function KnowledgeNationPage() {
       </section>
 
       {/* ── FAQ ACCORDION ────────────────────────────────────────── */}
-      <section id="faq" className="section" style={{ scrollMarginTop: '64px' }}>
+      <section id="faq" className="section">
         <div className="container">
           <div className="section-head">
             <div className="section-head-info">
@@ -801,7 +806,7 @@ export default function KnowledgeNationPage() {
       </section>
 
       {/* ── ALL RANKING APPEARANCES ──────────────────────────────── */}
-      <section id="shortlists" className="section" style={{ background: 'var(--bg-surface)', scrollMarginTop: '64px' }}>
+      <section id="shortlists" className="section" style={{ background: 'var(--bg-surface)' }}>
         <div className="container">
           <div className="section-head">
             <div className="section-head-info">
@@ -882,7 +887,7 @@ export default function KnowledgeNationPage() {
       </section>
 
       {/* ── CONTACT / CTA ────────────────────────────────────────── */}
-      <section id="contact" className="section" style={{ paddingBottom: '72px', scrollMarginTop: '64px' }}>
+      <section id="contact" className="section" style={{ paddingBottom: '72px' }}>
         <div className="container" style={{ maxWidth: '800px' }}>
           <div className="section-head" style={{ textAlign: 'center', alignItems: 'center' }}>
             <div className="section-head-info" style={{ alignItems: 'center' }}>

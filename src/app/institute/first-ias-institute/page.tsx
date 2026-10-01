@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { ALL_RANKINGS, rankingPath } from '@/data/rankings';
 import { SITE } from '@/data/site';
+import InstStickyNav from '@/components/InstStickyNav';
 
 export const metadata: Metadata = {
   title: 'First IAS Institute Review 2027 – Fees, Faculty, Results & Ranking | CoachingRank',
@@ -256,20 +257,22 @@ export default function FirstIASPage() {
       </section>
 
       {/* ── STICKY QUICK NAVIGATION ──────────────────────────────── */}
-      <nav className="inst-sticky-nav" aria-label="Institute Profile Navigation">
-        <div className="container">
-          <div className="inst-nav-scroll">
-            <a href="#overview" className="inst-nav-item">Overview</a>
-            <a href="#at-a-glance" className="inst-nav-item">At a Glance</a>
-            <a href="#scorecard" className="inst-nav-item">100-Pt Scorecard</a>
-            <a href="#courses" className="inst-nav-item">Programs &amp; Fees</a>
-            <a href="#differentiators" className="inst-nav-item">Why First IAS</a>
-            <a href="#faq" className="inst-nav-item">FAQs</a>
-            <a href="#rankings" className="inst-nav-item">Verified Rankings</a>
-            <a href="#contact" className="inst-nav-item">Contact Desk</a>
-          </div>
-        </div>
-      </nav>
+      <InstStickyNav
+        items={[
+          { id: 'overview', label: 'Overview' },
+          { id: 'at-a-glance', label: 'At a Glance' },
+          { id: 'scorecard', label: '100-Pt Scorecard' },
+          { id: 'courses', label: 'Programs & Fees' },
+          { id: 'differentiators', label: 'Why First IAS' },
+          { id: 'faq', label: 'FAQs' },
+          ...(appearances.length > 0
+            ? [{ id: 'shortlists', label: 'Rankings', badge: appearances.length }]
+            : []),
+          { id: 'contact', label: 'Contact Desk' },
+        ]}
+        ctaText="Contact Desk"
+        ctaHref="#contact"
+      />
 
       {/* ── AT A GLANCE DOSSIER ──────────────────────────────────── */}
       <section className="section" id="at-a-glance" style={{ paddingTop: '40px', paddingBottom: '20px' }}>
@@ -393,7 +396,7 @@ export default function FirstIASPage() {
       </section>
 
       {/* ── EDITORIAL AUDIT SCORECARD ────────────────────────────── */}
-      <section id="scorecard" className="section" style={{ scrollMarginTop: '64px' }}>
+      <section id="scorecard" className="section">
         <div className="container">
           <div className="section-head">
             <div className="section-head-info">
@@ -481,7 +484,7 @@ export default function FirstIASPage() {
       </section>
 
       {/* ── BALANCED 2x2 CURRICULUM & COURSES ────────────────────── */}
-      <section id="courses" className="section" style={{ background: 'var(--bg-surface)', scrollMarginTop: '64px' }}>
+      <section id="courses" className="section" style={{ background: 'var(--bg-surface)' }}>
         <div className="container">
           <div className="section-head">
             <div className="section-head-info">
@@ -596,7 +599,7 @@ export default function FirstIASPage() {
       </section>
 
       {/* ── BALANCED 3x2 COMPETITIVE DIFFERENTIATORS ─────────────── */}
-      <section id="differentiators" className="section" style={{ scrollMarginTop: '64px' }}>
+      <section id="differentiators" className="section">
         <div className="container">
           <div className="section-head">
             <div className="section-head-info">
@@ -653,7 +656,7 @@ export default function FirstIASPage() {
       </section>
 
       {/* ── FAQ ACCORDION ────────────────────────────────────────── */}
-      <section id="faq" className="section" style={{ background: 'var(--bg-surface)', scrollMarginTop: '64px' }}>
+      <section id="faq" className="section" style={{ background: 'var(--bg-surface)' }}>
         <div className="container">
           <div className="section-head">
             <div className="section-head-info">
@@ -709,7 +712,7 @@ export default function FirstIASPage() {
       </section>
 
       {/* ── ALL RANKING APPEARANCES ──────────────────────────────── */}
-      <section id="shortlists" className="section" style={{ scrollMarginTop: '64px' }}>
+      <section id="shortlists" className="section">
         <div className="container">
           <div className="section-head">
             <div className="section-head-info">
@@ -764,7 +767,7 @@ export default function FirstIASPage() {
       </section>
 
       {/* ── CONTACT / CTA ────────────────────────────────────────── */}
-      <section id="contact" className="section" style={{ background: 'var(--bg-surface)', paddingBottom: '72px', scrollMarginTop: '64px' }}>
+      <section id="contact" className="section" style={{ background: 'var(--bg-surface)', paddingBottom: '72px' }}>
         <div className="container" style={{ maxWidth: '800px' }}>
           <div className="section-head" style={{ textAlign: 'center', alignItems: 'center' }}>
             <div className="section-head-info" style={{ alignItems: 'center' }}>

@@ -4,6 +4,7 @@ import { notFound } from 'next/navigation';
 import { institutesIndex, getAggregatedInstitute, rankingPath, formatExamName } from '@/data/rankings';
 import { getVerifiedInstitute, VERIFIED_INSTITUTES } from '@/data/institutes-directory';
 import { SITE } from '@/data/site';
+import InstStickyNav from '@/components/InstStickyNav';
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -161,7 +162,7 @@ export default async function DynamicInstituteProfilePage({ params }: Props) {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaOrg) }} />
 
       {/* ── HERO BANNER ──────────────────────────────────────────── */}
-      <section className="inst-hero">
+      <section className="inst-hero" id="overview">
         <div className="container">
           <nav className="breadcrumb-nav">
             <Link href="/">Home</Link>
@@ -252,23 +253,25 @@ export default async function DynamicInstituteProfilePage({ params }: Props) {
       </section>
 
       {/* ── STICKY IN-PAGE NAVIGATION ─────────────────────────────── */}
-      <nav className="inst-sticky-nav" aria-label="Page Sections">
-        <div className="inst-sticky-inner">
-          <a href="#overview" className="inst-nav-tab">Overview</a>
-          <a href="#dossier" className="inst-nav-tab">At a Glance</a>
-          <a href="#scorecard" className="inst-nav-tab">Audit Scorecard</a>
-          <a href="#courses" className="inst-nav-tab">Courses &amp; Fees</a>
-          <a href="#differentiators" className="inst-nav-tab">Strengths</a>
-          <a href="#faq" className="inst-nav-tab">FAQs</a>
-          {rankingAppearances.length > 0 && (
-            <a href="#shortlists" className="inst-nav-tab">Rankings ({rankingAppearances.length})</a>
-          )}
-          <a href="#contact" className="inst-nav-tab">Contact Desk</a>
-        </div>
-      </nav>
+      <InstStickyNav
+        items={[
+          { id: "overview", label: "Overview" },
+          { id: "dossier", label: "At a Glance" },
+          { id: "scorecard", label: "Audit Scorecard" },
+          { id: "courses", label: "Courses & Fees" },
+          { id: "differentiators", label: "Strengths" },
+          { id: "faq", label: "FAQs" },
+          ...(rankingAppearances.length > 0
+            ? [{ id: "shortlists", label: "Rankings", badge: rankingAppearances.length }]
+            : []),
+          { id: "contact", label: "Contact Desk" },
+        ]}
+        ctaText="Contact Desk"
+        ctaHref="#contact"
+      />
 
       {/* ── INSTITUTIONAL DOSSIER ─────────────────────────────────── */}
-      <section id="dossier" className="section" style={{ background: "var(--bg-surface)", scrollMarginTop: "64px" }}>
+      <section id="dossier" className="section" style={{ background: "var(--bg-surface)" }}>
         <div className="container">
           <div className="section-head">
             <div className="section-head-info">
@@ -389,7 +392,7 @@ export default async function DynamicInstituteProfilePage({ params }: Props) {
       </section>
 
       {/* ── 8-CRITERIA EDITORIAL AUDIT SCORECARD ─────────────────── */}
-      <section id="scorecard" className="section" style={{ scrollMarginTop: "64px" }}>
+      <section id="scorecard" className="section">
         <div className="container">
           <div className="section-head">
             <div className="section-head-info">
@@ -421,7 +424,7 @@ export default async function DynamicInstituteProfilePage({ params }: Props) {
       </section>
 
       {/* ── BALANCED COURSES & PROGRAM CATALOG ───────────────────── */}
-      <section id="courses" className="section" style={{ background: "var(--bg-surface)", scrollMarginTop: "64px" }}>
+      <section id="courses" className="section" style={{ background: "var(--bg-surface)" }}>
         <div className="container">
           <div className="section-head">
             <div className="section-head-info">
@@ -465,7 +468,7 @@ export default async function DynamicInstituteProfilePage({ params }: Props) {
       </section>
 
       {/* ── BALANCED 3-COLUMN DIFFERENTIATORS ───────────────────── */}
-      <section id="differentiators" className="section" style={{ scrollMarginTop: "64px" }}>
+      <section id="differentiators" className="section">
         <div className="container">
           <div className="section-head">
             <div className="section-head-info">
@@ -489,7 +492,7 @@ export default async function DynamicInstituteProfilePage({ params }: Props) {
 
       {/* ── VERIFIED RANKING APPEARANCES ─────────────────────────── */}
       {rankingAppearances.length > 0 && (
-        <section id="shortlists" className="section" style={{ background: "var(--bg-surface)", scrollMarginTop: "64px" }}>
+        <section id="shortlists" className="section" style={{ background: "var(--bg-surface)" }}>
           <div className="container">
             <div className="section-head">
               <div className="section-head-info">
@@ -536,7 +539,7 @@ export default async function DynamicInstituteProfilePage({ params }: Props) {
       )}
 
       {/* ── FREQUENTLY ASKED QUESTIONS (FAQ) ACCORDION ───────────── */}
-      <section id="faq" className="section" style={{ scrollMarginTop: "64px" }}>
+      <section id="faq" className="section">
         <div className="container">
           <div className="section-head">
             <div className="section-head-info">
@@ -567,7 +570,7 @@ export default async function DynamicInstituteProfilePage({ params }: Props) {
       </section>
 
       {/* ── CONTACT & REPRESENTATION DESK ───────────────────────── */}
-      <section id="contact" className="section" style={{ background: "var(--bg-surface)", paddingBottom: "72px", scrollMarginTop: "64px" }}>
+      <section id="contact" className="section" style={{ background: "var(--bg-surface)", paddingBottom: "72px" }}>
         <div className="container" style={{ maxWidth: "800px" }}>
           <div className="section-head" style={{ textAlign: "center", alignItems: "center" }}>
             <div className="section-head-info" style={{ alignItems: "center" }}>
