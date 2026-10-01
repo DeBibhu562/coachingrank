@@ -22,6 +22,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${SITE.url}/compare`, lastModified: now, changeFrequency: 'weekly', priority: 0.7 },
     { url: `${SITE.url}/criterion`, lastModified: now, changeFrequency: 'weekly', priority: 0.7 },
     { url: `${SITE.url}/contact`, lastModified: now, changeFrequency: 'monthly', priority: 0.5 },
+    // Dedicated high-priority institute profile pages
+    { url: `${SITE.url}/institute/first-ias-institute`, lastModified: now, changeFrequency: 'weekly', priority: 0.9 },
   ];
 
   for (const exam of listExams()) {
