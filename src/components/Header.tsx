@@ -180,7 +180,7 @@ export default function Header() {
             className={`nav-link ${isActive('/about') ? 'active' : ''}`}
             aria-current={isActive('/about') ? 'page' : undefined}
           >
-            About Us
+            About
           </Link>
 
           <Link
