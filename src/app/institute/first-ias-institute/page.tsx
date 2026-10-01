@@ -259,7 +259,7 @@ export default function FirstIASPage() {
       <nav className="inst-sticky-nav" aria-label="Institute Profile Navigation">
         <div className="container">
           <div className="inst-nav-scroll">
-            <a href="#overview" className="inst-nav-item active">Overview</a>
+            <a href="#overview" className="inst-nav-item">Overview</a>
             <a href="#at-a-glance" className="inst-nav-item">At a Glance</a>
             <a href="#scorecard" className="inst-nav-item">100-Pt Scorecard</a>
             <a href="#courses" className="inst-nav-item">Programs &amp; Fees</a>
