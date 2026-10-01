@@ -4,100 +4,130 @@ import { SITE, PRIORITY_EXAMS, TOP_CITIES } from '@/data/site';
 import {
   ALL_RANKINGS,
   institutesIndex,
-  listCities,
-  listExams,
-  getCriterionRankings,
-  formatCityName,
-  formatExamName,
   rankingPath,
 } from '@/data/rankings';
 
 export const metadata: Metadata = {
-  title: 'Complete Tree Sitemap & Coaching Directory | CoachingRank.in',
+  title: 'Complete Tree Sitemap Directory | CoachingRank.in',
   description:
-    'Explore the complete structured navigation tree and directory of CoachingRank.in covering all national entrance exams, 32+ coaching cities, criteria rankings, and verified institute profiles.',
+    'Explore the complete tree-structured navigation hierarchy of CoachingRank.in covering all cities, competitive entrance exams, and verified rankings.',
   alternates: { canonical: '/sitemap' },
   openGraph: {
-    title: 'Complete Tree Sitemap & Directory | CoachingRank.in',
+    title: 'Complete Tree Sitemap Directory | CoachingRank.in',
     description:
-      'Tree-structured navigation index of all coaching rankings, city hubs, exam portals, and institute audit cards on CoachingRank.in.',
+      'Explore the complete tree-structured navigation hierarchy of CoachingRank.in covering all cities, competitive exams, and verified rankings.',
     url: `${SITE.url}/sitemap`,
     type: 'website',
   },
 };
 
-// Exam category groupings
-const EXAM_GROUPS: { groupName: string; icon: string; slugs: string[] }[] = [
+// Precise City Hub Nodes grouped by state/region
+const STATE_CITY_HUBS: { stateName: string; countText: string; cities: { name: string; slug: string; icon: string }[] }[] = [
   {
-    groupName: 'Law Entrances',
-    icon: '⚖️',
-    slugs: ['clat', 'ailet', 'du-llb', 'clat-pg', 'cuet-pg-law', 'judiciary', 'online-clat-pg', 'online-du-llb'],
-  },
-  {
-    groupName: 'Engineering & Medical',
-    icon: '🔬',
-    slugs: ['jee', 'neet', 'gate', 'foundation', 'class-10-boards', 'class-12-boards'],
-  },
-  {
-    groupName: 'Civil Services & Government',
-    icon: '🏛️',
-    slugs: ['upsc', 'online-upsc', 'ssc', 'banking', 'nda', 'ctet'],
-  },
-  {
-    groupName: 'Management & Commerce',
-    icon: '📈',
-    slugs: ['cat', 'ipmat', 'online-ipmat', 'cuet', 'share-market', 'online-share-market', 'study-abroad'],
-  },
-];
-
-// City regional groupings
-const CITY_REGIONS: { regionName: string; cities: { slug: string; name: string }[] }[] = [
-  {
-    regionName: 'Delhi NCR & North Zone',
+    stateName: 'Maharashtra',
+    countText: '3 Cities',
     cities: [
-      { slug: 'delhi', name: 'Delhi NCR' },
-      { slug: 'gurgaon', name: 'Gurgaon' },
-      { slug: 'noida', name: 'Noida' },
-      { slug: 'south-delhi', name: 'South Delhi' },
-      { slug: 'chandigarh', name: 'Chandigarh' },
-      { slug: 'dehradun', name: 'Dehradun' },
-      { slug: 'jaipur', name: 'Jaipur' },
-      { slug: 'kota', name: 'Kota' },
+      { name: 'Mumbai Coaching', slug: 'mumbai', icon: '🌊' },
+      { name: 'Pune Coaching', slug: 'pune', icon: '🎓' },
+      { name: 'Nagpur Coaching', slug: 'nagpur', icon: '🍊' },
     ],
   },
   {
-    regionName: 'Maharashtra & West Zone',
+    stateName: 'Delhi NCR',
+    countText: '3 Cities',
     cities: [
-      { slug: 'mumbai', name: 'Mumbai' },
-      { slug: 'pune', name: 'Pune' },
-      { slug: 'nagpur', name: 'Nagpur' },
-      { slug: 'ahmedabad', name: 'Ahmedabad' },
-      { slug: 'surat', name: 'Surat' },
+      { name: 'Delhi Coaching', slug: 'delhi', icon: '🏛️' },
+      { name: 'Gurgaon Coaching', slug: 'gurgaon', icon: '🏢' },
+      { name: 'Noida Coaching', slug: 'noida', icon: '🚀' },
     ],
   },
   {
-    regionName: 'South India Hubs',
+    stateName: 'Karnataka',
+    countText: '1 City',
     cities: [
-      { slug: 'bangalore', name: 'Bengaluru' },
-      { slug: 'hyderabad', name: 'Hyderabad' },
-      { slug: 'chennai', name: 'Chennai' },
-      { slug: 'visakhapatnam', name: 'Visakhapatnam' },
-      { slug: 'kochi', name: 'Kochi' },
+      { name: 'Bengaluru Coaching', slug: 'bangalore', icon: '🌿' },
     ],
   },
   {
-    regionName: 'Central & Eastern India Hubs',
+    stateName: 'Telangana & Andhra Pradesh',
+    countText: '2 Cities',
     cities: [
-      { slug: 'lucknow', name: 'Lucknow' },
-      { slug: 'kanpur', name: 'Kanpur' },
-      { slug: 'varanasi', name: 'Varanasi' },
-      { slug: 'patna', name: 'Patna' },
-      { slug: 'ranchi', name: 'Ranchi' },
-      { slug: 'bhopal', name: 'Bhopal' },
-      { slug: 'indore', name: 'Indore' },
-      { slug: 'kolkata', name: 'Kolkata' },
-      { slug: 'bhubaneswar', name: 'Bhubaneswar' },
-      { slug: 'guwahati', name: 'Guwahati' },
+      { name: 'Hyderabad Coaching', slug: 'hyderabad', icon: '💎' },
+      { name: 'Visakhapatnam Coaching', slug: 'visakhapatnam', icon: '⚓' },
+    ],
+  },
+  {
+    stateName: 'Tamil Nadu & Kerala',
+    countText: '3 Cities',
+    cities: [
+      { name: 'Chennai Coaching', slug: 'chennai', icon: '🎭' },
+      { name: 'Coimbatore Coaching', slug: 'coimbatore', icon: '⚙️' },
+      { name: 'Kochi Coaching', slug: 'kochi', icon: '⛵' },
+    ],
+  },
+  {
+    stateName: 'West Bengal & Northeast',
+    countText: '2 Cities',
+    cities: [
+      { name: 'Kolkata Coaching', slug: 'kolkata', icon: '🎨' },
+      { name: 'Guwahati Coaching', slug: 'guwahati', icon: '🦏' },
+    ],
+  },
+  {
+    stateName: 'Uttar Pradesh',
+    countText: '3 Cities',
+    cities: [
+      { name: 'Lucknow Coaching', slug: 'lucknow', icon: '🦁' },
+      { name: 'Kanpur Coaching', slug: 'kanpur', icon: '🏭' },
+      { name: 'Varanasi Coaching', slug: 'varanasi', icon: '🪔' },
+    ],
+  },
+  {
+    stateName: 'Rajasthan',
+    countText: '2 Cities',
+    cities: [
+      { name: 'Jaipur Coaching', slug: 'jaipur', icon: '🕌' },
+      { name: 'Kota Coaching', slug: 'kota', icon: '🎯' },
+    ],
+  },
+  {
+    stateName: 'Gujarat',
+    countText: '2 Cities',
+    cities: [
+      { name: 'Ahmedabad Coaching', slug: 'ahmedabad', icon: '🏭' },
+      { name: 'Surat Coaching', slug: 'surat', icon: '💎' },
+    ],
+  },
+  {
+    stateName: 'Punjab, Haryana & Chandigarh',
+    countText: '2 Cities',
+    cities: [
+      { name: 'Chandigarh Coaching', slug: 'chandigarh', icon: '🌳' },
+      { name: 'Amritsar Coaching', slug: 'amritsar', icon: '✨' },
+    ],
+  },
+  {
+    stateName: 'Madhya Pradesh & Chhattisgarh',
+    countText: '2 Cities',
+    cities: [
+      { name: 'Indore Coaching', slug: 'indore', icon: '🌟' },
+      { name: 'Bhopal Coaching', slug: 'bhopal', icon: '🏰' },
+    ],
+  },
+  {
+    stateName: 'Bihar & Jharkhand',
+    countText: '2 Cities',
+    cities: [
+      { name: 'Patna Coaching', slug: 'patna', icon: '📖' },
+      { name: 'Ranchi Coaching', slug: 'ranchi', icon: '🌲' },
+    ],
+  },
+  {
+    stateName: 'Odisha & Uttarakhand',
+    countText: '2 Cities',
+    cities: [
+      { name: 'Dehradun Coaching', slug: 'dehradun', icon: '🏔️' },
+      { name: 'Bhubaneswar Coaching', slug: 'bhubaneswar', icon: '🏛️' },
     ],
   },
 ];
@@ -106,347 +136,416 @@ export default function SitemapPage() {
   const allInstitutes = institutesIndex();
   const topInstitutes = allInstitutes.slice(0, 36);
 
-  // Group leaf rankings by primary exam for high-impact matrix
-  const topRankingsByExam = [
+  // Top Exam × City Rankings Matrix
+  const examMatrixColumns = [
     {
-      examName: 'CLAT & Law Rankings',
-      items: ALL_RANKINGS.filter(
-        (r) => ['clat', 'ailet', 'du-llb', 'clat-pg', 'cuet-pg-law'].includes(r.exam)
-      ).slice(0, 16),
+      title: 'CLAT Coaching Rankings',
+      links: [
+        { label: 'CLAT in Delhi', href: '/rankings/best-clat-coaching-in-delhi' },
+        { label: 'CLAT in Mumbai', href: '/rankings/best-clat-coaching-in-mumbai' },
+        { label: 'CLAT in Bengaluru', href: '/rankings/best-clat-coaching-in-bangalore' },
+        { label: 'CLAT in Hyderabad', href: '/rankings/best-clat-coaching-in-hyderabad' },
+        { label: 'CLAT in Pune', href: '/rankings/best-clat-coaching-in-pune' },
+        { label: 'CLAT in Jaipur', href: '/rankings/best-clat-coaching-in-jaipur' },
+        { label: 'CLAT in Lucknow', href: '/rankings/best-clat-coaching-in-lucknow' },
+        { label: 'CLAT in Chandigarh', href: '/rankings/best-clat-coaching-in-chandigarh' },
+      ],
     },
     {
-      examName: 'UPSC Civil Services Rankings',
-      items: ALL_RANKINGS.filter((r) => r.exam === 'upsc' || r.exam === 'online-upsc').slice(0, 14),
+      title: 'DU LLB Coaching Rankings',
+      links: [
+        { label: 'DU LLB in Delhi', href: '/rankings/best-du-llb-coaching-in-delhi' },
+        { label: 'DU LLB in Mumbai', href: '/rankings/best-du-llb-coaching-in-mumbai' },
+        { label: 'DU LLB in Bengaluru', href: '/rankings/best-du-llb-coaching-in-bangalore' },
+        { label: 'DU LLB in Hyderabad', href: '/rankings/best-du-llb-coaching-in-hyderabad' },
+        { label: 'DU LLB in Pune', href: '/rankings/best-du-llb-coaching-in-pune' },
+        { label: 'DU LLB in Jaipur', href: '/rankings/best-du-llb-coaching-in-jaipur' },
+        { label: 'DU LLB in Lucknow', href: '/rankings/best-du-llb-coaching-in-lucknow' },
+        { label: 'DU LLB in Chandigarh', href: '/rankings/best-du-llb-coaching-in-chandigarh' },
+      ],
     },
     {
-      examName: 'IIT-JEE & NEET Medical Rankings',
-      items: ALL_RANKINGS.filter((r) => ['jee', 'neet', 'foundation'].includes(r.exam)).slice(0, 14),
+      title: 'CLAT PG Coaching Rankings',
+      links: [
+        { label: 'CLAT PG in Delhi', href: '/rankings/best-clat-pg-coaching-in-delhi' },
+        { label: 'CLAT PG in Mumbai', href: '/rankings/best-clat-pg-coaching-in-mumbai' },
+        { label: 'CLAT PG in Bengaluru', href: '/rankings/best-clat-pg-coaching-in-bangalore' },
+        { label: 'CLAT PG in Hyderabad', href: '/rankings/best-clat-pg-coaching-in-hyderabad' },
+        { label: 'CLAT PG in Pune', href: '/rankings/best-clat-pg-coaching-in-pune' },
+        { label: 'CLAT PG in Jaipur', href: '/rankings/best-clat-pg-coaching-in-jaipur' },
+        { label: 'CLAT PG in Lucknow', href: '/rankings/best-clat-pg-coaching-in-lucknow' },
+        { label: 'CLAT PG in Chandigarh', href: '/rankings/best-clat-pg-coaching-in-chandigarh' },
+      ],
     },
     {
-      examName: 'IPMAT & Management Rankings',
-      items: ALL_RANKINGS.filter((r) => ['ipmat', 'online-ipmat', 'cat', 'cuet'].includes(r.exam)).slice(0, 14),
+      title: 'AILET Coaching Rankings',
+      links: [
+        { label: 'AILET in Delhi', href: '/rankings/best-ailet-coaching-in-delhi' },
+        { label: 'AILET in Mumbai', href: '/rankings/best-ailet-coaching-in-mumbai' },
+        { label: 'AILET in Bengaluru', href: '/rankings/best-ailet-coaching-in-bangalore' },
+        { label: 'AILET in Hyderabad', href: '/rankings/best-ailet-coaching-in-hyderabad' },
+        { label: 'AILET in Pune', href: '/rankings/best-ailet-coaching-in-pune' },
+        { label: 'AILET in Jaipur', href: '/rankings/best-ailet-coaching-in-jaipur' },
+        { label: 'AILET in Lucknow', href: '/rankings/best-ailet-coaching-in-lucknow' },
+        { label: 'AILET in Chandigarh', href: '/rankings/best-ailet-coaching-in-chandigarh' },
+      ],
     },
     {
-      examName: 'Judiciary & Government Exams',
-      items: ALL_RANKINGS.filter((r) => ['judiciary', 'ssc', 'banking', 'nda'].includes(r.exam)).slice(0, 14),
+      title: 'Judiciary Coaching Rankings',
+      links: [
+        { label: 'Judiciary in Delhi', href: '/rankings/best-judiciary-coaching-in-delhi' },
+        { label: 'Judiciary in Mumbai', href: '/rankings/best-judiciary-coaching-in-mumbai' },
+        { label: 'Judiciary in Bengaluru', href: '/rankings/best-judiciary-coaching-in-bangalore' },
+        { label: 'Judiciary in Hyderabad', href: '/rankings/best-judiciary-coaching-in-hyderabad' },
+        { label: 'Judiciary in Pune', href: '/rankings/best-judiciary-coaching-in-pune' },
+        { label: 'Judiciary in Jaipur', href: '/rankings/best-judiciary-coaching-in-jaipur' },
+        { label: 'Judiciary in Lucknow', href: '/rankings/best-judiciary-coaching-in-lucknow' },
+        { label: 'Judiciary in Chandigarh', href: '/rankings/best-judiciary-coaching-in-chandigarh' },
+      ],
+    },
+    {
+      title: 'CUET PG Law Coaching Rankings',
+      links: [
+        { label: 'CUET PG Law in Delhi', href: '/rankings/best-cuet-pg-law-coaching-in-delhi' },
+        { label: 'CUET PG Law in Mumbai', href: '/rankings/best-cuet-pg-law-coaching-in-mumbai' },
+        { label: 'CUET PG Law in Bengaluru', href: '/rankings/best-cuet-pg-law-coaching-in-bangalore' },
+        { label: 'CUET PG Law in Hyderabad', href: '/rankings/best-cuet-pg-law-coaching-in-hyderabad' },
+        { label: 'CUET PG Law in Pune', href: '/rankings/best-cuet-pg-law-coaching-in-pune' },
+        { label: 'CUET PG Law in Jaipur', href: '/rankings/best-cuet-pg-law-coaching-in-jaipur' },
+        { label: 'CUET PG Law in Lucknow', href: '/rankings/best-cuet-pg-law-coaching-in-lucknow' },
+        { label: 'CUET PG Law in Chandigarh', href: '/rankings/best-cuet-pg-law-coaching-in-chandigarh' },
+      ],
+    },
+    {
+      title: 'UPSC CSE Coaching Rankings',
+      links: [
+        { label: 'UPSC in Delhi', href: '/rankings/best-upsc-coaching-in-delhi' },
+        { label: 'UPSC in South Delhi', href: '/rankings/best-upsc-coaching-in-south-delhi' },
+        { label: 'UPSC as per Results', href: '/rankings/best-upsc-coaching-as-per-results' },
+        { label: 'UPSC as per CSE Toppers', href: '/rankings/best-upsc-coaching-as-per-cse-toppers' },
+        { label: 'UPSC as per Faculty', href: '/rankings/best-upsc-coaching-as-per-faculty-experience' },
+        { label: 'UPSC as per Batch Size', href: '/rankings/best-upsc-coaching-as-per-batch-size' },
+        { label: 'UPSC as per Mock Tests', href: '/rankings/best-upsc-coaching-as-per-mock-test-series' },
+        { label: 'Best Online UPSC Coaching', href: '/rankings/best-online-upsc-coaching' },
+      ],
+    },
+    {
+      title: 'IIT-JEE & NEET Coaching Rankings',
+      links: [
+        { label: 'JEE in Kota', href: '/rankings/best-jee-coaching-in-kota' },
+        { label: 'JEE in Delhi', href: '/rankings/best-jee-coaching-in-delhi' },
+        { label: 'JEE in Hyderabad', href: '/rankings/best-jee-coaching-in-hyderabad' },
+        { label: 'JEE in Bengaluru', href: '/rankings/best-jee-coaching-in-bangalore' },
+        { label: 'NEET in Kota', href: '/rankings/best-neet-coaching-in-kota' },
+        { label: 'NEET in Delhi', href: '/rankings/best-neet-coaching-in-delhi' },
+        { label: 'NEET in Hyderabad', href: '/rankings/best-neet-coaching-in-hyderabad' },
+        { label: 'NEET in Chennai', href: '/rankings/best-neet-coaching-in-chennai' },
+      ],
+    },
+    {
+      title: 'IPMAT Management Rankings',
+      links: [
+        { label: 'Best IPMAT Coaching (India)', href: '/rankings/best-ipmat-coaching' },
+        { label: 'Best Online IPMAT Coaching', href: '/rankings/best-online-ipmat-coaching' },
+        { label: 'IPMAT as per Results', href: '/rankings/best-ipmat-coaching-as-per-results' },
+        { label: 'IPMAT as per IPM Toppers', href: '/rankings/best-ipmat-coaching-as-per-ipm-toppers' },
+        { label: 'IPMAT as per Faculty', href: '/rankings/best-ipmat-coaching-as-per-faculty-experience' },
+        { label: 'IPMAT as per Batch Size', href: '/rankings/best-ipmat-coaching-as-per-batch-size' },
+        { label: 'IPMAT as per Mock Tests', href: '/rankings/best-ipmat-coaching-as-per-mock-test-series' },
+        { label: 'IPMAT as per Alumni', href: '/rankings/best-ipmat-coaching-as-per-alumni' },
+      ],
     },
   ];
 
   const sitemapSchema = {
     '@context': 'https://schema.org',
-    '@type': 'CollectionPage',
-    name: 'CoachingRank.in Tree Sitemap Directory',
-    url: `${SITE.url}/sitemap`,
-    description:
-      'Complete tree-structured navigation hierarchy of CoachingRank.in covering all competitive exams, coaching cities, and verified rankings.',
-    breadcrumb: {
-      '@type': 'BreadcrumbList',
-      itemListElement: [
-        {
-          '@type': 'ListItem',
-          position: 1,
-          name: 'Home',
-          item: SITE.url,
-        },
-        {
-          '@type': 'ListItem',
-          position: 2,
-          name: 'Structured Sitemap Directory',
-          item: `${SITE.url}/sitemap`,
-        },
-      ],
+    '@type': 'WebSite',
+    name: 'CoachingRank.in',
+    url: SITE.url,
+    description: 'Independent directory and evaluation platform for competitive coaching institutes in India.',
+    potentialAction: {
+      '@type': 'SearchAction',
+      target: `${SITE.url}/rankings?q={search_term_string}`,
+      'query-input': 'required name=search_term_string',
+    },
+  };
+
+  const orgSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'Organization',
+    name: 'CoachingRank.in',
+    url: SITE.url,
+    logo: `${SITE.url}/favicon.svg`,
+    contactPoint: {
+      '@type': 'ContactPoint',
+      email: SITE.email,
+      contactType: 'Admissions and Audit Desk',
     },
   };
 
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(sitemapSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(orgSchema) }} />
 
-      <section className="page-hero">
-        <div className="container">
+      <main style={{ flex: 1 }}>
+        <div className="container" style={{ padding: '40px 20px 80px' }}>
+          
+          {/* Breadcrumbs matching reference */}
           <nav className="breadcrumb-nav">
-            <Link href="/">Home</Link>
-            <span className="separator">/</span>
-            <span className="current">Tree Sitemap Directory</span>
+            <div className="breadcrumb-item" style={{ display: 'inline-flex', alignItems: 'center', gap: '6px' }}>
+              <Link href="/">Home</Link>
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="m9 18 6-6-6-6" />
+              </svg>
+            </div>
+            <div className="breadcrumb-item">
+              <span style={{ color: 'var(--ink-primary)', fontWeight: 700 }}>Structured Sitemap Directory</span>
+            </div>
           </nav>
 
-          <div className="hero-audit-badges">
-            <span className="badge badge-gold">🗺️ Master Tree Navigation</span>
-            <span className="badge badge-blue">Index Edition: {SITE.year}</span>
-            <span className="badge badge-emerald">Comprehensive Internal Link Architecture</span>
-          </div>
-
-          <h1>CoachingRank.in Structured Sitemap & Complete Directory</h1>
-          <p className="prose-lead" style={{ maxWidth: '840px', marginBottom: '20px' }}>
-            Comprehensive tree navigation index of CoachingRank.in. Explore all core platform hubs, national competitive
-            exams, 32+ coaching cities, criteria rankings, comparison matrices, and audited institute profiles organized
-            for effortless discovery and search indexation.
-          </p>
-
-          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px' }}>
-            <a href="#core-hubs" className="badge badge-blue" style={{ textDecoration: 'none' }}>
-              🌐 Core Hubs
-            </a>
-            <a href="#exam-portals" className="badge badge-blue" style={{ textDecoration: 'none' }}>
-              📚 28+ Exam Portals
-            </a>
-            <a href="#city-nodes" className="badge badge-blue" style={{ textDecoration: 'none' }}>
-              📍 City Hub Nodes
-            </a>
-            <a href="#criteria-rankings" className="badge badge-blue" style={{ textDecoration: 'none' }}>
-              ⚖️ Criterion Shortlists
-            </a>
-            <a href="#rankings-matrix" className="badge badge-blue" style={{ textDecoration: 'none' }}>
-              🏆 Leaf Rankings Matrix
-            </a>
-            <a href="#institutes-index" className="badge badge-blue" style={{ textDecoration: 'none' }}>
-              🏛️ Institute Profiles
-            </a>
-          </div>
-        </div>
-      </section>
-
-      <section className="section">
-        <div className="container" style={{ display: 'flex', flexDirection: 'column', gap: '48px' }}>
-          
-          {/* Section 1: Core Platform Hubs */}
-          <div id="core-hubs" className="card" style={{ padding: '32px' }}>
-            <h2 style={{ fontSize: '1.35rem', fontWeight: 800, color: 'var(--ink-primary)', marginBottom: '8px', display: 'flex', alignItems: 'center', gap: '10px' }}>
-              <span style={{ fontSize: '1.4rem' }}>🌐</span> Core Platform Hubs & Governance
-            </h2>
-            <p style={{ fontSize: '0.9rem', color: 'var(--ink-muted)', marginBottom: '20px' }}>
-              Foundational architecture, comparison tools, evaluation charters, and machine-readable endpoints.
+          {/* Header matching reference */}
+          <header style={{ marginBottom: '40px' }}>
+            <span className="badge badge-gold" style={{ marginBottom: '10px' }}>
+              Tree Navigation Architecture
+            </span>
+            <h1 style={{ fontSize: '34px', fontWeight: 800, color: 'var(--ink-primary)', marginBottom: '12px', fontFamily: 'var(--font-display)' }}>
+              CoachingRank.in Structured Sitemap
+            </h1>
+            <p style={{ fontSize: '15.5px', color: 'var(--ink-muted)' }}>
+              All pages and internal linking clusters organized logically by level and category for easy navigation and search indexation.
             </p>
+          </header>
 
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(240px, 1fr))', gap: '12px' }}>
-              <Link href="/" className="sidebar-link" style={{ padding: '10px 14px', background: '#f8fafc', borderRadius: '8px', border: '1px solid var(--border-subtle)', fontWeight: 600 }}>
-                • Homepage (/)
-              </Link>
-              <Link href="/rankings" className="sidebar-link" style={{ padding: '10px 14px', background: '#f8fafc', borderRadius: '8px', border: '1px solid var(--border-subtle)', fontWeight: 600 }}>
-                • All Rankings Index (/rankings)
-              </Link>
-              <Link href="/exam" className="sidebar-link" style={{ padding: '10px 14px', background: '#f8fafc', borderRadius: '8px', border: '1px solid var(--border-subtle)', fontWeight: 600 }}>
-                • Exam Portals Directory (/exam)
-              </Link>
-              <Link href="/city" className="sidebar-link" style={{ padding: '10px 14px', background: '#f8fafc', borderRadius: '8px', border: '1px solid var(--border-subtle)', fontWeight: 600 }}>
-                • Coaching Cities Hub (/city)
-              </Link>
-              <Link href="/institute" className="sidebar-link" style={{ padding: '10px 14px', background: '#f8fafc', borderRadius: '8px', border: '1px solid var(--border-subtle)', fontWeight: 600 }}>
-                • Ranked Institutes Index (/institute)
-              </Link>
-              <Link href="/compare" className="sidebar-link" style={{ padding: '10px 14px', background: '#f8fafc', borderRadius: '8px', border: '1px solid var(--border-subtle)', fontWeight: 600 }}>
-                • Head-to-Head Compare (/compare)
-              </Link>
-              <Link href="/criterion" className="sidebar-link" style={{ padding: '10px 14px', background: '#f8fafc', borderRadius: '8px', border: '1px solid var(--border-subtle)', fontWeight: 600 }}>
-                • By Criterion Portals (/criterion)
-              </Link>
-              <Link href="/about" className="sidebar-link" style={{ padding: '10px 14px', background: '#fef2f2', borderRadius: '8px', border: '1px solid #fecaca', fontWeight: 700, color: 'var(--brand-primary)' }}>
-                • About & Methodology (/about)
-              </Link>
-              <Link href="/contact" className="sidebar-link" style={{ padding: '10px 14px', background: '#f8fafc', borderRadius: '8px', border: '1px solid var(--border-subtle)', fontWeight: 600 }}>
-                • Contact & Verification Desk (/contact)
-              </Link>
-              <a href="/sitemap.xml" className="sidebar-link" style={{ padding: '10px 14px', background: '#f8fafc', borderRadius: '8px', border: '1px solid var(--border-subtle)', fontWeight: 600 }}>
-                • XML Sitemap (/sitemap.xml)
-              </a>
-              <a href="/llms.txt" className="sidebar-link" style={{ padding: '10px 14px', background: '#f8fafc', borderRadius: '8px', border: '1px solid var(--border-subtle)', fontWeight: 600 }}>
-                • AI / LLM Context Manifest (/llms.txt)
-              </a>
-              <a href="/llms-full.txt" className="sidebar-link" style={{ padding: '10px 14px', background: '#f8fafc', borderRadius: '8px', border: '1px solid var(--border-subtle)', fontWeight: 600 }}>
-                • Full AI Knowledge Base (/llms-full.txt)
-              </a>
-            </div>
-          </div>
-
-          {/* Section 2: Exam Portals by Category */}
-          <div id="exam-portals" className="card" style={{ padding: '32px' }}>
-            <h2 style={{ fontSize: '1.35rem', fontWeight: 800, color: 'var(--ink-primary)', marginBottom: '8px', display: 'flex', alignItems: 'center', gap: '10px' }}>
-              <span style={{ fontSize: '1.4rem' }}>📚</span> Competitive Entrance Exam Portals
-            </h2>
-            <p style={{ fontSize: '0.9rem', color: 'var(--ink-muted)', marginBottom: '24px' }}>
-              Dedicated examination intelligence hubs with verified national benchmarks, seat intakes, and syllabus calibrations.
-            </p>
-
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
-              {EXAM_GROUPS.map((grp) => (
-                <div key={grp.groupName} style={{ borderBottom: '1px solid var(--border-subtle)', paddingBottom: '20px' }}>
-                  <h3 style={{ fontSize: '1.05rem', fontWeight: 700, color: 'var(--ink-primary)', marginBottom: '12px', display: 'flex', alignItems: 'center', gap: '8px' }}>
-                    <span>{grp.icon}</span> {grp.groupName}
-                  </h3>
-                  <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
-                    {grp.slugs.map((slug) => (
-                      <Link
-                        key={slug}
-                        href={`/exam/${slug}-coaching-rankings`}
-                        className="badge badge-blue"
-                        style={{ padding: '7px 14px', fontSize: '0.86rem', textDecoration: 'none' }}
-                      >
-                        {formatExamName(slug)} Coaching Rankings →
-                      </Link>
-                    ))}
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Section 3: Coaching City Hubs by Region */}
-          <div id="city-nodes" className="card" style={{ padding: '32px' }}>
-            <h2 style={{ fontSize: '1.35rem', fontWeight: 800, color: 'var(--ink-primary)', marginBottom: '8px', display: 'flex', alignItems: 'center', gap: '10px' }}>
-              <span style={{ fontSize: '1.4rem' }}>📍</span> City Hub Nodes by Region &amp; State
-            </h2>
-            <p style={{ fontSize: '0.9rem', color: 'var(--ink-muted)', marginBottom: '24px' }}>
-              Physical classroom coaching directories with local faculty stability and verified student review counts.
-            </p>
-
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '24px' }}>
-              {CITY_REGIONS.map((region) => (
-                <div key={region.regionName} style={{ background: '#f8fafc', padding: '20px', borderRadius: '10px', border: '1px solid var(--border-subtle)' }}>
-                  <h3 style={{ fontSize: '1rem', fontWeight: 700, color: 'var(--ink-primary)', marginBottom: '12px' }}>
-                    {region.regionName}
-                  </h3>
-                  <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
-                    {region.cities.map((city) => (
-                      <Link
-                        key={city.slug}
-                        href={`/city/best-coaching-institutes-in-${city.slug}`}
-                        style={{
-                          fontSize: '0.84rem',
-                          color: 'var(--ink-secondary)',
-                          background: '#ffffff',
-                          padding: '5px 10px',
-                          borderRadius: '6px',
-                          border: '1px solid var(--border-subtle)',
-                          textDecoration: 'none',
-                          fontWeight: 500,
-                        }}
-                      >
-                        {city.name}
-                      </Link>
-                    ))}
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Section 4: Criteria-Based Rankings */}
-          <div id="criteria-rankings" className="card" style={{ padding: '32px' }}>
-            <h2 style={{ fontSize: '1.35rem', fontWeight: 800, color: 'var(--ink-primary)', marginBottom: '8px', display: 'flex', alignItems: 'center', gap: '10px' }}>
-              <span style={{ fontSize: '1.4rem' }}>⚖️</span> National Criteria-Based Rankings Directory
-            </h2>
-            <p style={{ fontSize: '0.9rem', color: 'var(--ink-muted)', marginBottom: '20px' }}>
-              Specific ranking lenses tailored to individual student priorities (faculty pedigree, small batch sizes, mock test series, or alumni ratings).
-            </p>
-
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(260px, 1fr))', gap: '10px' }}>
-              <Link href="/criterion/best-coaching-as-per-results" className="sidebar-link" style={{ padding: '8px 12px', background: '#f8fafc', borderRadius: '6px', border: '1px solid var(--border-subtle)', fontSize: '0.88rem' }}>
-                📊 As Per Verified Results
-              </Link>
-              <Link href="/criterion/best-coaching-as-per-faculty-experience" className="sidebar-link" style={{ padding: '8px 12px', background: '#f8fafc', borderRadius: '6px', border: '1px solid var(--border-subtle)', fontSize: '0.88rem' }}>
-                👨‍🏫 As Per Faculty Experience
-              </Link>
-              <Link href="/criterion/best-coaching-as-per-batch-size" className="sidebar-link" style={{ padding: '8px 12px', background: '#f8fafc', borderRadius: '6px', border: '1px solid var(--border-subtle)', fontSize: '0.88rem' }}>
-                👥 As Per Small Batch Size
-              </Link>
-              <Link href="/criterion/best-coaching-as-per-mock-test-series" className="sidebar-link" style={{ padding: '8px 12px', background: '#f8fafc', borderRadius: '6px', border: '1px solid var(--border-subtle)', fontSize: '0.88rem' }}>
-                📝 As Per Mock Test Series
-              </Link>
-              <Link href="/criterion/best-coaching-as-per-google-ratings" className="sidebar-link" style={{ padding: '8px 12px', background: '#f8fafc', borderRadius: '6px', border: '1px solid var(--border-subtle)', fontSize: '0.88rem' }}>
-                ⭐ As Per Google Ratings
-              </Link>
-              <Link href="/criterion/best-coaching-as-per-alumni" className="sidebar-link" style={{ padding: '8px 12px', background: '#f8fafc', borderRadius: '6px', border: '1px solid var(--border-subtle)', fontSize: '0.88rem' }}>
-                🎓 As Per Alumni Reviews
-              </Link>
-              <Link href="/criterion/best-coaching-as-per-clat-toppers" className="sidebar-link" style={{ padding: '8px 12px', background: '#f8fafc', borderRadius: '6px', border: '1px solid var(--border-subtle)', fontSize: '0.88rem' }}>
-                🏆 As Per CLAT Toppers
-              </Link>
-              <Link href="/criterion/best-coaching-as-per-cse-toppers" className="sidebar-link" style={{ padding: '8px 12px', background: '#f8fafc', borderRadius: '6px', border: '1px solid var(--border-subtle)', fontSize: '0.88rem' }}>
-                🥇 As Per UPSC CSE Toppers
-              </Link>
-            </div>
-          </div>
-
-          {/* Section 5: Top Exam in City Rankings Matrix */}
-          <div id="rankings-matrix" className="card" style={{ padding: '32px' }}>
-            <h2 style={{ fontSize: '1.35rem', fontWeight: 800, color: 'var(--ink-primary)', marginBottom: '8px', display: 'flex', alignItems: 'center', gap: '10px' }}>
-              <span style={{ fontSize: '1.4rem' }}>🏆</span> Top Exam in City Rankings Matrix
-            </h2>
-            <p style={{ fontSize: '0.9rem', color: 'var(--ink-muted)', marginBottom: '24px' }}>
-              Direct access to our most audited leaf ranking pages with comprehensive two-column analysis, podium spotlights, and fee estimates.
-            </p>
-
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '28px' }}>
-              {topRankingsByExam.map((col) => (
-                <div key={col.examName}>
-                  <h3 style={{ fontSize: '0.98rem', fontWeight: 800, color: 'var(--ink-primary)', marginBottom: '12px', paddingBottom: '6px', borderBottom: '2px solid var(--border-subtle)' }}>
-                    {col.examName}
-                  </h3>
-                  <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '6px' }}>
-                    {col.items.map((r) => (
-                      <li key={r.slug}>
-                        <Link
-                          href={rankingPath(r.slug)}
-                          className="sidebar-link"
-                          style={{
-                            padding: '4px 8px',
-                            fontSize: '0.84rem',
-                            display: 'block',
-                            borderRadius: '4px',
-                          }}
-                        >
-                          › {r.title}
-                        </Link>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Section 6: Premier Institutes Index */}
-          <div id="institutes-index" className="card" style={{ padding: '32px' }}>
-            <h2 style={{ fontSize: '1.35rem', fontWeight: 800, color: 'var(--ink-primary)', marginBottom: '8px', display: 'flex', alignItems: 'center', gap: '10px' }}>
-              <span style={{ fontSize: '1.4rem' }}>🏛️</span> Premier Ranked Institutes Directory
-            </h2>
-            <p style={{ fontSize: '0.9rem', color: 'var(--ink-muted)', marginBottom: '20px' }}>
-              Direct audit profile cards for leading test-prep brands across India.
-            </p>
-
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))', gap: '10px' }}>
-              {topInstitutes.map((inst) => (
-                <Link
-                  key={inst.slug}
-                  href={`/institute/${inst.slug}`}
-                  style={{
-                    padding: '8px 12px',
-                    background: '#f8fafc',
-                    borderRadius: '6px',
-                    border: '1px solid var(--border-subtle)',
-                    fontSize: '0.84rem',
-                    color: 'var(--ink-secondary)',
-                    textDecoration: 'none',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'space-between',
-                  }}
-                >
-                  <span style={{ fontWeight: 600 }}>{inst.name}</span>
-                  <span style={{ fontSize: '0.75rem', color: 'var(--ink-muted)' }}>Top #{inst.topRank}</span>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '48px' }}>
+            
+            {/* Card 1: Core Platform Hubs */}
+            <div className="card" style={{ padding: '28px' }}>
+              <h2 style={{ fontSize: '20px', fontWeight: 800, color: 'var(--ink-primary)', marginBottom: '16px', display: 'flex', alignItems: 'center', gap: '8px' }}>
+                <span style={{ color: 'var(--brand-primary)' }}>🌐</span> Core Platform Hubs
+              </h2>
+              <div className="grid-3">
+                <Link className="sidebar-link" style={{ fontSize: '14px', fontWeight: 600 }} href="/">
+                  • Homepage (/)
                 </Link>
-              ))}
+                <Link className="sidebar-link" style={{ fontSize: '14px', fontWeight: 600 }} href="/exam">
+                  • All Exams Directory (/exams)
+                </Link>
+                <Link className="sidebar-link" style={{ fontSize: '14px', fontWeight: 600 }} href="/about#methodology">
+                  • 100-Point Inspection (/methodology)
+                </Link>
+                <Link className="sidebar-link" style={{ fontSize: '14px', fontWeight: 600 }} href="/compare">
+                  • Direct Compare Tool (/compare)
+                </Link>
+                <Link className="sidebar-link" style={{ fontSize: '14px', fontWeight: 600 }} href="/about">
+                  • About Us (/about)
+                </Link>
+                <Link className="sidebar-link" style={{ fontSize: '14px', fontWeight: 600 }} href="/contact">
+                  • Contact &amp; Audits (/contact)
+                </Link>
+                <Link className="sidebar-link" style={{ fontSize: '14px', fontWeight: 600 }} href="/rankings">
+                  • All Rankings Index (/rankings)
+                </Link>
+                <Link className="sidebar-link" style={{ fontSize: '14px', fontWeight: 600 }} href="/city">
+                  • Coaching Cities Hub (/city)
+                </Link>
+                <Link className="sidebar-link" style={{ fontSize: '14px', fontWeight: 600 }} href="/criterion">
+                  • Rankings By Criterion (/criterion)
+                </Link>
+                <Link className="sidebar-link" style={{ fontSize: '14px', fontWeight: 600 }} href="/institute">
+                  • Ranked Institutes Index (/institute)
+                </Link>
+                <a className="sidebar-link" style={{ fontSize: '14px', fontWeight: 600 }} href="/sitemap.xml">
+                  • XML Sitemap (/sitemap.xml)
+                </a>
+                <a className="sidebar-link" style={{ fontSize: '14px', fontWeight: 600 }} href="/llms.txt">
+                  • AI / LLM Context Manifest (/llms.txt)
+                </a>
+              </div>
             </div>
 
-            <div style={{ marginTop: '20px', textAlign: 'center' }}>
-              <Link href="/institute" className="btn btn-outline btn-sm">
-                View All 750+ Ranked Institutes Profiles →
-              </Link>
+            {/* Card 2: City Hub Nodes (By State) */}
+            <div className="card" style={{ padding: '28px' }}>
+              <h2 style={{ fontSize: '20px', fontWeight: 800, color: 'var(--ink-primary)', marginBottom: '16px', display: 'flex', alignItems: 'center', gap: '8px' }}>
+                <span style={{ color: 'var(--brand-primary)' }}>🗺️</span> City Hub Nodes (By State)
+              </h2>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
+                {STATE_CITY_HUBS.map((st) => (
+                  <div key={st.stateName}>
+                    <h3 style={{ fontSize: '16px', fontWeight: 700, color: '#1d4ed8', marginBottom: '8px' }}>
+                      {st.stateName} ({st.countText})
+                    </h3>
+                    <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px' }}>
+                      {st.cities.map((ct) => (
+                        <Link
+                          key={ct.slug}
+                          className="badge badge-blue"
+                          style={{ padding: '6px 12px', fontSize: '13px' }}
+                          href={`/city/best-coaching-institutes-in-${ct.slug}`}
+                        >
+                          {ct.icon} {ct.name}
+                        </Link>
+                      ))}
+                    </div>
+                  </div>
+                ))}
+              </div>
             </div>
+
+            {/* Card 3: IPMAT & Criteria Rankings Directory */}
+            <div className="card" style={{ padding: '28px' }}>
+              <h2 style={{ fontSize: '20px', fontWeight: 800, color: 'var(--ink-primary)', marginBottom: '16px', display: 'flex', alignItems: 'center', gap: '8px' }}>
+                <span style={{ color: 'var(--brand-primary)' }}>🎯</span> Benchmark Criteria &amp; National Rankings
+              </h2>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
+                <div>
+                  <h3 style={{ fontSize: '15px', fontWeight: 800, color: '#1d4ed8', marginBottom: '10px' }}>
+                    National &amp; Benchmark Criteria Rankings
+                  </h3>
+                  <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px' }}>
+                    <Link className="badge badge-gold" style={{ padding: '6px 12px', fontSize: '13px' }} href="/rankings/best-clat-coaching">
+                      🏆 Best CLAT Coaching (India)
+                    </Link>
+                    <Link className="badge badge-gold" style={{ padding: '6px 12px', fontSize: '13px' }} href="/rankings/best-upsc-coaching">
+                      🏆 Best UPSC Coaching (India)
+                    </Link>
+                    <Link className="badge badge-gold" style={{ padding: '6px 12px', fontSize: '13px' }} href="/rankings/best-jee-coaching">
+                      🏆 Best JEE Coaching (India)
+                    </Link>
+                    <Link className="badge badge-gold" style={{ padding: '6px 12px', fontSize: '13px' }} href="/rankings/best-neet-coaching">
+                      🏆 Best NEET Coaching (India)
+                    </Link>
+                    <Link className="badge badge-gold" style={{ padding: '6px 12px', fontSize: '13px' }} href="/rankings/best-ipmat-coaching">
+                      🏆 Best IPMAT Coaching (India)
+                    </Link>
+                    <Link className="badge badge-blue" style={{ padding: '6px 12px', fontSize: '13px' }} href="/criterion/best-coaching-as-per-results">
+                      📊 As Per Results
+                    </Link>
+                    <Link className="badge badge-blue" style={{ padding: '6px 12px', fontSize: '13px' }} href="/criterion/best-coaching-as-per-faculty-experience">
+                      👨‍🏫 As Per Faculty Experience
+                    </Link>
+                    <Link className="badge badge-blue" style={{ padding: '6px 12px', fontSize: '13px' }} href="/criterion/best-coaching-as-per-google-ratings">
+                      ⭐ As Per Google Ratings
+                    </Link>
+                    <Link className="badge badge-blue" style={{ padding: '6px 12px', fontSize: '13px' }} href="/criterion/best-coaching-as-per-mock-test-series">
+                      📝 As Per Mock Test Series
+                    </Link>
+                    <Link className="badge badge-blue" style={{ padding: '6px 12px', fontSize: '13px' }} href="/criterion/best-coaching-as-per-batch-size">
+                      👥 As Per Batch Size
+                    </Link>
+                    <Link className="badge badge-blue" style={{ padding: '6px 12px', fontSize: '13px' }} href="/criterion/best-coaching-as-per-alumni">
+                      🎓 As Per Alumni
+                    </Link>
+                    <Link className="badge badge-blue" style={{ padding: '6px 12px', fontSize: '13px' }} href="/criterion/best-coaching-as-per-clat-toppers">
+                      🥇 As Per CLAT Toppers
+                    </Link>
+                    <Link className="badge badge-blue" style={{ padding: '6px 12px', fontSize: '13px' }} href="/criterion/best-coaching-as-per-cse-toppers">
+                      🥇 As Per CSE Toppers
+                    </Link>
+                  </div>
+                </div>
+
+                <div>
+                  <h3 style={{ fontSize: '15px', fontWeight: 800, color: '#1d4ed8', marginBottom: '10px' }}>
+                    City-Wise IPMAT Coaching Hubs
+                  </h3>
+                  <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
+                    {[
+                      { city: 'Delhi', slug: 'delhi' },
+                      { city: 'Gurgaon', slug: 'gurgaon' },
+                      { city: 'Mumbai', slug: 'mumbai' },
+                      { city: 'Bengaluru', slug: 'bangalore' },
+                      { city: 'Indore', slug: 'indore' },
+                      { city: 'Hyderabad', slug: 'hyderabad' },
+                      { city: 'Pune', slug: 'pune' },
+                      { city: 'Jaipur', slug: 'jaipur' },
+                      { city: 'Lucknow', slug: 'lucknow' },
+                      { city: 'Kolkata', slug: 'kolkata' },
+                      { city: 'Chandigarh', slug: 'chandigarh' },
+                      { city: 'Ahmedabad', slug: 'ahmedabad' },
+                      { city: 'Chennai', slug: 'chennai' },
+                      { city: 'Bhopal', slug: 'bhopal' },
+                      { city: 'Patna', slug: 'patna' },
+                      { city: 'Dehradun', slug: 'dehradun' },
+                      { city: 'Kanpur', slug: 'kanpur' },
+                      { city: 'Varanasi', slug: 'varanasi' },
+                      { city: 'Ranchi', slug: 'ranchi' },
+                      { city: 'Surat', slug: 'surat' },
+                      { city: 'Nagpur', slug: 'nagpur' },
+                      { city: 'Noida', slug: 'noida' },
+                      { city: 'Kota', slug: 'kota' },
+                    ].map((c) => (
+                      <Link
+                        key={c.slug}
+                        className="sidebar-link"
+                        style={{ padding: '4px 10px', fontSize: '13px', background: '#f8fafc', borderRadius: '6px', border: '1px solid #e2e8f0' }}
+                        href={`/rankings/best-ipmat-coaching-in-${c.slug}`}
+                      >
+                        › IPMAT in {c.city}
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Card 4: Top Exam in City Rankings Matrix */}
+            <div className="card" style={{ padding: '28px' }}>
+              <h2 style={{ fontSize: '20px', fontWeight: 800, color: 'var(--ink-primary)', marginBottom: '16px', display: 'flex', alignItems: 'center', gap: '8px' }}>
+                <span style={{ color: 'var(--brand-primary)' }}>🏆</span> Top Exam in City Rankings Matrix
+              </h2>
+              <div className="grid-3">
+                {examMatrixColumns.map((col) => (
+                  <div key={col.title} style={{ marginBottom: '16px' }}>
+                    <h3 style={{ fontSize: '15px', fontWeight: 800, color: 'var(--ink-primary)', marginBottom: '8px' }}>
+                      {col.title}
+                    </h3>
+                    <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '6px', padding: 0, margin: 0 }}>
+                      {col.links.map((lnk) => (
+                        <li key={lnk.href}>
+                          <Link
+                            className="sidebar-link"
+                            style={{ padding: '4px 8px', fontSize: '13px' }}
+                            href={lnk.href}
+                          >
+                            › {lnk.label}
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Card 5: Premier Ranked Institutes Index */}
+            <div className="card" style={{ padding: '28px' }}>
+              <h2 style={{ fontSize: '20px', fontWeight: 800, color: 'var(--ink-primary)', marginBottom: '16px', display: 'flex', alignItems: 'center', gap: '8px' }}>
+                <span style={{ color: 'var(--brand-primary)' }}>🏛️</span> Premier Audited Institutes Directory
+              </h2>
+              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
+                {topInstitutes.map((inst) => (
+                  <Link
+                    key={inst.slug}
+                    className="sidebar-link"
+                    style={{ padding: '6px 12px', fontSize: '13px', background: '#f8fafc', borderRadius: '6px', border: '1px solid #e2e8f0', display: 'inline-flex', alignItems: 'center', gap: '6px' }}
+                    href={`/institute/${inst.slug}`}
+                  >
+                    <span style={{ fontWeight: 600 }}>{inst.name}</span>
+                    <span style={{ fontSize: '11px', color: 'var(--ink-muted)' }}>Top #{inst.topRank}</span>
+                  </Link>
+                ))}
+              </div>
+              <div style={{ marginTop: '16px' }}>
+                <Link href="/institute" className="sidebar-link" style={{ fontSize: '13.5px', color: 'var(--brand-primary)', fontWeight: 700 }}>
+                  Browse All 750+ Ranked Institutes Directory →
+                </Link>
+              </div>
+            </div>
+
           </div>
-
         </div>
-      </section>
+      </main>
     </>
   );
 }
