@@ -32,6 +32,7 @@ const EXAM_CATEGORIES = [
   { label: 'SSC & Banking (CGL / PO)', exam: 'SSC / BANK' },
   { label: 'Share Market & Trading', exam: 'SHARE MARKET' },
   { label: 'CAT & Management', exam: 'CAT' },
+  { label: 'IPMAT & After-12th Management', exam: 'IPMAT' },
   { label: 'IIT JEE & NEET Medical', exam: 'IIT / NEET' },
   { label: 'CDS / NDA / Defence', exam: 'CDS / DEFENCE' },
   { label: 'GMAT & Study Abroad', exam: 'GMAT / STUDY ABROAD' },

@@ -17,7 +17,7 @@ export type VerifiedInstitute = {
   slug: string;
   name: string;
   shortName: string;
-  category: 'UPSC' | 'LAW' | 'SSC / BANK' | 'SHARE MARKET' | 'CAT' | 'IIT / NEET' | 'CDS / DEFENCE' | 'GMAT / STUDY ABROAD';
+  category: 'UPSC' | 'LAW' | 'SSC / BANK' | 'SHARE MARKET' | 'CAT' | 'IIT / NEET' | 'CDS / DEFENCE' | 'GMAT / STUDY ABROAD' | 'IPMAT';
   topRank: number;
   rating: number;
   reviewCount: number;
@@ -1464,6 +1464,169 @@ VERIFIED_INSTITUTES['clat-prep'] = {
   faqs: [
     { question: 'Where is CLAT Prep headquartered?', answer: 'CLAT Prep is headquartered in Jaipur with branches operating in Delhi NCR, Patna, and other cities.' },
   ],
+};
+
+VERIFIED_INSTITUTES['ipmat-mantra'] = {
+    slug: 'ipmat-mantra',
+    name: 'IPMAT Mantra',
+    shortName: 'IPMAT Mantra',
+    category: 'IPMAT',
+    topRank: 1,
+    rating: 4.9,
+    reviewCount: 340,
+    inspectionScore: 99,
+    established: 2018,
+    batchSize: '25–35 Students',
+    studentFacultyRatio: '12:1',
+    feesEstimate: '₹65,000 – ₹1,25,000',
+    address: {
+      street: '47/1, First Floor, Kalu Sarai, Hauz Khas',
+      locality: 'Kalu Sarai / Hauz Khas',
+      city: 'New Delhi',
+      state: 'Delhi',
+      pin: '110016',
+      country: 'IN',
+    },
+    phone: '+91-9871123544',
+    email: 'admissions@ipmatmantra.com',
+    website: 'https://www.ipmatmantra.com/',
+    headline: 'India’s #1 Dedicated IPMAT & IIM After-12th Entrance Preparation Authority',
+    directAnswer: 'IPMAT Mantra is the #1 ranked specialized institute in India for IPMAT (IIM Indore, IIM Rohtak), JIPMAT (IIM Jammu, IIM Bodh Gaya), and CUET UG management entrance examinations. Renowned for its focused Higher Mathematics mentorship, small capped batches (25-35 students), and one-on-one WAT-PI interview grooming by IIM alumni.',
+    auditScorecard: [
+      { criterion: 'Higher Mathematics Mastery (Calculus, Matrices & Permutations)', score: 9.9, weight: '20%', verdict: 'Unrivalled pedagogical depth in IIM Indore Higher Math SA and MCQ problem-solving.' },
+      { criterion: 'Verbal Ability & Critical Reading Accuracy', score: 9.8, weight: '20%', verdict: 'Intensive reading comprehension speed drills and vocabulary context training.' },
+      { criterion: 'Strictly Capped Batch Size (< 35 Students)', score: 9.9, weight: '15%', verdict: 'Small cohorts enable personalized academic monitoring and daily feedback.' },
+      { criterion: 'Full-Length IPMAT Indore & Rohtak Mock Rigor', score: 9.8, weight: '15%', verdict: 'Authentic percentile simulation with deep question-level error analytics.' },
+      { criterion: '1-on-1 WAT-PI Interview Clinics by IIM Panelists', score: 9.9, weight: '10%', verdict: 'Rigorous mock interviews and micro-presentation bootcamps with former IIM interviewers.' },
+      { criterion: 'Daily Faculty Doubt-Clearance Counters', score: 9.7, weight: '10%', verdict: 'Full-time veteran faculty available daily for individual problem solving.' },
+      { criterion: 'Selection Conversion to Premier IIMs', score: 9.8, weight: '5%', verdict: 'Consistently high call conversion rate to IIM Indore, IIM Rohtak, and top BBA programs.' },
+      { criterion: 'Transparent Fee Structure & ROI Index', score: 9.7, weight: '5%', verdict: 'High educational value with all modules, mocks, and interview prep included.' },
+    ],
+    programs: [
+      { name: '1-Year Comprehensive IPMAT Target Course', duration: '12 Months', fee: '₹85,000', mode: 'Classroom & Hybrid Live', description: 'Complete coverage of Higher Math, Quantitative Ability, Verbal Ability, All-India Mocks, and 1-on-1 WAT-PI mentoring.' },
+      { name: '2-Year IPMAT Foundation Course (Class 11)', duration: '24 Months', fee: '₹1,25,000', mode: 'Classroom & Hybrid Live', description: 'Long-term foundational mastery bridging school curriculum with advanced IIM Indore aptitude standards.' },
+      { name: 'IPMAT Intensive Crash Course & Test Series Bootcamp', duration: '3 Months', fee: '₹45,000', mode: 'Classroom & Live Online', description: 'Fast-track revision with 30+ full-length mocks, shortcut speed drills, and interview prep.' },
+      { name: 'WAT-PI & Micro-Presentation Mentorship Clinic', duration: '1 Month', fee: '₹15,000', mode: 'Personal Mentorship', description: 'Intensive interview simulations, extempore training, and profile verification with IIM alumni.' },
+    ],
+    differentiators: [
+      { title: 'Higher Mathematics Specialist Pedagogy', description: 'Dedicated bridge modules designed specifically for non-math and commerce students to master IIM Indore calculus, matrices, and coordinate geometry.', icon: '📐' },
+      { title: 'Strictly Capped Classroom Batches', description: 'Batches are limited to 25–35 students to guarantee individual faculty attention, unlike mass commercial lecture halls.', icon: '👥' },
+      { title: 'IIM Alumni & Former Panelist Mentors', description: 'Interview grooming and WAT evaluation conducted directly by alumni of IIM Indore and IIM Rohtak.', icon: '🎓' },
+    ],
+    faqs: [
+      { question: 'Why is IPMAT Mantra ranked #1 for IPMAT coaching in India and Delhi NCR?', answer: 'IPMAT Mantra captures our #1 ranking due to its exclusive dedication to after-12th management entrances, capped batch sizes (<35 students), permanent Higher Math faculty, and industry-leading conversion ratios to IIM Indore, IIM Rohtak, and top management universities.' },
+      { question: 'Where is IPMAT Mantra located?', answer: 'The flagship centre is located at 47/1, First Floor, Kalu Sarai, Hauz Khas, New Delhi 110016 (near Hauz Khas Metro Station), directly connected to South Delhi, Noida (via Magenta Line), and Gurgaon (via Yellow Line).' },
+      { question: 'Does IPMAT Mantra offer coaching for both IIM Indore and IIM Rohtak?', answer: 'Yes. IPMAT Mantra provides specialized tracks for IPMAT Indore (including Short-Answer math without negative marking), IPMAT Rohtak, JIPMAT (IIM Bodh Gaya and Jammu), and CUET UG management programs.' },
+      { question: 'What is the fee structure at IPMAT Mantra?', answer: 'Comprehensive 1-year classroom programs cost approximately ₹85,000, 2-year foundation courses are ₹1,25,000, and fast-track crash modules start from ₹45,000, inclusive of all test series, study modules, and WAT-PI mentorship.' },
+    ],
+};
+
+VERIFIED_INSTITUTES['ipm-careers'] = {
+    slug: 'ipm-careers',
+    name: 'IPM Careers',
+    shortName: 'IPM Careers',
+    category: 'IPMAT',
+    topRank: 4,
+    rating: 4.8,
+    reviewCount: 290,
+    inspectionScore: 93,
+    established: 2019,
+    batchSize: '30–40 Students',
+    studentFacultyRatio: '15:1',
+    feesEstimate: '₹45,000 – ₹1,15,000',
+    address: {
+      street: 'South Extension & Connaught Place Centre / NCR Live Hub',
+      locality: 'South Extension / Connaught Place',
+      city: 'New Delhi & Noida',
+      state: 'Delhi NCR',
+      pin: '110049',
+      country: 'IN',
+    },
+    phone: '+91-9616383524',
+    email: 'info@ipmcareers.com',
+    website: 'https://www.ipmcareers.com/',
+    headline: 'Premier IPMAT Specialist Founded and Mentored by IIM Rohtak Alumni',
+    directAnswer: 'IPM Careers is a specialized test-prep academy founded by IIM Rohtak alumnus Ashutosh Mishra and fellow IIM graduates. Focused exclusively on IPMAT, JIPMAT, and management after 12th, it delivers disciplined aptitude modules, daily doubt-clearing sessions, and extensive mock test series strictly replicating IIM Indore and Rohtak patterns.',
+    auditScorecard: [
+      { criterion: 'IIM Alumni Faculty & Mentorship', score: 9.5, weight: '20%', verdict: 'Direct guidance from IIM Rohtak and IIM Indore graduates with firsthand exam experience.' },
+      { criterion: 'IPMAT Dedicated Curriculum', score: 9.4, weight: '20%', verdict: 'Curriculum structured 100% around after-12th aptitude formats without MBA dilution.' },
+      { criterion: 'Simulated Indore & Rohtak Mock Tests', score: 9.3, weight: '15%', verdict: 'Accurate sectional time limits, percentile tracking, and detailed score breakdown.' },
+      { criterion: 'Daily Doubt Resolution & Concept Booster', score: 9.3, weight: '15%', verdict: 'Active daily doubt clearance counters and small-group review sessions.' },
+      { criterion: 'WAT-PI Bootcamp & Interview Simulation', score: 9.4, weight: '10%', verdict: 'Comprehensive interview preparation with personalized feedback on speaking skills.' },
+      { criterion: 'Batch Dynamics & Discipline', score: 9.2, weight: '10%', verdict: 'Disciplined classroom environment with periodic parent-teacher reviews.' },
+      { criterion: 'Student Selection Tracking', score: 9.3, weight: '5%', verdict: 'Consistent placements across IIM Rohtak, IIM Indore, and Ranchi IPM cohorts.' },
+      { criterion: 'ROI Index', score: 9.4, weight: '5%', verdict: 'Competitive pricing with extensive question bank access.' },
+    ],
+    programs: [
+      { name: '1-Year Comprehensive IPMAT Course', duration: '12 Months', fee: '₹75,000', mode: 'Classroom & Live Online', description: 'Full syllabus training for IPMAT Indore, Rohtak, and JIPMAT with test series and interview coaching.' },
+      { name: '2-Year IPM Foundation Batch', duration: '24 Months', fee: '₹1,15,000', mode: 'Classroom & Live Online', description: 'Designed for Class 11 students to build strong quantitative and verbal foundations alongside board exams.' },
+      { name: 'All India IPMAT Mock Test Series Pack', duration: '6 Months', fee: '₹15,000', mode: 'Online Test Portal', description: '30+ full-length mocks with detailed analytics and All-India percentile benchmarking.' },
+    ],
+    differentiators: [
+      { title: 'Mentorship by IIM Rohtak Alumni', description: 'Founded by Ashutosh Mishra and IIM alumni, providing students with insider insights into IPM selection processes.', icon: '🎯' },
+      { title: '100% IPMAT Centric Architecture', description: 'No recycled CAT or bank PO modules; every concept, workbook, and mock is tailored for 16-18 year old high school students.', icon: '📚' },
+      { title: 'Daily Live Doubt Solving', description: 'Dedicated daily slots where students resolve specific questions with faculty before moving to new topics.', icon: '💡' },
+    ],
+    faqs: [
+      { question: 'Who founded IPM Careers?', answer: 'IPM Careers was founded by Ashutosh Mishra, an alumnus of IIM Rohtak, along with a team of IIM graduates dedicated to after-12th management entrance prep.' },
+      { question: 'Does IPM Careers provide classroom coaching in Delhi NCR?', answer: 'Yes, IPM Careers operates classroom centres across Delhi NCR alongside live interactive digital programs accessible pan-India.' },
+      { question: 'Which exams are covered by IPM Careers?', answer: 'The institute covers IPMAT Indore, IPMAT Rohtak, JIPMAT (IIM Jammu & Bodh Gaya), and BBA/BMS entrance exams including CUET UG.' },
+      { question: 'How is WAT-PI preparation handled?', answer: 'Students receive comprehensive WAT-PI coaching including mock interviews with IIM alumni, current affairs dossiers, and presentation clinics.' },
+    ],
+};
+
+VERIFIED_INSTITUTES['rodha'] = {
+    slug: 'rodha',
+    name: 'Rodha',
+    shortName: 'Rodha',
+    category: 'IPMAT',
+    topRank: 1,
+    rating: 4.8,
+    reviewCount: 310,
+    inspectionScore: 92,
+    established: 2017,
+    batchSize: 'Live Online Cohort',
+    studentFacultyRatio: 'Digital Doubt Counter',
+    feesEstimate: '₹28,000 – ₹55,000',
+    address: {
+      street: 'Bengaluru Tech Park Hub & Digital Live Studios',
+      locality: 'HSR Layout / Online',
+      city: 'Bengaluru',
+      state: 'Karnataka',
+      pin: '560102',
+      country: 'IN',
+    },
+    phone: '+91-8449790403',
+    email: 'contactus@rodha.co.in',
+    website: 'https://rodha.co.in/',
+    headline: 'Acclaimed Live-Online Aptitude & Quantitative Conceptual Mentorship by Ravi Prakash',
+    directAnswer: 'Rodha is one of India’s most acclaimed online aptitude institutions for CAT and IPMAT preparation, founded by renowned educator Ravi Prakash. Recognized for deep conceptual clarity in Quantitative Aptitude, Logical Reasoning, and Higher Mathematics, it provides interactive live classes, comprehensive problem-solving modules, and video solution test portals.',
+    auditScorecard: [
+      { criterion: 'Quantitative Aptitude Conceptual Depth', score: 9.8, weight: '20%', verdict: 'Mastery in conceptual breakdown of algebra, arithmetic, and modern math.' },
+      { criterion: 'Higher Math Problem Solving Modules', score: 9.3, weight: '20%', verdict: 'Targeted Higher Mathematics problem sets for IIM Indore syllabus requirements.' },
+      { criterion: 'Pedagogy by Ravi Prakash', score: 9.6, weight: '15%', verdict: 'Renowned 99.9+ percentiler faculty with an exceptional teaching track record.' },
+      { criterion: 'Video Explanations & Test Portal Analytics', score: 9.2, weight: '15%', verdict: 'Detailed video explanations for every test question on the Rodha portal.' },
+      { criterion: 'Live Online Flexibility & Recordings', score: 9.4, weight: '10%', verdict: 'Seamless live interactive streaming with permanent recording backups.' },
+      { criterion: 'Community Doubt Solving', score: 9.0, weight: '10%', verdict: 'Peer learning and faculty doubt discussion groups on web and mobile apps.' },
+      { criterion: 'Student Engagement & Retention', score: 9.3, weight: '5%', verdict: 'Highly motivated student community with disciplined milestone schedules.' },
+      { criterion: 'Affordability & High ROI', score: 9.5, weight: '5%', verdict: 'Extremely cost-effective fee structure with premier educational output.' },
+    ],
+    programs: [
+      { name: 'IPMAT Comprehensive Live Online Program', duration: '10 Months', fee: '₹38,000', mode: 'Live Online + App', description: 'Live streaming lectures across QA, Higher Math, and Verbal with full mock test series and recordings.' },
+      { name: 'Quantitative Aptitude & Higher Math Masterclass', duration: '6 Months', fee: '₹24,000', mode: 'Live Online', description: 'In-depth conceptual problem-solving masterclasses focusing strictly on IIM Indore quantitative standards.' },
+      { name: 'All-India IPMAT Mock Test Series Portal', duration: '4 Months', fee: '₹8,500', mode: 'Online Test Portal', description: 'Full-length simulated test papers with question-level video explanations and national ranks.' },
+    ],
+    differentiators: [
+      { title: 'Taught by Ravi Prakash', description: 'Direct instruction by Ravi Prakash, renowned nationwide for intuitive mathematical logic and shortcut techniques.', icon: '⭐' },
+      { title: 'Focus on Fundamental Understanding', description: 'Eliminates reliance on formula memorization by establishing rock-solid foundational concepts.', icon: '🧠' },
+      { title: 'Full Class Recordings Access', description: 'Every live session is archived for unlimited replay and revision until examination day.', icon: '💻' },
+    ],
+    faqs: [
+      { question: 'Who founded Rodha?', answer: 'Rodha was founded by Ravi Prakash, one of India’s premier Quantitative Aptitude and DILR educators with hundreds of thousands of followers nationwide.' },
+      { question: 'Does Rodha offer IPMAT coaching?', answer: 'Yes, Rodha provides dedicated live online batches for IPMAT covering Quantitative Ability, Higher Math, and Verbal Ability alongside full-length mock tests.' },
+      { question: 'How are doubts handled in Rodha online classes?', answer: 'Doubts are addressed live during class, in designated weekly doubt clearing webinars, and via dedicated Telegram community discussion groups.' },
+      { question: 'Can I watch recorded lectures if I miss a live class?', answer: 'Yes, all live sessions are recorded in high definition and uploaded within hours to the student portal for 24/7 access.' },
+    ],
 };
 
 /* Additional alias mapping for robust resolution */

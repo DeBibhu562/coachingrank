@@ -38,6 +38,7 @@ export default function HubSidebar({ currentPath, activeCategory }: HubSidebarPr
     { label: 'UPSC Civil Services', href: '/exam/upsc-coaching-rankings', icon: '🏛️' },
     { label: 'CLAT & Law Entrance', href: '/exam/clat-coaching-rankings', icon: '⚖️' },
     { label: 'CAT & Management', href: '/exam/cat-coaching-rankings', icon: '📊' },
+    { label: 'IPMAT (IIMs & BBA)', href: '/exam/ipmat-coaching-rankings', icon: '🎯' },
     { label: 'IIT JEE & Engineering', href: '/exam/jee-coaching-rankings', icon: '⚙️' },
     { label: 'NEET UG Medical', href: '/exam/neet-coaching-rankings', icon: '🩺' },
     { label: 'SSC & Banking (CGL/PO)', href: '/exam/ssc-coaching-rankings', icon: '💼' },
