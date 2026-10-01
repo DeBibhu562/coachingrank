@@ -6,11 +6,25 @@ import SearchFilter from '@/components/SearchFilter';
 
 const FEATURED_SLUGS = [
   'best-clat-coaching',
-  'best-ailet-coaching',
-  'best-du-llb-coaching',
   'best-upsc-coaching',
+  'best-cat-coaching',
+  'best-jee-coaching',
+  'best-neet-coaching',
+  'best-judiciary-coaching',
+  'best-ailet-coaching',
   'best-ipmat-coaching',
   'best-share-market-coaching',
+];
+
+const ONLINE_FEATURED_SLUGS = [
+  'best-online-clat-coaching',
+  'best-online-upsc-coaching',
+  'best-online-cat-coaching',
+  'best-online-neet-coaching',
+  'best-online-jee-coaching',
+  'best-online-judiciary-coaching',
+  'best-online-ipmat-coaching',
+  'best-online-share-market-coaching',
 ];
 
 export default function HomePage() {
@@ -18,13 +32,17 @@ export default function HomePage() {
     .map((slug) => ALL_RANKINGS.find((r) => r.slug === slug))
     .filter(Boolean) as typeof ALL_RANKINGS;
 
+  const onlineRankings = ONLINE_FEATURED_SLUGS
+    .map((slug) => ALL_RANKINGS.find((r) => r.slug === slug))
+    .filter(Boolean) as typeof ALL_RANKINGS;
+
   const metroRankings = [
-    ALL_RANKINGS.find((r) => r.slug === 'best-clat-coaching-in-delhi'),
-    ALL_RANKINGS.find((r) => r.slug === 'best-ailet-coaching-in-bangalore'),
     ALL_RANKINGS.find((r) => r.slug === 'best-upsc-coaching-in-delhi'),
+    ALL_RANKINGS.find((r) => r.slug === 'best-cat-coaching-in-bangalore'),
+    ALL_RANKINGS.find((r) => r.slug === 'best-jee-coaching-in-kota'),
+    ALL_RANKINGS.find((r) => r.slug === 'best-neet-coaching-in-delhi'),
+    ALL_RANKINGS.find((r) => r.slug === 'best-clat-coaching-in-delhi'),
     ALL_RANKINGS.find((r) => r.slug === 'best-ipmat-coaching-in-mumbai'),
-    ALL_RANKINGS.find((r) => r.slug === 'best-clat-coaching-in-hyderabad'),
-    ALL_RANKINGS.find((r) => r.slug === 'best-coaching-institutes-in-kota'),
   ].filter(Boolean) as typeof ALL_RANKINGS;
 
   const faqSchema = {
@@ -195,8 +213,25 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Audit Methodology Showcase */}
+      {/* Online & Internet Coaching Hub */}
       <section className="section section-alt">
+        <div className="container">
+          <div className="section-head">
+            <div className="section-head-info">
+              <span className="eyebrow">Internet &amp; Digital Classrooms</span>
+              <h2>Audited Online Coaching Shortlists</h2>
+            </div>
+            <p>
+              Verified live interactive streaming, adaptive computer-based mock engines, and distance mentorship evaluated for outstation students across India.
+            </p>
+          </div>
+
+          <RankingCards pages={onlineRankings} cols3 />
+        </div>
+      </section>
+
+      {/* Audit Methodology Showcase */}
+      <section className="section">
         <div className="container">
           <div className="section-head">
             <div className="section-head-info">

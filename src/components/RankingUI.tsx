@@ -834,6 +834,32 @@ export function FaqBlock({ page }: { page: RankingPage }) {
 
 function getAuditHighlights(page: RankingPage): string[] {
   const exam = (page.exam || '').toLowerCase();
+  const slug = (page.slug || '').toLowerCase();
+  const isOnline = page.isOnline || slug.includes('online');
+
+  if (isOnline) {
+    return [
+      'Live 2-Way Interactive Streaming & App Infrastructure',
+      'Adaptive All-India CBT Test Series & Percentile Rigor',
+      'Dedicated Digital Doubt Counters & 1-on-1 Mentorship',
+    ];
+  }
+
+  if (['neet', 'medical', 'mbbs'].some((k) => exam.includes(k))) {
+    return [
+      'AIIMS & Govt Medical College Selections Audited',
+      'NCERT Line-by-Line Biology Drills & Pedagogy',
+      'Physics & Chemistry Daily Doubt Clearance Desks',
+    ];
+  }
+
+  if (['jee', 'iit', 'engineering'].some((k) => exam.includes(k))) {
+    return [
+      'Verified JEE Advanced Selections & Top-100 AIRs',
+      'Senior IITian Faculty Stability & Analytical Rigor',
+      'All-India Test Series (AITS) Percentile Accuracy',
+    ];
+  }
 
   if (['clat', 'ailet', 'du-llb', 'law', 'judiciary', 'cuet-law'].some((k) => exam.includes(k))) {
     return [
