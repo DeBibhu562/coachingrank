@@ -44,7 +44,7 @@ export default function Header() {
   return (
     <header className="site-header">
       <div className="container header-inner">
-        <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
+        <div className="header-brand-wrap">
           <Logo />
           <div className="header-status-badge">
             <span className="live-pulse-dot" style={{ width: '6px', height: '6px' }} />

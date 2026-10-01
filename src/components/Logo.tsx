@@ -23,7 +23,7 @@ export default function Logo({ size = 'default' }: { size?: 'default' | 'large' 
             </linearGradient>
           </defs>
           {/* Badge Base */}
-          <rect width="40" height="40" rx="10" fill="url(#logo-bg)" stroke="#334155" strokeWidth="1.2" />
+          <rect x="0.6" y="0.6" width="38.8" height="38.8" rx="9.5" fill="url(#logo-bg)" stroke="#334155" strokeWidth="1.2" />
           <circle cx="20" cy="18" r="12" fill="#dc2626" fillOpacity="0.2" />
 
           {/* Podium Levels (2, 1, 3) */}
