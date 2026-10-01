@@ -168,6 +168,22 @@ export default function Header() {
           </div>
 
           <Link
+            href="/institute"
+            className={`nav-link ${isActive('/institute') ? 'active' : ''}`}
+            aria-current={isActive('/institute') ? 'page' : undefined}
+          >
+            Institutes
+          </Link>
+
+          <Link
+            href="/colleges"
+            className={`nav-link ${isActive('/colleges') ? 'active' : ''}`}
+            aria-current={isActive('/colleges') ? 'page' : undefined}
+          >
+            Colleges
+          </Link>
+
+          <Link
             href="/compare"
             className={`nav-link ${isActive('/compare') ? 'active' : ''}`}
             aria-current={isActive('/compare') ? 'page' : undefined}
@@ -230,6 +246,14 @@ export default function Header() {
             </Link>
             <Link href="/rankings" className="mobile-nav-link" onClick={() => setMobileOpen(false)}>
               <span>All Rankings Directory</span>
+              <span style={{ color: 'var(--ink-faint)' }}>→</span>
+            </Link>
+            <Link href="/institute" className="mobile-nav-link" onClick={() => setMobileOpen(false)}>
+              <span>Institutes Directory</span>
+              <span style={{ color: 'var(--ink-faint)' }}>→</span>
+            </Link>
+            <Link href="/colleges" className="mobile-nav-link" onClick={() => setMobileOpen(false)}>
+              <span>Top Colleges (Law, Engg, Med)</span>
               <span style={{ color: 'var(--ink-faint)' }}>→</span>
             </Link>
             <Link href="/compare" className="mobile-nav-link" onClick={() => setMobileOpen(false)}>

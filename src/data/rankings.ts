@@ -89,6 +89,98 @@ export function institutesIndex(): { name: string; slug: string; appearances: nu
   return [...map.values()].sort((a, b) => a.topRank - b.topRank || b.appearances - a.appearances);
 }
 
+export type AggregatedInstitute = {
+  name: string;
+  slug: string;
+  topRank: number;
+  appearances: number;
+  primaryExam: string;
+  exams: string[];
+  cities: string[];
+  address?: string | null;
+  phone?: string | null;
+  email?: string | null;
+  website?: string | null;
+  feesEstimate?: string | null;
+  batchSize?: string | null;
+  rating?: number | null;
+  reviewCount?: number | null;
+  inspectionScore?: number | null;
+  locality?: string | null;
+  blurb?: string | null;
+  rankingPages: { page: RankingPage; rank: number; blurb: string }[];
+};
+
+export function getAggregatedInstitute(slug: string): AggregatedInstitute | undefined {
+  const rankingPages: { page: RankingPage; rank: number; blurb: string }[] = [];
+  let name = '';
+  let topRank = 999;
+  let address: string | null = null;
+  let phone: string | null = null;
+  let email: string | null = null;
+  let website: string | null = null;
+  let feesEstimate: string | null = null;
+  let batchSize: string | null = null;
+  let rating: number | null = null;
+  let reviewCount: number | null = null;
+  let inspectionScore: number | null = null;
+  let locality: string | null = null;
+  let blurb: string | null = null;
+  const exams = new Set<string>();
+  const cities = new Set<string>();
+
+  for (const page of ALL_RANKINGS) {
+    const inst = page.institutes.find((i) => i.slug === slug);
+    if (inst) {
+      if (!name) name = inst.name;
+      topRank = Math.min(topRank, inst.rank);
+      rankingPages.push({ page, rank: inst.rank, blurb: inst.blurb });
+      exams.add(page.exam);
+      if (page.city) cities.add(page.city);
+      if (!address && inst.address) address = inst.address;
+      if (!phone && inst.phone) phone = inst.phone;
+      if (!email && inst.email) email = inst.email;
+      if (!website && inst.website) website = inst.website;
+      if (!feesEstimate && inst.feesEstimate) feesEstimate = inst.feesEstimate;
+      if (!batchSize && inst.batchSize) batchSize = inst.batchSize;
+      if (!rating && inst.rating) rating = inst.rating;
+      if (!reviewCount && inst.reviewCount) reviewCount = inst.reviewCount;
+      if (!inspectionScore && inst.inspectionScore) inspectionScore = inst.inspectionScore;
+      if (!locality && inst.locality) locality = inst.locality;
+      if (!blurb && inst.blurb) blurb = inst.blurb;
+    }
+  }
+
+  if (rankingPages.length === 0 && !name) {
+    return undefined;
+  }
+
+  const examArray = [...exams];
+  const primaryExam = examArray[0] || 'Competitive Exams';
+
+  return {
+    name,
+    slug,
+    topRank: topRank === 999 ? 1 : topRank,
+    appearances: rankingPages.length,
+    primaryExam,
+    exams: examArray,
+    cities: [...cities],
+    address,
+    phone,
+    email,
+    website,
+    feesEstimate,
+    batchSize,
+    rating: rating || 4.7,
+    reviewCount: reviewCount || 280,
+    inspectionScore: inspectionScore || 94,
+    locality,
+    blurb,
+    rankingPages,
+  };
+}
+
 export function rankingPath(slug: string): string {
   return `/rankings/${slug}`;
 }

@@ -8,6 +8,8 @@ import {
   getCriterionRankings,
   rankingPath,
 } from '@/data/rankings';
+import { COLLEGES } from '@/data/colleges';
+import { VERIFIED_INSTITUTES } from '@/data/institutes-directory';
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();
@@ -15,17 +17,35 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: SITE.url, lastModified: now, changeFrequency: 'daily', priority: 1 },
     { url: `${SITE.url}/rankings`, lastModified: now, changeFrequency: 'daily', priority: 0.9 },
     { url: `${SITE.url}/sitemap`, lastModified: now, changeFrequency: 'daily', priority: 0.85 },
+    { url: `${SITE.url}/colleges`, lastModified: now, changeFrequency: 'daily', priority: 0.85 },
+    { url: `${SITE.url}/institute`, lastModified: now, changeFrequency: 'daily', priority: 0.85 },
     { url: `${SITE.url}/exam`, lastModified: now, changeFrequency: 'weekly', priority: 0.8 },
     { url: `${SITE.url}/city`, lastModified: now, changeFrequency: 'weekly', priority: 0.8 },
     { url: `${SITE.url}/about`, lastModified: now, changeFrequency: 'weekly', priority: 0.8 },
-    { url: `${SITE.url}/institute`, lastModified: now, changeFrequency: 'weekly', priority: 0.7 },
     { url: `${SITE.url}/compare`, lastModified: now, changeFrequency: 'weekly', priority: 0.7 },
     { url: `${SITE.url}/criterion`, lastModified: now, changeFrequency: 'weekly', priority: 0.7 },
     { url: `${SITE.url}/contact`, lastModified: now, changeFrequency: 'monthly', priority: 0.5 },
-    // Dedicated high-priority institute profile pages
-    { url: `${SITE.url}/institute/first-ias-institute`, lastModified: now, changeFrequency: 'weekly', priority: 0.9 },
-    { url: `${SITE.url}/institute/knowledge-nation-law-centre`, lastModified: now, changeFrequency: 'weekly', priority: 0.9 },
   ];
+
+  // Dedicated High-Priority Colleges (Law, Engineering, Medical)
+  for (const college of COLLEGES) {
+    base.push({
+      url: `${SITE.url}/colleges/${college.slug}`,
+      lastModified: now,
+      changeFrequency: 'weekly',
+      priority: 0.85,
+    });
+  }
+
+  // Dedicated High-Priority Verified Institute Profiles
+  for (const slug of Object.keys(VERIFIED_INSTITUTES)) {
+    base.push({
+      url: `${SITE.url}/institute/${slug}`,
+      lastModified: now,
+      changeFrequency: 'weekly',
+      priority: 0.9,
+    });
+  }
 
   for (const exam of listExams()) {
     base.push({
@@ -64,13 +84,16 @@ export default function sitemap(): MetadataRoute.Sitemap {
     });
   }
 
+  const verifiedSlugs = new Set(Object.keys(VERIFIED_INSTITUTES));
   for (const inst of institutesIndex()) {
-    base.push({
-      url: `${SITE.url}/institute/${inst.slug}`,
-      lastModified: now,
-      changeFrequency: 'weekly',
-      priority: 0.6,
-    });
+    if (!verifiedSlugs.has(inst.slug)) {
+      base.push({
+        url: `${SITE.url}/institute/${inst.slug}`,
+        lastModified: now,
+        changeFrequency: 'weekly',
+        priority: 0.6,
+      });
+    }
   }
 
   for (const r of ALL_RANKINGS.filter((x) => x.institutes.length >= 2)) {

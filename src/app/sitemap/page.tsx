@@ -6,6 +6,7 @@ import {
   institutesIndex,
   rankingPath,
 } from '@/data/rankings';
+import { COLLEGES } from '@/data/colleges';
 
 export const metadata: Metadata = {
   title: 'Complete Tree Sitemap Directory',
@@ -539,6 +540,84 @@ export default function SitemapPage() {
               <div style={{ marginTop: '16px' }}>
                 <Link href="/institute" className="sidebar-link" style={{ fontSize: '13.5px', color: 'var(--brand-primary)', fontWeight: 700 }}>
                   Browse All 750+ Ranked Institutes Directory →
+                </Link>
+              </div>
+            </div>
+
+            {/* Card 6: Premier Indian Colleges Directory */}
+            <div className="card" style={{ padding: '28px' }}>
+              <h2 style={{ fontSize: '20px', fontWeight: 800, color: 'var(--ink-primary)', marginBottom: '16px', display: 'flex', alignItems: 'center', gap: '8px' }}>
+                <span style={{ color: 'var(--brand-primary)' }}>🎓</span> Premier Indian Colleges Directory (30 Institutions)
+              </h2>
+              <p style={{ fontSize: '14px', color: 'var(--ink-secondary)', marginBottom: '20px', lineHeight: 1.5 }}>
+                Verified institutional profiles, NIRF 2026/2027 ranks, fee schedules, entrance exams (CLAT, JEE Advanced, NEET UG), and median packages.
+              </p>
+
+              <div className="grid-3">
+                {/* Law */}
+                <div>
+                  <h3 style={{ fontSize: '15px', fontWeight: 800, color: 'var(--ink-primary)', marginBottom: '10px', display: 'flex', alignItems: 'center', gap: '6px' }}>
+                    <span>⚖️</span> Top Law Colleges (NLUs)
+                  </h3>
+                  <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '6px', padding: 0, margin: 0 }}>
+                    {COLLEGES.filter((c) => c.stream === 'law').map((c) => (
+                      <li key={c.slug}>
+                        <Link
+                          className="sidebar-link"
+                          style={{ padding: '4px 8px', fontSize: '13px' }}
+                          href={`/colleges/${c.slug}`}
+                        >
+                          › {c.shortName} <span style={{ color: 'var(--ink-muted)', fontSize: '11px' }}>(NIRF #{c.nirfRank})</span>
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                {/* Engineering */}
+                <div>
+                  <h3 style={{ fontSize: '15px', fontWeight: 800, color: 'var(--ink-primary)', marginBottom: '10px', display: 'flex', alignItems: 'center', gap: '6px' }}>
+                    <span>⚙️</span> Premier Engineering (IITs/NITs)
+                  </h3>
+                  <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '6px', padding: 0, margin: 0 }}>
+                    {COLLEGES.filter((c) => c.stream === 'engineering').map((c) => (
+                      <li key={c.slug}>
+                        <Link
+                          className="sidebar-link"
+                          style={{ padding: '4px 8px', fontSize: '13px' }}
+                          href={`/colleges/${c.slug}`}
+                        >
+                          › {c.shortName} <span style={{ color: 'var(--ink-muted)', fontSize: '11px' }}>(NIRF #{c.nirfRank})</span>
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                {/* Medical */}
+                <div>
+                  <h3 style={{ fontSize: '15px', fontWeight: 800, color: 'var(--ink-primary)', marginBottom: '10px', display: 'flex', alignItems: 'center', gap: '6px' }}>
+                    <span>🩺</span> Apex Medical (AIIMS/CMC)
+                  </h3>
+                  <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '6px', padding: 0, margin: 0 }}>
+                    {COLLEGES.filter((c) => c.stream === 'medical').map((c) => (
+                      <li key={c.slug}>
+                        <Link
+                          className="sidebar-link"
+                          style={{ padding: '4px 8px', fontSize: '13px' }}
+                          href={`/colleges/${c.slug}`}
+                        >
+                          › {c.shortName} <span style={{ color: 'var(--ink-muted)', fontSize: '11px' }}>(NIRF #{c.nirfRank})</span>
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+
+              <div style={{ marginTop: '20px', paddingTop: '16px', borderTop: '1px solid var(--border-subtle)' }}>
+                <Link href="/colleges" className="sidebar-link" style={{ fontSize: '13.5px', color: 'var(--brand-primary)', fontWeight: 700 }}>
+                  Explore Full Top 30 Colleges Directory &amp; Comparison Hub →
                 </Link>
               </div>
             </div>

@@ -90,6 +90,9 @@ export default function Footer() {
                 <Link href="/institute">Ranked Institutes Index</Link>
               </li>
               <li>
+                <Link href="/colleges">Top Colleges Directory (30 NLUs, IITs, AIIMS)</Link>
+              </li>
+              <li>
                 <Link href="/contact">Editorial &amp; Verification Desk</Link>
               </li>
             </ul>
