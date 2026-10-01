@@ -1,0 +1,60 @@
+# CoachingRank.in — Comprehensive Institutional Knowledge Base & Intelligence Archive
+
+## Mission & Executive Statement
+CoachingRank.in is India’s foremost independent educational benchmarking portal, established to counter deceptive test-prep advertising through empirical forensic audits. Operating across 28+ national entrance exams and 32+ coaching cities, CoachingRank audits over 750+ coaching branches using a standardized 100-Point 5-Pillar Scoring Framework.
+
+## Anti-Corruption & Zero-Paid-Placement Charter
+1. Zero Sponsored Rankings: Rank positions (#1, #2, #3, etc.) on CoachingRank cannot be purchased, sponsored, or influenced through affiliate agreements or ad placements.
+2. Verified Classroom Provenance: Claimed toppers must be backed by official roll numbers, admit cards, and evidence of full classroom enrollment. Distance test packs and mock-interview-only enrollments are explicitly excluded from primary selection claims.
+3. Editorial Firewall: The audit desk operates independently of operational or technical management. Critical audit scores regarding high faculty turnover or student grievances cannot be removed upon institute request.
+
+## The 100-Point Scoring Methodology
+- Pillar 1: Verified Selections & Roll Number Provenance (30 Points / 30%)
+  Official merit list cross-referencing against UPSC Gazette, NTA JEE/NEET rank cards, Consortium of NLUs allotment sheets, and IIM call lists.
+- Pillar 2: Faculty Pedigree, Stability & Mentorship Continuity (25 Points / 25%)
+  Audits core mentor qualifications, years of tenure at the branch (minimum 3+ years required for full points), and penalties for mid-session teacher departures.
+- Pillar 3: Mock Test Series Rigor & R&D Quality (20 Points / 20%)
+  Evaluates pattern calibration, online CBT testing interface, AI-enabled analytics, sectional diagnostics, and national peer percentiles.
+- Pillar 4: Batch Dynamics & One-on-One Doubt Resolution (15 Points / 15%)
+  Rewards controlled batch sizes (30–45 students) and physically staffed doubt-clearing desks over impersonal 250–350 student factory lectures.
+- Pillar 5: Fee Transparency, GST Invoicing & Refund Safeguards (10 Points / 10%)
+  Reviews published fee cards, itemized GST billing, installment clarity, and fair exit refund protocols.
+
+## Exam Intelligence Hubs Covered
+- CLAT UG: Common Law Admission Test for 26 National Law Universities. Evaluated on reading speed drills, legal reasoning, and Consortium mock alignment.
+- AILET: All India Law Entrance Test for NLU Delhi. High critical reasoning and analytical precision requirements.
+- DU LLB / CUET PG Law: 3-Year LLB programs at Faculty of Law, University of Delhi, and other central universities. Focus on constitutional law and legal jurisprudence.
+- UPSC CSE: Civil Services Examination (IAS, IPS, IFS, IRS). Three-tier audit evaluating Prelims CSAT, Mains GS answer writing, and optional mentorship.
+- IPMAT: Integrated Programme in Management Aptitude Test (IIM Indore, IIM Rohtak, IIM Ranchi, IIM Bodh Gaya, IIM Jammu). Focus on higher mathematics and verbal ability.
+- IIT-JEE Main & Advanced: Premier engineering entrances. Audited on problem-solving rigor, JEE Advanced subjective physics/math test series, and faculty continuity.
+- NEET UG: National Eligibility cum Entrance Test for MBBS/BDS admissions. Audited on NCERT-line-by-line biology focus, physics numerical speed drills, and doubt support.
+- CAT: Common Admission Test for IIMs and premier business schools. Focus on DILR sets, QA mastery, and VARC comprehension.
+- Judiciary PCS-J: Judicial services examinations across Delhi, UP, MP, Rajasthan, and Bihar. Audited on bare act conceptual clarity, judgment writing, and local laws.
+- SSC CGL & Banking: Government recruitment exams for SSC and IBPS/SBI PO & Clerk. High emphasis on quantitative speed, reasoning tricks, and daily mock tests.
+- Share Market & Trading: Stock market education covering price action, technical analysis, options derivatives risk, and SEBI compliance.
+
+## Key Hub Cities & Regional Coverage
+- Delhi NCR: Mukherjee Nagar (UPSC/SSC), Karol Bagh/Rajinder Nagar (UPSC), Connaught Place (CLAT/CAT), Kalu Sarai (JEE/NEET), Noida, Gurgaon.
+- Rajasthan: Kota (National Science Hub for JEE/NEET), Jaipur (Judiciary, RAS, CLAT, JEE).
+- Karnataka: Bengaluru (National Law School NLSIU hub, tech & management test prep).
+- Telangana & AP: Hyderabad (Ashok Nagar for UPSC, Madhapur/Ameerpet for competitive prep, Visakhapatnam).
+- Maharashtra: Mumbai (CLAT, CAT, UPSC, IPMAT), Pune (Academic capital of Maharashtra, law & civil services), Nagpur.
+- Uttar Pradesh: Lucknow (Hazratganj/Aliganj for PCS-J, UPSC, CLAT), Kanpur (Kakadeo engineering/medical hub), Varanasi.
+- Madhya Pradesh: Indore (Bhawarkua hub for MPPSC, IPMAT, CLAT), Bhopal (MP Nagar hub).
+- Bihar & Jharkhand: Patna (Boring Road hub for civil services, IIT, NEET), Ranchi.
+- West Bengal & Northeast: Kolkata (Salt Lake, College Street), Bhubaneswar, Guwahati.
+- Punjab & Haryana: Chandigarh (Sector 34 education hub), Amritsar.
+
+## Public Endpoints
+- Homepage: https://coachingrank.in/
+- Directory Tree Sitemap: https://coachingrank.in/sitemap
+- Rankings Catalog: https://coachingrank.in/rankings
+- Exam Portals: https://coachingrank.in/exam
+- City Portals: https://coachingrank.in/city
+- Brand Portals: https://coachingrank.in/institute
+- Comparison Matrix: https://coachingrank.in/compare
+- Criteria Rankings: https://coachingrank.in/criterion
+- Institutional About Us: https://coachingrank.in/about
+- Verification Desk: https://coachingrank.in/contact
+- Machine Sitemap: https://coachingrank.in/sitemap.xml
+- Context Manifest: https://coachingrank.in/llms.txt

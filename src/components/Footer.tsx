@@ -14,12 +14,15 @@ export default function Footer() {
               India’s trusted coaching ranking encyclopedia. We publish unbiased national and city-wise shortlists,
               criterion lenses, and transparent institute comparisons for students and parents.
             </p>
-            <div style={{ marginTop: '16px' }}>
+            <div style={{ marginTop: '16px', display: 'flex', flexDirection: 'column', gap: '8px' }}>
               <span className="footer-trust-badge">
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
                   <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
                 </svg>
-                100% Editorial Independence
+                100% Zero Paid Placements
+              </span>
+              <span style={{ fontSize: '0.8rem', color: '#64748b' }}>
+                Independent forensic audits across 28+ entrance exams.
               </span>
             </div>
           </div>
@@ -47,7 +50,7 @@ export default function Footer() {
                 <Link href="/city/best-coaching-institutes-in-delhi">Delhi Coaching</Link>
               </li>
               <li>
-                <Link href="/city/best-coaching-institutes-in-bangalore">Bangalore Coaching</Link>
+                <Link href="/city/best-coaching-institutes-in-bangalore">Bengaluru Coaching</Link>
               </li>
               <li>
                 <Link href="/city/best-coaching-institutes-in-mumbai">Mumbai Coaching</Link>
@@ -64,12 +67,18 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Column 3: Site & Editorial */}
+          {/* Column 3: Site & Directory */}
           <div className="footer-col">
-            <h4>Methodology & Site</h4>
+            <h4>Directory & Platform</h4>
             <ul>
               <li>
-                <Link href="/about">Ranking Methodology</Link>
+                <Link href="/about">About Us &amp; Charter</Link>
+              </li>
+              <li>
+                <Link href="/sitemap">Tree Sitemap Directory</Link>
+              </li>
+              <li>
+                <Link href="/rankings">All Rankings Index</Link>
               </li>
               <li>
                 <Link href="/criterion">Rankings By Criterion</Link>
@@ -81,7 +90,7 @@ export default function Footer() {
                 <Link href="/institute">Ranked Institutes Index</Link>
               </li>
               <li>
-                <Link href="/contact">Editorial & Verification Desk</Link>
+                <Link href="/contact">Editorial &amp; Verification Desk</Link>
               </li>
             </ul>
           </div>
@@ -92,8 +101,11 @@ export default function Footer() {
           <div>
             © {SITE.year} {SITE.name}.in. All rights reserved. Independent rankings and shortlists for educational purposes.
           </div>
-          <div style={{ display: 'flex', gap: '16px' }}>
-            <Link href="/about" style={{ color: '#94a3b8' }}>About</Link>
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '16px' }}>
+            <Link href="/about" style={{ color: '#94a3b8' }}>About Us</Link>
+            <Link href="/sitemap" style={{ color: '#94a3b8' }}>Tree Sitemap</Link>
+            <a href="/sitemap.xml" style={{ color: '#94a3b8' }}>XML Sitemap</a>
+            <a href="/llms.txt" style={{ color: '#94a3b8' }}>AI / LLM Manifest</a>
             <Link href="/contact" style={{ color: '#94a3b8' }}>Contact Desk</Link>
             <a href={`mailto:${SITE.email}`} style={{ color: '#94a3b8' }}>{SITE.email}</a>
           </div>

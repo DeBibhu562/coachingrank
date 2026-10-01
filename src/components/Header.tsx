@@ -180,7 +180,15 @@ export default function Header() {
             className={`nav-link ${isActive('/about') ? 'active' : ''}`}
             aria-current={isActive('/about') ? 'page' : undefined}
           >
-            Methodology
+            About Us
+          </Link>
+
+          <Link
+            href="/sitemap"
+            className={`nav-link ${isActive('/sitemap') ? 'active' : ''}`}
+            aria-current={isActive('/sitemap') ? 'page' : undefined}
+          >
+            Directory
           </Link>
         </nav>
 
@@ -229,7 +237,11 @@ export default function Header() {
               <span style={{ color: 'var(--ink-faint)' }}>→</span>
             </Link>
             <Link href="/about" className="mobile-nav-link" onClick={() => setMobileOpen(false)}>
-              <span>100-Pt Methodology</span>
+              <span>About Us &amp; 100-Pt Rubric</span>
+              <span style={{ color: 'var(--ink-faint)' }}>→</span>
+            </Link>
+            <Link href="/sitemap" className="mobile-nav-link" onClick={() => setMobileOpen(false)}>
+              <span>Tree Sitemap Directory</span>
               <span style={{ color: 'var(--ink-faint)' }}>→</span>
             </Link>
           </div>

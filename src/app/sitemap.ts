@@ -14,13 +14,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const base: MetadataRoute.Sitemap = [
     { url: SITE.url, lastModified: now, changeFrequency: 'daily', priority: 1 },
     { url: `${SITE.url}/rankings`, lastModified: now, changeFrequency: 'daily', priority: 0.9 },
+    { url: `${SITE.url}/sitemap`, lastModified: now, changeFrequency: 'daily', priority: 0.85 },
     { url: `${SITE.url}/exam`, lastModified: now, changeFrequency: 'weekly', priority: 0.8 },
     { url: `${SITE.url}/city`, lastModified: now, changeFrequency: 'weekly', priority: 0.8 },
+    { url: `${SITE.url}/about`, lastModified: now, changeFrequency: 'weekly', priority: 0.8 },
     { url: `${SITE.url}/institute`, lastModified: now, changeFrequency: 'weekly', priority: 0.7 },
     { url: `${SITE.url}/compare`, lastModified: now, changeFrequency: 'weekly', priority: 0.7 },
     { url: `${SITE.url}/criterion`, lastModified: now, changeFrequency: 'weekly', priority: 0.7 },
-    { url: `${SITE.url}/about`, lastModified: now, changeFrequency: 'monthly', priority: 0.4 },
-    { url: `${SITE.url}/contact`, lastModified: now, changeFrequency: 'monthly', priority: 0.4 },
+    { url: `${SITE.url}/contact`, lastModified: now, changeFrequency: 'monthly', priority: 0.5 },
   ];
 
   for (const exam of listExams()) {
