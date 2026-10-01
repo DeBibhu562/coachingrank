@@ -8,7 +8,7 @@ import {
 } from '@/data/rankings';
 
 export const metadata: Metadata = {
-  title: 'Complete Tree Sitemap Directory | CoachingRank.in',
+  title: 'Complete Tree Sitemap Directory',
   description:
     'Explore the complete tree-structured navigation hierarchy of CoachingRank.in covering all cities, competitive entrance exams, and verified rankings.',
   alternates: { canonical: '/sitemap' },

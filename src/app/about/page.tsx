@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { SITE, PRIORITY_EXAMS, TOP_CITIES } from '@/data/site';
 
 export const metadata: Metadata = {
-  title: 'About CoachingRank.in | India’s Independent Coaching Institute Audit Authority',
+  title: 'About Us | Independent Coaching Institute Audit Authority',
   description:
     'CoachingRank.in is India’s independent, forensic coaching institute evaluation directory. Learn about our 100-point 5-pillar audit methodology, zero-paid-placement charter, and consumer advocacy mission.',
   alternates: { canonical: '/about' },
