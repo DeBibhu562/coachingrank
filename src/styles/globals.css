@@ -265,23 +265,24 @@ h1, h2, h3, h4, h5, h6, .font-display {
 
 .site-header .container,
 .header-inner {
-  max-width: 1320px;
+  max-width: 1440px;
   width: 100%;
   height: 100%;
   margin-inline: auto;
-  padding-left: max(20px, env(safe-area-inset-left));
-  padding-right: max(20px, env(safe-area-inset-right));
+  padding-left: max(18px, env(safe-area-inset-left));
+  padding-right: max(18px, env(safe-area-inset-right));
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 16px;
+  gap: 12px;
   box-sizing: border-box;
+  overflow: visible;
 }
 
 .header-brand-wrap {
   display: flex;
   align-items: center;
-  gap: 14px;
+  gap: 12px;
   flex-shrink: 0;
   min-width: 0;
 }
@@ -290,13 +291,13 @@ h1, h2, h3, h4, h5, h6, .font-display {
   display: none;
   align-items: center;
   gap: 2px;
-  flex-shrink: 1;
+  flex-shrink: 0;
   min-width: 0;
 }
 
 .nav-link {
-  padding: 6px 11px;
-  font-size: 0.9rem;
+  padding: 5px 9px;
+  font-size: 0.86rem;
   font-weight: 600;
   color: var(--ink-secondary);
   border-radius: var(--radius-sm);
@@ -483,7 +484,7 @@ h1, h2, h3, h4, h5, h6, .font-display {
 }
 
 /* Responsive Header Breakpoints */
-@media (max-width: 1079px) {
+@media (max-width: 1139px) {
   .nav-links, .header-actions {
     display: none !important;
   }
@@ -578,7 +579,8 @@ h1, h2, h3, h4, h5, h6, .font-display {
   }
 }
 
-@media (min-width: 1080px) {
+/* Desktop Navigation Base (>= 1140px) */
+@media (min-width: 1140px) {
   .nav-links, .header-actions {
     display: flex !important;
   }
@@ -587,65 +589,94 @@ h1, h2, h3, h4, h5, h6, .font-display {
   }
 }
 
-@media (min-width: 1080px) and (max-width: 1239px) {
+/* Compact Desktop (1140px - 1279px) */
+@media (min-width: 1140px) and (max-width: 1279px) {
   .header-inner {
-    gap: 10px;
+    gap: 8px;
+    padding-left: 14px;
+    padding-right: 14px;
+  }
+  .header-status-badge {
+    display: none !important;
   }
   .nav-links {
     gap: 1px;
   }
   .nav-link {
-    padding: 5px 8px;
-    font-size: 0.84rem;
-  }
-  .header-status-badge {
-    display: none !important;
+    padding: 5px 7px;
+    font-size: 0.83rem;
   }
   .header-actions {
     gap: 6px;
   }
-  .header-actions .btn-ghost {
+  .header-action-contact {
     display: none !important;
   }
-  .btn-sm {
+  .header-action-rankings {
     padding: 6px 11px;
     font-size: 0.82rem;
   }
 }
 
-@media (min-width: 1240px) and (max-width: 1359px) {
+/* Standard Laptop & High-DPI Desktop (1280px - 1399px) */
+@media (min-width: 1280px) and (max-width: 1399px) {
   .header-inner {
-    gap: 14px;
+    gap: 12px;
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+  .header-status-badge {
+    display: none !important;
   }
   .nav-links {
     gap: 2px;
   }
   .nav-link {
-    padding: 6px 10px;
-    font-size: 0.88rem;
-  }
-  .header-status-badge {
-    display: inline-flex;
+    padding: 5px 8px;
+    font-size: 0.85rem;
   }
   .header-actions {
     gap: 8px;
   }
-  .btn-sm {
+  .header-action-contact {
+    display: inline-flex !important;
+    padding: 6px 10px;
+    font-size: 0.82rem;
+  }
+  .header-action-rankings {
     padding: 6px 12px;
-    font-size: 0.84rem;
+    font-size: 0.83rem;
   }
 }
 
-@media (min-width: 1360px) {
+/* Wide Executive Desktop (>= 1400px) */
+@media (min-width: 1400px) {
   .header-inner {
-    gap: 20px;
+    gap: 16px;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+  .header-status-badge {
+    display: inline-flex !important;
   }
   .nav-links {
-    gap: 4px;
+    gap: 3px;
   }
   .nav-link {
+    padding: 6px 10px;
+    font-size: 0.88rem;
+  }
+  .header-actions {
+    gap: 10px;
+  }
+  .header-action-contact {
+    display: inline-flex !important;
     padding: 7px 12px;
-    font-size: 0.92rem;
+    font-size: 0.85rem;
+  }
+  .header-action-rankings {
+    padding: 7px 14px;
+    font-size: 0.86rem;
   }
 }
 
@@ -2691,11 +2722,8 @@ h1, h2, h3, h4, h5, h6, .font-display {
   border: 1px solid #bbf7d0;
   padding: 3px 8px;
   border-radius: var(--radius-full);
-}
-@media (min-width: 1240px) {
-  .header-status-badge {
-    display: inline-flex;
-  }
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 
 /* Header Dropdowns */

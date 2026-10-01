@@ -201,10 +201,10 @@ export default function Header() {
         </nav>
 
         <div className="header-actions">
-          <Link href="/contact" className="btn btn-ghost btn-sm">
+          <Link href="/contact" className="btn btn-ghost btn-sm header-action-contact">
             Contact Desk
           </Link>
-          <Link href="/rankings" className="btn btn-primary btn-sm">
+          <Link href="/rankings" className="btn btn-primary btn-sm header-action-rankings">
             Browse Rankings →
           </Link>
         </div>
@@ -254,6 +254,10 @@ export default function Header() {
             </Link>
             <Link href="/about" className="mobile-nav-link" onClick={() => setMobileOpen(false)}>
               <span>About Us &amp; 100-Pt Rubric</span>
+              <span style={{ color: 'var(--ink-faint)' }}>→</span>
+            </Link>
+            <Link href="/contact" className="mobile-nav-link" onClick={() => setMobileOpen(false)}>
+              <span>Contact Verification Desk</span>
               <span style={{ color: 'var(--ink-faint)' }}>→</span>
             </Link>
             <Link href="/sitemap" className="mobile-nav-link" onClick={() => setMobileOpen(false)}>
