@@ -3350,3 +3350,306 @@ h1, h2, h3, h4, h5, h6, .font-display {
   color: var(--brand-primary);
 }
 
+
+/* ==========================================================================
+   HUB TWO-COLUMN RESPONSIVE LAYOUT & SIDEBAR SYSTEM
+   ========================================================================== */
+.hub-layout {
+  display: flex;
+  gap: 32px;
+  align-items: flex-start;
+  width: 100%;
+}
+
+.hub-sidebar-wrapper {
+  width: 290px;
+  flex-shrink: 0;
+  position: sticky;
+  top: 86px;
+  max-height: calc(100vh - 100px);
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: var(--border-medium) transparent;
+  padding-bottom: 24px;
+}
+
+.hub-sidebar-wrapper::-webkit-scrollbar {
+  width: 4px;
+}
+
+.hub-sidebar-wrapper::-webkit-scrollbar-thumb {
+  background-color: var(--border-medium);
+  border-radius: 4px;
+}
+
+.hub-main-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.hub-sidebar-container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+}
+
+/* Mobile Bar Styles */
+.hub-mobile-bar {
+  display: none;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.hub-mobile-scroll-pills {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  padding-bottom: 6px;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+
+.hub-mobile-scroll-pills::-webkit-scrollbar {
+  display: none;
+}
+
+.hub-mobile-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 14px;
+  border-radius: 20px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  color: var(--ink-secondary);
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-decoration: none;
+  white-space: nowrap;
+  flex-shrink: 0;
+  transition: all 0.15s ease;
+}
+
+.hub-mobile-pill:hover,
+.hub-mobile-pill.active {
+  background: var(--brand-primary-light);
+  color: var(--brand-primary);
+  border-color: var(--brand-primary-border);
+  font-weight: 700;
+}
+
+.hub-mobile-drawer-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 10px 16px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  font-family: var(--font-display);
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--ink-primary);
+  cursor: pointer;
+  box-shadow: var(--shadow-xs);
+  transition: all 0.15s ease;
+}
+
+.hub-mobile-drawer-toggle:hover {
+  background: var(--bg-surface-subtle);
+  border-color: var(--border-medium);
+}
+
+/* Sidebar Component Card */
+.hub-sidebar {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  padding: 20px;
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  transition: all 0.2s ease;
+}
+
+.hub-sidebar-section {
+  display: flex;
+  flex-direction: column;
+}
+
+.hub-sidebar-section-title {
+  font-family: var(--font-display);
+  font-size: 0.76rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.75px;
+  color: var(--ink-muted);
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.hub-sidebar-title-link {
+  font-size: 0.74rem;
+  color: var(--brand-primary);
+  text-decoration: none;
+  font-weight: 700;
+  text-transform: none;
+  letter-spacing: normal;
+}
+
+.hub-sidebar-title-link:hover {
+  text-decoration: underline;
+}
+
+.hub-sidebar-nav-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.hub-sidebar-link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 12px;
+  border-radius: var(--radius-sm);
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--ink-secondary);
+  text-decoration: none;
+  transition: all 0.15s cubic-bezier(0.16, 1, 0.3, 1);
+  border-left: 3px solid transparent;
+}
+
+.hub-sidebar-link:hover {
+  background: var(--bg-surface-subtle);
+  color: var(--brand-primary);
+  border-left-color: var(--brand-primary);
+}
+
+.hub-sidebar-link.active {
+  background: var(--brand-primary-light);
+  color: var(--brand-primary);
+  border-left-color: var(--brand-primary);
+  font-weight: 700;
+}
+
+.hub-sidebar-link-left {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  min-width: 0;
+}
+
+.hub-sidebar-link-icon {
+  font-size: 0.98rem;
+  flex-shrink: 0;
+}
+
+.hub-sidebar-link-text {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.hub-sidebar-badge {
+  font-size: 0.72rem;
+  padding: 2px 7px;
+  border-radius: 10px;
+  background: var(--bg-surface-subtle);
+  color: var(--ink-muted);
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.hub-sidebar-link.active .hub-sidebar-badge {
+  background: rgba(220, 38, 38, 0.12);
+  color: var(--brand-primary);
+}
+
+/* Chips Grid for Cities in Sidebar */
+.hub-sidebar-chips-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 4px;
+}
+
+.hub-sidebar-chip {
+  padding: 5px 10px;
+  border-radius: 6px;
+  background: var(--bg-surface-subtle);
+  border: 1px solid var(--border-subtle);
+  color: var(--ink-secondary);
+  font-size: 0.78rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.15s ease;
+}
+
+.hub-sidebar-chip:hover {
+  background: var(--brand-primary-light);
+  color: var(--brand-primary);
+  border-color: var(--brand-primary-border);
+}
+
+/* Trust Widget */
+.hub-sidebar-trust-box {
+  background: linear-gradient(135deg, #fef2f2 0%, #fff1f2 100%);
+  border: 1px solid rgba(220, 38, 38, 0.18);
+  border-radius: var(--radius-md);
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* Responsive Breakpoints */
+@media (max-width: 1023px) {
+  .hub-layout {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .hub-sidebar-wrapper {
+    width: 100%;
+    position: static;
+    max-height: none;
+    overflow-y: visible;
+    padding-bottom: 0;
+  }
+
+  .hub-mobile-bar {
+    display: flex;
+  }
+
+  .hub-sidebar {
+    display: none;
+  }
+
+  .hub-sidebar.mobile-visible {
+    display: flex;
+    animation: fadeInDown 0.2s ease-out;
+  }
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

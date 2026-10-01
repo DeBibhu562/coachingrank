@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { listCities, formatCityName, getCityRankings } from '@/data/rankings';
+import HubSidebar from '@/components/HubSidebar';
 
 export const metadata: Metadata = {
   title: 'City Coaching Ranking Hubs | Best Centres in 32+ Cities',
@@ -33,43 +34,54 @@ export default function CityIndexPage() {
         </div>
       </section>
 
-      <section className="section">
+      {/* Main Two-Column Hub Layout */}
+      <section className="section" style={{ paddingTop: '28px' }}>
         <div className="container">
-          <div className="section-head">
-            <div className="section-head-info">
-              <span className="eyebrow">Metro Portals</span>
-              <h2>Select Your Coaching City</h2>
+          <div className="hub-layout">
+            {/* Left Responsive Sticky Sidebar */}
+            <div className="hub-sidebar-wrapper">
+              <HubSidebar currentPath="/city" />
             </div>
-            <p>Every city hub features verified classroom locations, local faculty credentials, and fee benchmarks.</p>
-          </div>
 
-          <div className="chooser-grid">
-            {cities.map((city) => {
-              const cityName = formatCityName(city);
-              const count = getCityRankings(city).filter((r) => !r.criterion).length;
+            {/* Right Main Content */}
+            <div className="hub-main-content">
+              <div className="section-head" style={{ marginBottom: '20px' }}>
+                <div className="section-head-info">
+                  <span className="eyebrow">Metro Portals</span>
+                  <h2>Select Your Coaching City ({cities.length} Hubs)</h2>
+                </div>
+                <p>Every city hub features verified classroom locations, local faculty credentials, and fee benchmarks.</p>
+              </div>
 
-              return (
-                <Link key={city} href={`/city/best-coaching-institutes-in-${city}`} className="city-portal-card">
-                  <div className="city-portal-header">
-                    <span className="city-portal-badge">
-                      <span className="live-pulse-dot" style={{ width: '5px', height: '5px' }} />
-                      Audited Hub
-                    </span>
-                    <span className="city-portal-count">{count} Exam Shortlists</span>
-                  </div>
+              <div className="chooser-grid" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: '16px' }}>
+                {cities.map((city) => {
+                  const cityName = formatCityName(city);
+                  const count = getCityRankings(city).filter((r) => !r.criterion).length;
 
-                  <h3 className="city-portal-name">{cityName}</h3>
-                  <p className="city-portal-desc">
-                    Audited classrooms across law, civil services, management & competitive exams.
-                  </p>
+                  return (
+                    <Link key={city} href={`/city/best-coaching-institutes-in-${city}`} className="city-portal-card">
+                      <div className="city-portal-header">
+                        <span className="city-portal-badge">
+                          <span className="live-pulse-dot" style={{ width: '5px', height: '5px' }} />
+                          Audited Hub
+                        </span>
+                        <span className="city-portal-count">{count} Exam Shortlists</span>
+                      </div>
 
-                  <div className="city-portal-footer">
-                    <span>Explore {cityName} Portals</span>
-                    <span className="city-portal-arrow">→</span>
-                  </div>
-                </Link>
-              );
-            })}
+                      <h3 className="city-portal-name">{cityName}</h3>
+                      <p className="city-portal-desc">
+                        Audited classrooms across law, civil services, management &amp; competitive exams.
+                      </p>
+
+                      <div className="city-portal-footer">
+                        <span>Explore {cityName} Portals</span>
+                        <span className="city-portal-arrow">→</span>
+                      </div>
+                    </Link>
+                  );
+                })}
+              </div>
+            </div>
           </div>
         </div>
       </section>

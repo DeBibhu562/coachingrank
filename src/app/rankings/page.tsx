@@ -3,6 +3,8 @@ import Link from 'next/link';
 import { ALL_RANKINGS, formatExamName } from '@/data/rankings';
 import { RankingCards } from '@/components/RankingUI';
 import SearchFilter from '@/components/SearchFilter';
+import HubSidebar from '@/components/HubSidebar';
+import { SITE } from '@/data/site';
 
 export const metadata: Metadata = {
   title: 'All Coaching Rankings & National Shortlists | 2027 Directory',
@@ -12,7 +14,7 @@ export const metadata: Metadata = {
 };
 
 export default function RankingsIndexPage() {
-  const national = ALL_RANKINGS.filter((r) => !r.city && !r.criterion).slice(0, 18);
+  const national = ALL_RANKINGS.filter((r) => !r.city && !r.criterion).slice(0, 24);
   const byExam = [...new Set(ALL_RANKINGS.map((r) => r.exam))].sort();
 
   return (
@@ -41,56 +43,68 @@ export default function RankingsIndexPage() {
         </div>
       </section>
 
-      {/* National Shortlists */}
-      <section className="section">
+      {/* Main Hub Two-Column Layout */}
+      <section className="section" style={{ paddingTop: '28px' }}>
         <div className="container">
-          <div className="section-head">
-            <div className="section-head-info">
-              <span className="eyebrow">National Benchmarks</span>
-              <h2>Flagship National Shortlists</h2>
+          <div className="hub-layout">
+            {/* Professional Responsive Left Sidebar */}
+            <div className="hub-sidebar-wrapper">
+              <HubSidebar currentPath="/rankings" />
             </div>
-            <p>Pan-India rankings audited for faculty pedigree, verified selections, and study material rigor.</p>
-          </div>
 
-          <RankingCards pages={national} cols3 />
-        </div>
-      </section>
+            {/* Main Content Area */}
+            <div className="hub-main-content">
+              {/* Flagship National Shortlists */}
+              <div style={{ marginBottom: '48px' }}>
+                <div className="section-head" style={{ marginBottom: '24px' }}>
+                  <div className="section-head-info">
+                    <span className="eyebrow">National Benchmarks</span>
+                    <h2>Flagship National Shortlists ({national.length})</h2>
+                  </div>
+                  <p>Pan-India rankings audited for faculty pedigree, verified selections, and study material rigor.</p>
+                </div>
 
-      {/* Filter by Exam Rail */}
-      <section className="section section-alt">
-        <div className="container">
-          <div className="section-head">
-            <div className="section-head-info">
-              <span className="eyebrow">Exam Portals</span>
-              <h2>Browse By Entrance Exam</h2>
+                <RankingCards pages={national} />
+              </div>
+
+              {/* Filter by Exam Rail */}
+              <div style={{ background: 'var(--bg-surface)', padding: '28px', borderRadius: '16px', border: '1px solid var(--border-subtle)', marginBottom: '32px' }}>
+                <div className="section-head" style={{ marginBottom: '16px' }}>
+                  <div className="section-head-info">
+                    <span className="eyebrow">Exam Portals</span>
+                    <h2>Browse Rankings By Entrance Exam</h2>
+                  </div>
+                  <p>Direct access to all 28+ verified competitive exam coaching benchmarks.</p>
+                </div>
+
+                <div className="filter-pills-row" style={{ justifyContent: 'flex-start', gap: '8px' }}>
+                  {byExam.map((exam) => (
+                    <Link
+                      key={exam}
+                      href={`/exam/${exam}-coaching-rankings`}
+                      className="filter-pill"
+                      style={{ padding: '8px 16px' }}
+                    >
+                      <span>{formatExamName(exam)}</span>
+                      <span style={{ color: 'var(--brand-primary)' }}>→</span>
+                    </Link>
+                  ))}
+                </div>
+
+                <p className="prose-lead" style={{ marginTop: '20px', fontSize: '0.92rem' }}>
+                  Looking for city-level classroom rankings? Explore our{' '}
+                  <Link href="/city" className="text-link">
+                    32 Indian Coaching Cities
+                  </Link>{' '}
+                  or compare specific institutes in the{' '}
+                  <Link href="/compare" className="text-link">
+                    Comparison Engine
+                  </Link>
+                  .
+                </p>
+              </div>
             </div>
           </div>
-
-          <div className="filter-pills-row" style={{ justifyContent: 'flex-start' }}>
-            {byExam.map((exam) => (
-              <Link
-                key={exam}
-                href={`/exam/${exam}-coaching-rankings`}
-                className="filter-pill"
-                style={{ padding: '8px 16px' }}
-              >
-                <span>{formatExamName(exam)}</span>
-                <span style={{ color: 'var(--brand-primary)' }}>→</span>
-              </Link>
-            ))}
-          </div>
-
-          <p className="prose-lead" style={{ marginTop: '24px', fontSize: '0.95rem' }}>
-            Looking for city-level classroom rankings? Explore our{' '}
-            <Link href="/city" className="text-link">
-              32 Indian Coaching Cities
-            </Link>{' '}
-            or compare specific institutes in the{' '}
-            <Link href="/compare" className="text-link">
-              Comparison Engine
-            </Link>
-            .
-          </p>
         </div>
       </section>
     </>

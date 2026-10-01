@@ -198,14 +198,6 @@ export default function Header() {
           >
             About
           </Link>
-
-          <Link
-            href="/sitemap"
-            className={`nav-link ${isActive('/sitemap') ? 'active' : ''}`}
-            aria-current={isActive('/sitemap') ? 'page' : undefined}
-          >
-            Directory
-          </Link>
         </nav>
 
         <div className="header-actions">
