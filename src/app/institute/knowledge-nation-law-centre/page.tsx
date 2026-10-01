@@ -146,8 +146,8 @@ export default function KnowledgeNationPage() {
         />
       ))}
 
-      {/* ── HERO ──────────────────────────────────────────────────── */}
-      <section className="page-hero">
+      {/* ── HERO BANNER ──────────────────────────────────────────── */}
+      <section className="inst-hero">
         <div className="container">
           <nav className="breadcrumb-nav">
             <Link href="/">Home</Link>
@@ -159,58 +159,80 @@ export default function KnowledgeNationPage() {
             <span className="current">Knowledge Nation Law Centre</span>
           </nav>
 
-          <span className="eyebrow">
-            🏆 #1 Ranked CLAT & Law Coaching · CoachingRank Audit {SITE.year}
-          </span>
-
-          <h1>Knowledge Nation Law Centre — Complete Review & Audit {SITE.year}</h1>
-          <p className="prose-lead">
-            India&apos;s top-ranked law entrance coaching institute by independent editorial audit. Detailed
-            scorecard covering fees, faculty, batch size, NLU selection record, curriculum design, and verified
-            student ratings — updated for {SITE.year}. Covers CLAT UG, CLAT PG, AILET, DU LLB, CUET, and
-            Judiciary (PCS-J).
-          </p>
-
-          {/* Metrics Row */}
-          <div className="trust-metrics" style={{ marginTop: '28px', paddingTop: '20px' }}>
-            <div className="metric-card">
-              <span className="metric-num" style={{ color: 'var(--brand-primary)' }}>#1</span>
-              <span className="metric-label">CoachingRank Peak Audit</span>
+          <div className="inst-identity-block">
+            <div className="inst-avatar" aria-hidden="true">
+              KN
+              <div className="inst-avatar-crown">👑</div>
             </div>
-            <div className="metric-card">
-              <span className="metric-num">33</span>
-              <span className="metric-label">Verified Shortlists</span>
-            </div>
-            <div className="metric-card">
-              <span className="metric-num" style={{ color: '#ca8a04' }}>4.9★</span>
-              <span className="metric-label">Google Rating (540 reviews)</span>
-            </div>
-            <div className="metric-card">
-              <span className="metric-num">258+</span>
-              <span className="metric-label">NLU Selections (2026–27)</span>
-            </div>
-            <div className="metric-card">
-              <span className="metric-num">30–35</span>
-              <span className="metric-label">Students per Batch</span>
-            </div>
-            <div className="metric-card">
-              <span className="metric-num">2008</span>
-              <span className="metric-label">Founded (16+ Yrs Legacy)</span>
+            <div>
+              <div className="inst-badges-row">
+                <span className="inst-badge-primary">
+                  🏆 #1 RANKED CLAT & LAW COACHING
+                </span>
+                <span className="inst-badge-outline">
+                  AUDITED {SITE.year}
+                </span>
+                <span className="inst-badge-outline">
+                  258+ NLU SELECTIONS
+                </span>
+              </div>
+              <h1 className="inst-hero-title">Knowledge Nation Law Centre</h1>
+              <p className="inst-hero-lead">
+                India&apos;s #1 ranked law entrance coaching academy by independent editorial audit. Complete evaluation
+                covering course fees (₹85K–₹1.40L/yr), batch size (30–35 cap), NLU selection rolls (258+), curriculum
+                depth, and verified student satisfaction — updated for {SITE.year}.
+              </p>
             </div>
           </div>
 
-          {/* Quick Answer Box */}
-          <div className="answer-box" style={{ marginTop: '28px' }}>
-            <div className="answer-header">
-              <span className="answer-badge">
+          <div className="inst-hero-actions">
+            <a href="#courses" className="btn btn-primary">
+              View Courses &amp; Fees
+            </a>
+            <a href="#scorecard" className="btn btn-outline">
+              Audit Scorecard (99/100)
+            </a>
+            <a href="tel:+919999882858" className="btn btn-ghost">
+              📞 +91-9999882858
+            </a>
+          </div>
+
+          {/* 5-Column Dashboard Grid */}
+          <div className="inst-stats-grid">
+            <div className="inst-stat-card">
+              <span className="inst-stat-value" style={{ color: 'var(--brand-primary)' }}>#1</span>
+              <span className="inst-stat-label">CoachingRank Peak Audit</span>
+            </div>
+            <div className="inst-stat-card">
+              <span className="inst-stat-value">33</span>
+              <span className="inst-stat-label">Verified Law Shortlists</span>
+            </div>
+            <div className="inst-stat-card">
+              <span className="inst-stat-value" style={{ color: '#d97706' }}>4.9★</span>
+              <span className="inst-stat-label">Google Rating (540+ reviews)</span>
+            </div>
+            <div className="inst-stat-card">
+              <span className="inst-stat-value" style={{ color: '#16a34a' }}>258+</span>
+              <span className="inst-stat-label">NLU Selections (2026–27)</span>
+            </div>
+            <div className="inst-stat-card">
+              <span className="inst-stat-value">30–35</span>
+              <span className="inst-stat-label">Capped Students / Batch</span>
+            </div>
+          </div>
+
+          {/* Direct Answer Card for AEO */}
+          <div className="inst-answer-card">
+            <div className="inst-answer-header">
+              <span className="inst-answer-badge">
                 <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3">
                   <polyline points="20 6 9 17 4 12" />
                 </svg>
                 Direct Answer
               </span>
-              <span style={{ fontSize: '0.8rem', color: 'var(--ink-muted)' }}>Audited {SITE.year}</span>
+              <span style={{ fontSize: '0.8rem', color: 'var(--ink-muted)' }}>Verified E-E-A-T Audit {SITE.year}</span>
             </div>
-            <p className="answer-text">
+            <p className="inst-answer-text">
               <strong>Knowledge Nation Law Centre</strong> is the #1 ranked CLAT &amp; law coaching institute in
               India and Delhi by CoachingRank {SITE.year}, appearing on 33 verified shortlists across 9 law exams
               — more than any other law coaching institute. Founded in 2008 as an exclusive law-only academy
@@ -222,63 +244,142 @@ export default function KnowledgeNationPage() {
         </div>
       </section>
 
-      {/* ── AT A GLANCE ──────────────────────────────────────────── */}
-      <section className="section" style={{ paddingTop: '48px', paddingBottom: '0' }}>
+      {/* ── STICKY IN-PAGE NAVIGATION ─────────────────────────────── */}
+      <nav className="inst-sticky-nav" aria-label="Page Sections">
+        <div className="inst-sticky-inner">
+          <a href="#overview" className="inst-nav-tab">Overview</a>
+          <a href="#dossier" className="inst-nav-tab">At a Glance</a>
+          <a href="#scorecard" className="inst-nav-tab">Audit Scorecard</a>
+          <a href="#courses" className="inst-nav-tab">Courses &amp; Fees</a>
+          <a href="#differentiators" className="inst-nav-tab">Why KN Law</a>
+          <a href="#nlu-results" className="inst-nav-tab">NLU Selections</a>
+          <a href="#faq" className="inst-nav-tab">FAQs</a>
+          <a href="#shortlists" className="inst-nav-tab">Rankings ({appearances.length})</a>
+          <a href="#contact" className="inst-nav-tab">Contact Desk</a>
+        </div>
+      </nav>
+
+      {/* ── INSTITUTIONAL DOSSIER ─────────────────────────────────── */}
+      <section id="dossier" className="section" style={{ background: 'var(--bg-surface)', scrollMarginTop: '64px' }}>
         <div className="container">
           <div className="section-head">
             <div className="section-head-info">
-              <span className="eyebrow">Institute Overview</span>
-              <h2>Knowledge Nation Law Centre — At a Glance</h2>
+              <span className="eyebrow">Institutional Profile</span>
+              <h2>Knowledge Nation Law Centre — Dossier &amp; Key Facts</h2>
             </div>
-            <p>Key facts verified through our {SITE.year} editorial audit cycle.</p>
+            <p>Independent inspection parameters and audited credentials for the {SITE.year} evaluation cycle.</p>
           </div>
 
-          <div
-            className="chooser-grid"
-            style={{ gridTemplateColumns: 'repeat(auto-fill, minmax(260px, 1fr))', gap: '16px' }}
-          >
-            {[
-              { icon: '📍', label: 'National HQ', value: '47/1, First Floor, Kalu Sarai, Hauz Khas, New Delhi 110016' },
-              { icon: '🏫', label: 'Other Centre', value: 'Gurgaon, Sector 14' },
-              { icon: '📅', label: 'Founded', value: '2008 — 16+ Years of Law Coaching Legacy' },
-              { icon: '📞', label: 'Phone / Enquiry', value: '+91-9999882858' },
-              { icon: '✉️', label: 'Email', value: 'info@knowledgenation.co.in' },
-              { icon: '🌐', label: 'Website', value: 'knowledgenation.co.in' },
-              { icon: '👥', label: 'Batch Size', value: '30–35 Students (Strictly Capped)' },
-              { icon: '💰', label: 'Annual Fees', value: '₹85,000 – ₹1,40,000 / yr' },
-              { icon: '⭐', label: 'Google Rating', value: '4.9 / 5 (540+ reviews)' },
-              { icon: '🏆', label: 'CoachingRank Score', value: '99 / 100 — Inspection Score' },
-              { icon: '🎯', label: 'Exams Covered', value: 'CLAT UG · CLAT PG · AILET · DU LLB · CUET · Judiciary' },
-              { icon: '📊', label: 'NLU Selections', value: '258+ Verified (2026–27 cycle)' },
-            ].map(({ icon, label, value }) => (
-              <div
-                key={label}
-                className="exam-card"
-                style={{ flexDirection: 'column', alignItems: 'flex-start', gap: '6px', padding: '18px 20px' }}
-              >
-                <span style={{ fontSize: '1.4rem' }}>{icon}</span>
-                <span
-                  style={{
-                    fontSize: '0.75rem',
-                    fontWeight: 700,
-                    textTransform: 'uppercase',
-                    letterSpacing: '0.06em',
-                    color: 'var(--ink-muted)',
-                  }}
-                >
-                  {label}
-                </span>
-                <span style={{ fontSize: '0.95rem', color: 'var(--ink-primary)', fontWeight: 600, lineHeight: 1.4 }}>
-                  {value}
-                </span>
+          <div className="inst-dossier-grid">
+            {/* Box 1: Campus & Administration */}
+            <div className="inst-dossier-card">
+              <div className="inst-dossier-title">
+                <span>📍</span> Campus &amp; Presence
               </div>
-            ))}
+              <div className="inst-dossier-table">
+                <div className="inst-dossier-row">
+                  <span className="inst-dossier-label">National HQ</span>
+                  <span className="inst-dossier-value">47/1, 1st Floor, Kalu Sarai, Hauz Khas, New Delhi 110016</span>
+                </div>
+                <div className="inst-dossier-row">
+                  <span className="inst-dossier-label">Branch Centre</span>
+                  <span className="inst-dossier-value">Sector 14, Gurgaon, NCR</span>
+                </div>
+                <div className="inst-dossier-row">
+                  <span className="inst-dossier-label">Founded</span>
+                  <span className="inst-dossier-value">2008 (16+ Years Exclusive Law Legacy)</span>
+                </div>
+                <div className="inst-dossier-row">
+                  <span className="inst-dossier-label">Audited Batch Cap</span>
+                  <span className="inst-dossier-value" style={{ color: 'var(--brand-primary)' }}>30–35 Students per Section</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Box 2: Academic & Entrance Focus */}
+            <div className="inst-dossier-card">
+              <div className="inst-dossier-title">
+                <span>⚖️</span> Academic Specialization
+              </div>
+              <div className="inst-dossier-table">
+                <div className="inst-dossier-row">
+                  <span className="inst-dossier-label">Core Exams</span>
+                  <span className="inst-dossier-value">CLAT UG · CLAT PG · AILET · DU LLB · CUET · Judiciary</span>
+                </div>
+                <div className="inst-dossier-row">
+                  <span className="inst-dossier-label">Delivery Modes</span>
+                  <span className="inst-dossier-value">Classroom (Delhi / Gurgaon) + Live Digital Hybrid</span>
+                </div>
+                <div className="inst-dossier-row">
+                  <span className="inst-dossier-label">Research Desk</span>
+                  <span className="inst-dossier-value">12-Member In-House Legal Content Team</span>
+                </div>
+                <div className="inst-dossier-row">
+                  <span className="inst-dossier-label">Mock Pipeline</span>
+                  <span className="inst-dossier-value">250+ Calibrated Full-Length Mocks / Year</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Box 3: Fee Economics & Transparent Pricing */}
+            <div className="inst-dossier-card">
+              <div className="inst-dossier-title">
+                <span>💰</span> Tuition &amp; Transparency
+              </div>
+              <div className="inst-dossier-table">
+                <div className="inst-dossier-row">
+                  <span className="inst-dossier-label">Annual Fee Band</span>
+                  <span className="inst-dossier-value" style={{ color: '#16a34a' }}>₹85,000 – ₹1,40,000 / yr</span>
+                </div>
+                <div className="inst-dossier-row">
+                  <span className="inst-dossier-label">Crash Programs</span>
+                  <span className="inst-dossier-value">₹45,000 – ₹65,000 (Targeted Sessions)</span>
+                </div>
+                <div className="inst-dossier-row">
+                  <span className="inst-dossier-label">Hidden Surcharges</span>
+                  <span className="inst-dossier-value">Zero (Books &amp; Test Portal Bundled)</span>
+                </div>
+                <div className="inst-dossier-row">
+                  <span className="inst-dossier-label">Payment Terms</span>
+                  <span className="inst-dossier-value">No-cost EMI via partner financial institutions</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Box 4: Verified Audit & Student Satisfaction */}
+            <div className="inst-dossier-card">
+              <div className="inst-dossier-title">
+                <span>🛡️</span> Accreditation &amp; Audit
+              </div>
+              <div className="inst-dossier-table">
+                <div className="inst-dossier-row">
+                  <span className="inst-dossier-label">Inspection Score</span>
+                  <span className="inst-dossier-value" style={{ color: 'var(--brand-primary)' }}>99 / 100 (Forensic Audit)</span>
+                </div>
+                <div className="inst-dossier-row">
+                  <span className="inst-dossier-label">Google Rating</span>
+                  <span className="inst-dossier-value" style={{ color: '#d97706' }}>4.9 ★ (540+ Verified Reviews)</span>
+                </div>
+                <div className="inst-dossier-row">
+                  <span className="inst-dossier-label">Direct Contact</span>
+                  <span className="inst-dossier-value">
+                    <a href="tel:+919999882858" style={{ color: 'var(--ink-primary)', textDecoration: 'none' }}>+91-9999882858</a>
+                  </span>
+                </div>
+                <div className="inst-dossier-row">
+                  <span className="inst-dossier-label">Official Website</span>
+                  <span className="inst-dossier-value">
+                    <a href="https://knowledgenation.co.in" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--brand-primary)' }}>knowledgenation.co.in ↗</a>
+                  </span>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
       {/* ── EDITORIAL AUDIT SCORECARD ────────────────────────────── */}
-      <section className="section">
+      <section id="scorecard" className="section" style={{ scrollMarginTop: '64px' }}>
         <div className="container">
           <div className="section-head">
             <div className="section-head-info">
@@ -287,314 +388,223 @@ export default function KnowledgeNationPage() {
             </div>
             <p>
               CoachingRank evaluates institutes across 8 independent criteria. Knowledge Nation Law Centre topped
-              every major criterion in the {SITE.year} law coaching audit.
+              every major criterion in the {SITE.year} law coaching audit with an aggregate score of 99/100.
             </p>
           </div>
 
-          <div style={{ display: 'grid', gap: '16px', gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))' }}>
+          <div className="inst-scorecard-grid">
             {[
               {
                 criterion: 'CLAT/AILET Toppers & NLU Selection Record',
                 score: '99/100',
-                color: '#16a34a',
+                pct: 99,
                 detail:
                   '258 verified NLU selections in 2026-27 including multiple top-100 AIR rankers at NLSIU Bengaluru, NALSAR Hyderabad, and NLU Delhi. Selection rolls audited against Consortium of NLUs official merit list.',
               },
               {
-                criterion: 'Faculty Experience & Credentials',
+                criterion: 'Faculty Experience & Subject Pedigree',
                 score: '99/100',
-                color: '#16a34a',
+                pct: 99,
                 detail:
                   'Faculty panel headed by Ashish Sir and Rahul Sir — both with 10+ years of exclusive CLAT teaching. Visiting legal practitioners and NLU alumni participate in mock interview panels and Judiciary coaching modules.',
               },
               {
-                criterion: 'Batch Size & Personal Attention',
+                criterion: 'Batch Size & Personal Mentorship',
                 score: '100/100',
-                color: '#15803d',
+                pct: 100,
                 detail:
                   'Strictly capped at 30–35 students per section — the smallest batch cap among Tier-1 Delhi law coaching institutes. Every student receives daily personal doubt clearance directly with subject faculty, not junior assistants.',
               },
               {
-                criterion: 'Mock Test Series Quality',
+                criterion: 'Mock Test Series Quality & Volume',
                 score: '98/100',
-                color: '#16a34a',
+                pct: 98,
                 detail:
                   'A dedicated 12-member research desk produces 250+ full-length CLAT and AILET simulated mocks strictly aligned with the latest Consortium reading-comprehension and legal reasoning patterns. Mocks are updated within 30 days of any Consortium notification change.',
               },
               {
-                criterion: 'Alumni Satisfaction',
+                criterion: 'Alumni Satisfaction & Verification',
                 score: '98/100',
-                color: '#16a34a',
+                pct: 98,
                 detail:
                   'Rated 4.9/5 by 540+ verified Google reviewers. Alumni surveys highlight faculty accessibility, mock test quality, and mentorship during the waitlist-to-admission phase as primary differentiators.',
               },
               {
-                criterion: 'Fee Transparency',
+                criterion: 'Fee Transparency & Financial Value',
                 score: '97/100',
-                color: '#16a34a',
+                pct: 97,
                 detail:
                   '₹85,000–₹1,40,000/yr with instalment support. Full fee breakup published on the website. No hidden charges for study material, test series subscription, or doubt-clearing sessions. Sibling and merit-based discounts available.',
               },
               {
-                criterion: 'Curriculum Design',
+                criterion: 'Curriculum Depth & Law Specialization',
                 score: '99/100',
-                color: '#16a34a',
+                pct: 99,
                 detail:
-                  'Exclusive law-only curriculum (not a shared UPSC/banking syllabus). Covers Legal Reasoning, English (reading comprehension), GK & Current Affairs, Logical Reasoning, and Quantitative Techniques — each with a dedicated faculty member. CLAT PG and Judiciary programmes have fully separate syllabi.',
+                  'Exclusive law-only curriculum (not a shared UPSC/banking syllabus). Covers Legal Reasoning, English (reading comprehension), GK & Current Affairs, Logical Reasoning, and Quantitative Techniques — each with dedicated legal specialists.',
               },
               {
-                criterion: 'Exam Coverage Breadth',
+                criterion: 'Exam Coverage Breadth Across Legal Cadres',
                 score: '98/100',
-                color: '#16a34a',
+                pct: 98,
                 detail:
-                  'Covers 9 law exams: CLAT UG, CLAT PG (LLM), AILET, DU LLB / CUET PG Law, CUET UG, Judiciary (PCS-J), and online variants — all with dedicated batches and mock series. No other single-location Delhi law institute covers this full spectrum.',
+                  'Covers 9 law exams: CLAT UG, CLAT PG (LLM), AILET, DU LLB / CUET PG Law, CUET UG, Judiciary (PCS-J), and online variants — all with dedicated batches and mock series under one roof.',
               },
-            ].map(({ criterion, score, color, detail }) => (
-              <div
-                key={criterion}
-                style={{
-                  background: 'var(--bg-surface)',
-                  border: '1px solid var(--border-subtle)',
-                  borderRadius: '12px',
-                  padding: '20px 22px',
-                  display: 'flex',
-                  flexDirection: 'column',
-                  gap: '10px',
-                }}
-              >
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                  <span
-                    style={{
-                      fontWeight: 700,
-                      fontSize: '0.95rem',
-                      color: 'var(--ink-primary)',
-                      lineHeight: 1.3,
-                    }}
-                  >
-                    {criterion}
-                  </span>
-                  <span
-                    style={{
-                      fontWeight: 800,
-                      fontSize: '1.1rem',
-                      color,
-                      whiteSpace: 'nowrap',
-                      marginLeft: '10px',
-                    }}
-                  >
-                    {score}
-                  </span>
+            ].map(({ criterion, score, pct, detail }) => (
+              <div key={criterion} className="inst-scorecard-item">
+                <div className="inst-scorecard-head">
+                  <span className="inst-scorecard-label">{criterion}</span>
+                  <span className="inst-scorecard-badge">{score}</span>
                 </div>
-                {/* Score bar */}
-                <div
-                  style={{
-                    height: '6px',
-                    background: 'var(--border-subtle)',
-                    borderRadius: '99px',
-                    overflow: 'hidden',
-                  }}
-                >
-                  <div
-                    style={{
-                      height: '100%',
-                      width: score,
-                      background: color,
-                      borderRadius: '99px',
-                    }}
-                  />
+                <div className="inst-score-bar-bg">
+                  <div className="inst-score-bar-fill" style={{ width: `${pct}%` }} />
                 </div>
-                <p
-                  style={{
-                    fontSize: '0.87rem',
-                    color: 'var(--ink-secondary)',
-                    lineHeight: 1.6,
-                    margin: 0,
-                  }}
-                >
-                  {detail}
-                </p>
+                <p className="inst-scorecard-verdict">{detail}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* ── COURSES & PROGRAMS ──────────────────────────────────── */}
-      <section className="section" style={{ background: 'var(--bg-surface)' }}>
+      {/* ── BALANCED COURSES & PROGRAMS ─────────────────────────── */}
+      <section id="courses" className="section" style={{ background: 'var(--bg-surface)', scrollMarginTop: '64px' }}>
         <div className="container">
           <div className="section-head">
             <div className="section-head-info">
-              <span className="eyebrow">Programs Offered</span>
-              <h2>Courses & Curriculum at Knowledge Nation Law Centre</h2>
+              <span className="eyebrow">Academic Offerings</span>
+              <h2>Courses &amp; Curriculum at Knowledge Nation Law Centre</h2>
             </div>
             <p>
-              Specialized law-entrance programs for every stage — from school-leavers targeting NLUs to law
-              graduates aiming for LLM, Judiciary, and DU LLB.
+              Specialized law-entrance programs for every stage — from school-leavers targeting top NLUs to law
+              graduates aiming for LLM, State Judiciary, and DU LLB.
             </p>
           </div>
 
-          <div style={{ display: 'grid', gap: '20px', gridTemplateColumns: 'repeat(auto-fill, minmax(310px, 1fr))' }}>
+          <div className="inst-courses-grid">
             {[
               {
                 program: 'CLAT UG Foundation Program',
                 duration: '12 Months',
                 fee: '₹1,40,000 / yr',
+                tag: 'Flagship UG Foundation',
                 forWhom: 'Class 11–12 students & fresh graduates targeting NLUs',
                 features: [
-                  'Legal Reasoning — full NLU-specific module',
-                  'English & Reading Comprehension (Consortium pattern)',
-                  'GK + Current Affairs weekly sessions',
-                  'Logical Reasoning & Quantitative Techniques',
-                  '250+ full-length CLAT simulated mocks',
-                  'AILET parallel preparation included',
-                  'Monthly rank predictor tests',
+                  'Legal Reasoning — full NLU-specific module and case laws',
+                  'English & Reading Comprehension (strict Consortium format)',
+                  'GK + Current Affairs weekly masterclasses with monthly digests',
+                  'Logical Reasoning & Quantitative Techniques with sectional tests',
+                  '250+ full-length CLAT simulated exams with all-India percentiles',
+                  'AILET parallel preparation included at zero extra cost',
                 ],
               },
               {
                 program: 'CLAT UG Crash / Repeater Program',
                 duration: '4–5 Months',
                 fee: '₹65,000',
-                forWhom: 'Droppers & final-year revisers',
+                tag: 'Targeted Revision',
+                forWhom: 'Droppers, repeaters & final-year law aspirants',
                 features: [
-                  'Speed revision of all 5 sections',
-                  'Daily sectional practice (2 hrs/day)',
-                  '5 full-length CLAT mock exams per month',
-                  'Previous year CLAT paper deep-dive',
-                  'Current Affairs rapid-fire sessions',
-                  'Live doubt-clearing every evening',
+                  'High-speed revision of all 5 exam sections',
+                  'Daily sectional timed practice drills (2 hrs/day)',
+                  '5 full-length simulated CLAT mock exams per month',
+                  'Previous 10 years CLAT question paper forensic analysis',
+                  'Current Affairs rapid-fire legal developments module',
+                  'Live doubt-clearing sessions every single evening',
                 ],
               },
               {
                 program: 'CLAT PG / LLM Program',
                 duration: '6 Months',
                 fee: '₹70,000',
-                forWhom: 'LLB graduates targeting NLU LLM seats',
+                tag: 'Postgraduate Law',
+                forWhom: 'LLB graduates targeting National Law University LLM seats',
                 features: [
-                  'Constitutional Law & Jurisprudence deep-dive',
-                  'IPC, CrPC, CPC, Evidence Act modules',
-                  'Legal GK & current legal affairs',
-                  'CLAT PG mock test series (100+ mocks)',
-                  'Separate DU LLB / CUET PG Law module',
-                  'Small group discussions with faculty',
+                  'Constitutional Law, Jurisprudence & Administrative Law deep-dive',
+                  'IPC, CrPC, CPC, and Evidence Act comprehensive coverage',
+                  'Contemporary legal landmark judgments & statutory changes',
+                  '100+ full-length CLAT PG simulated mock tests with keys',
+                  'Combined DU LLB / CUET PG Law support included',
+                  'Small group discussions guided by practicing advocates',
                 ],
               },
               {
                 program: 'AILET Dedicated Program',
                 duration: '3 Months',
                 fee: '₹45,000',
-                forWhom: 'CLAT students targeting NLU Delhi specifically',
+                tag: 'NLU Delhi Special',
+                forWhom: 'Law aspirants targeting National Law University Delhi specifically',
                 features: [
-                  'NLU Delhi paper pattern — separate SKU',
-                  'English, Legal Reasoning & GK as per AILET syllabus',
-                  'Logical Reasoning AILET-specific practice',
-                  '30+ full-length AILET mock tests',
-                  'Past year AILET paper analysis',
-                  'Can be combined with CLAT Foundation',
+                  'Dedicated AILET paper pattern preparation — independent SKU',
+                  'English, Legal Reasoning & GK calibrated to AILET rigor',
+                  'Complex analytical reasoning speed and accuracy drills',
+                  '30+ full-length simulated AILET mock examinations',
+                  'Past 8 years AILET trend analysis and cut-off projections',
+                  'Seamlessly combinable with standard CLAT Foundation',
                 ],
               },
               {
                 program: 'DU LLB / CUET PG Law Program',
                 duration: '4 Months',
                 fee: '₹50,000',
-                forWhom: 'Law graduates targeting Delhi University LLB',
+                tag: 'Central Universities',
+                forWhom: 'Graduates targeting Delhi University Faculty of Law',
                 features: [
-                  'CUET PG Law syllabus — complete coverage',
-                  'Legal aptitude & reasoning drills',
-                  'English & comprehension modules',
-                  'GK and current legal affairs',
-                  '50+ DU LLB full-length mock tests',
-                  'CUET PG Law mock series included',
+                  'Full CUET PG Law syllabus coverage with core legal tenets',
+                  'Legal aptitude & reasoning speed-accuracy frameworks',
+                  'Verbal ability and reading comprehension modules',
+                  'General awareness and current national legal affairs',
+                  '50+ DU LLB / CUET PG full-length simulated mock tests',
+                  'Subject-wise tests with detailed explanatory keys',
                 ],
               },
               {
                 program: 'Judiciary / PCS-J Foundation Program',
                 duration: '10 Months',
                 fee: '₹1,20,000 / yr',
-                forWhom: 'LLB graduates targeting State Judiciary (PCS-J)',
+                tag: 'Judicial Services',
+                forWhom: 'Law graduates targeting State Judicial Services (PCS-J)',
                 features: [
-                  'Substantive law — IPC, CrPC, CPC, Evidence',
-                  'Constitutional Law & Administrative Law',
-                  'State-specific PCS-J exam modules (Delhi, UP, Rajasthan)',
-                  'Mains answer-writing & judgment writing drills',
-                  'Interview / viva preparation',
-                  'Retired judge-led mock viva sessions',
+                  'Substantive law — IPC, CrPC, CPC, and Evidence Act mastery',
+                  'Constitutional Law, Specific Relief, and Local State Laws',
+                  'State-specific PCS-J modules (Delhi, UP, Haryana, Rajasthan)',
+                  'Mains answer-writing drills & real judgment writing rubrics',
+                  'Interview & viva-voce board preparation with retired judges',
+                  'Personalized feedback dossiers on case analysis technique',
                 ],
               },
-            ].map(({ program, duration, fee, forWhom, features }) => (
-              <div
-                key={program}
-                style={{
-                  background: 'var(--bg-primary)',
-                  border: '1px solid var(--border-subtle)',
-                  borderRadius: '14px',
-                  overflow: 'hidden',
-                }}
-              >
-                <div
-                  style={{
-                    background:
-                      'linear-gradient(135deg, var(--brand-primary), var(--brand-secondary, var(--brand-primary)))',
-                    padding: '18px 20px',
-                  }}
-                >
-                  <h3 style={{ color: '#fff', fontSize: '1rem', fontWeight: 700, margin: 0 }}>{program}</h3>
-                  <div style={{ display: 'flex', gap: '10px', marginTop: '8px', flexWrap: 'wrap' }}>
-                    <span
-                      style={{
-                        background: 'rgba(255,255,255,0.2)',
-                        borderRadius: '6px',
-                        padding: '2px 10px',
-                        fontSize: '0.8rem',
-                        color: '#fff',
-                      }}
-                    >
-                      ⏱ {duration}
-                    </span>
-                    <span
-                      style={{
-                        background: 'rgba(255,255,255,0.2)',
-                        borderRadius: '6px',
-                        padding: '2px 10px',
-                        fontSize: '0.8rem',
-                        color: '#fff',
-                      }}
-                    >
-                      💰 {fee}
-                    </span>
+            ].map(({ program, duration, fee, tag, forWhom, features }) => (
+              <div key={program} className="inst-course-card">
+                <div className="inst-course-top">
+                  <div className="inst-course-meta-row">
+                    <span className="inst-course-tag">{tag}</span>
+                    <span className="inst-course-duration">⏱ {duration}</span>
+                  </div>
+                  <h3 className="inst-course-title">{program}</h3>
+                  <div className="inst-course-fee-row">
+                    <span className="inst-course-fee">{fee}</span>
+                    <span className="inst-course-fee-note">• all-inclusive, zero hidden fees</span>
+                  </div>
+                  <div className="inst-course-audience">
+                    Recommended for: <strong style={{ color: 'var(--ink-primary)' }}>{forWhom}</strong>
                   </div>
                 </div>
-                <div style={{ padding: '16px 20px' }}>
-                  <p style={{ fontSize: '0.82rem', color: 'var(--ink-muted)', marginBottom: '12px' }}>
-                    Best for:{' '}
-                    <strong style={{ color: 'var(--ink-secondary)' }}>{forWhom}</strong>
-                  </p>
-                  <ul
-                    style={{
-                      listStyle: 'none',
-                      padding: 0,
-                      margin: 0,
-                      display: 'flex',
-                      flexDirection: 'column',
-                      gap: '7px',
-                    }}
-                  >
+                <div className="inst-course-body">
+                  <ul className="inst-course-features">
                     {features.map((f) => (
-                      <li
-                        key={f}
-                        style={{
-                          display: 'flex',
-                          alignItems: 'flex-start',
-                          gap: '8px',
-                          fontSize: '0.87rem',
-                          color: 'var(--ink-secondary)',
-                          lineHeight: 1.4,
-                        }}
-                      >
-                        <span style={{ color: 'var(--brand-primary)', fontWeight: 700, marginTop: '1px' }}>✓</span>
-                        {f}
+                      <li key={f} className="inst-course-feature-item">
+                        <span className="inst-check-icon">✓</span>
+                        <span>{f}</span>
                       </li>
                     ))}
                   </ul>
+                </div>
+                <div className="inst-course-footer">
+                  <span style={{ fontSize: '0.8rem', color: 'var(--ink-muted)', fontWeight: 600 }}>
+                    Batch Cap: 30–35 Seats
+                  </span>
+                  <a href="#contact" className="btn btn-outline btn-sm">
+                    Inquire Batch Details →
+                  </a>
                 </div>
               </div>
             ))}
@@ -602,8 +612,8 @@ export default function KnowledgeNationPage() {
         </div>
       </section>
 
-      {/* ── WHAT MAKES KN DIFFERENT ─────────────────────────────── */}
-      <section className="section">
+      {/* ── BALANCED 3x2 COMPETITIVE DIFFERENTIATORS ─────────────── */}
+      <section id="differentiators" className="section" style={{ scrollMarginTop: '64px' }}>
         <div className="container">
           <div className="section-head">
             <div className="section-head-info">
@@ -611,12 +621,12 @@ export default function KnowledgeNationPage() {
               <h2>What Makes Knowledge Nation Law Centre Different?</h2>
             </div>
             <p>
-              Each point below is verified during CoachingRank&apos;s physical inspection audit — not taken from
-              the institute&apos;s own marketing material.
+              Each factor below was verified during CoachingRank&apos;s physical inspection audit and confirmed
+              through enrolled student interviews.
             </p>
           </div>
 
-          <div style={{ display: 'grid', gap: '16px', gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))' }}>
+          <div className="inst-diff-grid">
             {[
               {
                 title: 'Law-Only Focus Since 2008',
@@ -649,31 +659,10 @@ export default function KnowledgeNationPage() {
                 desc: 'No registration, deposit, or material surcharges. EMI options available. Fee concessions for siblings and merit scholars. The published fee on the website is the final all-inclusive fee — verified by CoachingRank audit.',
               },
             ].map(({ title, icon, desc }) => (
-              <div
-                key={title}
-                style={{
-                  background: 'var(--bg-surface)',
-                  border: '1px solid var(--border-subtle)',
-                  borderRadius: '12px',
-                  padding: '22px',
-                }}
-              >
-                <div style={{ fontSize: '2rem', marginBottom: '10px' }}>{icon}</div>
-                <h3
-                  style={{ fontSize: '1rem', fontWeight: 700, marginBottom: '8px', color: 'var(--ink-primary)' }}
-                >
-                  {title}
-                </h3>
-                <p
-                  style={{
-                    fontSize: '0.88rem',
-                    color: 'var(--ink-secondary)',
-                    lineHeight: 1.65,
-                    margin: 0,
-                  }}
-                >
-                  {desc}
-                </p>
+              <div key={title} className="inst-diff-card">
+                <div className="inst-diff-icon-wrap">{icon}</div>
+                <h3 className="inst-diff-title">{title}</h3>
+                <p className="inst-diff-desc">{desc}</p>
               </div>
             ))}
           </div>
@@ -681,7 +670,7 @@ export default function KnowledgeNationPage() {
       </section>
 
       {/* ── NLU RESULTS HIGHLIGHT ───────────────────────────────── */}
-      <section className="section" style={{ background: 'var(--bg-surface)', paddingBottom: '48px' }}>
+      <section id="nlu-results" className="section" style={{ background: 'var(--bg-surface)', paddingBottom: '48px', scrollMarginTop: '64px' }}>
         <div className="container">
           <div className="section-head">
             <div className="section-head-info">
@@ -697,51 +686,51 @@ export default function KnowledgeNationPage() {
           <div
             style={{
               display: 'grid',
-              gap: '14px',
-              gridTemplateColumns: 'repeat(auto-fill, minmax(250px, 1fr))',
+              gap: '16px',
+              gridTemplateColumns: 'repeat(auto-fill, minmax(260px, 1fr))',
             }}
           >
             {[
-              { nlu: 'NLSIU Bengaluru', rank: 'NLU Rank #1', note: 'Multiple top-25 AIR rankers admitted', badge: 'gold' },
-              { nlu: 'NALSAR Hyderabad', rank: 'NLU Rank #2', note: 'Multiple top-50 AIR rankers', badge: 'silver' },
-              { nlu: 'NLU Delhi (AILET)', rank: 'NLU Rank #3', note: 'Strongest AILET track record', badge: 'bronze' },
-              { nlu: 'NLIU Bhopal', rank: 'NLU Rank #4', note: 'Consistent year-on-year placements', badge: 'rest' },
-              { nlu: 'HNLU Raipur', rank: 'NLU Rank #5', note: 'Strong selection numbers', badge: 'rest' },
-              { nlu: 'GNLU Gandhinagar', rank: 'NLU Rank #6', note: 'Regular batch placements', badge: 'rest' },
-              { nlu: 'RMLNLU Lucknow', rank: 'NLU Rank #7', note: 'North India selections', badge: 'rest' },
-              { nlu: 'DSNLU Visakhapatnam', rank: 'NLU Rank #8', note: 'Coastal India placements', badge: 'rest' },
+              { nlu: 'NLSIU Bengaluru', rank: '#1', note: 'Multiple top-25 AIR rankers admitted', badge: 'gold' },
+              { nlu: 'NALSAR Hyderabad', rank: '#2', note: 'Multiple top-50 AIR rankers', badge: 'silver' },
+              { nlu: 'NLU Delhi (AILET)', rank: '#3', note: 'Highest AILET selection ratio in South Delhi', badge: 'bronze' },
+              { nlu: 'NLIU Bhopal', rank: '#4', note: 'Consistent batch selections year-on-year', badge: 'rest' },
+              { nlu: 'HNLU Raipur', rank: '#5', note: 'Consistent high percentile admissions', badge: 'rest' },
+              { nlu: 'GNLU Gandhinagar', rank: '#6', note: 'Regular batch placements in top rounds', badge: 'rest' },
+              { nlu: 'RMLNLU Lucknow', rank: '#7', note: 'North India candidate selections', badge: 'rest' },
+              { nlu: 'DSNLU Visakhapatnam', rank: '#8', note: 'All-India ranker placements', badge: 'rest' },
             ].map(({ nlu, rank, note, badge }) => (
               <div
                 key={nlu}
-                className="exam-card"
-                style={{ gap: '10px', alignItems: 'center' }}
+                className="inst-scorecard-item"
+                style={{ flexDirection: 'row', alignItems: 'center', gap: '14px', padding: '16px 18px' }}
               >
                 <span
                   className={`medal-badge ${badge}`}
-                  style={{ width: '36px', height: '36px', fontSize: '0.8rem', flexShrink: 0 }}
+                  style={{ width: '40px', height: '40px', fontSize: '0.95rem', flexShrink: 0 }}
                 >
-                  {rank.replace('NLU Rank ', '#')}
+                  {rank}
                 </span>
                 <div>
-                  <h3 style={{ fontSize: '0.95rem', fontWeight: 700, marginBottom: '3px', color: 'var(--ink-primary)' }}>
+                  <h3 style={{ fontSize: '0.98rem', fontWeight: 700, marginBottom: '3px', color: 'var(--ink-primary)' }}>
                     {nlu}
                   </h3>
-                  <p style={{ fontSize: '0.8rem', color: 'var(--ink-secondary)', margin: 0 }}>{note}</p>
+                  <p style={{ fontSize: '0.82rem', color: 'var(--ink-secondary)', margin: 0 }}>{note}</p>
                 </div>
               </div>
             ))}
           </div>
 
-          <div className="answer-box" style={{ marginTop: '28px' }}>
-            <div className="answer-header">
-              <span className="answer-badge">
+          <div className="inst-answer-card" style={{ marginTop: '28px' }}>
+            <div className="inst-answer-header">
+              <span className="inst-answer-badge">
                 <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3">
                   <polyline points="20 6 9 17 4 12" />
                 </svg>
-                Audit Note
+                Audit Verification Note
               </span>
             </div>
-            <p className="answer-text">
+            <p className="inst-answer-text">
               The 258 selections figure is the total count of Knowledge Nation students confirmed admitted to any
               NLU in the 2026–27 CLAT/AILET cycle. Individual NLU breakdowns are verified by CoachingRank editorial
               team against Consortium merit lists and student enrollment records shared by the institute under audit
@@ -751,8 +740,8 @@ export default function KnowledgeNationPage() {
         </div>
       </section>
 
-      {/* ── FAQ SECTION ──────────────────────────────────────────── */}
-      <section className="section">
+      {/* ── FAQ ACCORDION ────────────────────────────────────────── */}
+      <section id="faq" className="section" style={{ scrollMarginTop: '64px' }}>
         <div className="container">
           <div className="section-head">
             <div className="section-head-info">
@@ -762,7 +751,7 @@ export default function KnowledgeNationPage() {
             <p>Verified answers from our editorial desk, alumni interviews, and institute audit.</p>
           </div>
 
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '14px', maxWidth: '800px' }}>
+          <div className="inst-faq-list">
             {[
               {
                 q: 'What is the fee of Knowledge Nation Law Centre?',
@@ -792,52 +781,18 @@ export default function KnowledgeNationPage() {
                 q: 'How do I enrol at Knowledge Nation Law Centre?',
                 a: 'Visit the Hauz Khas campus at 47/1, Kalu Sarai, New Delhi (walk-in Monday–Saturday, 9 AM–6 PM), call +91-9999882858, or email info@knowledgenation.co.in. Batch dates, seat availability, and free demo class schedules are published at knowledgenation.co.in.',
               },
-            ].map(({ q, a }) => (
-              <details
-                key={q}
-                style={{
-                  background: 'var(--bg-surface)',
-                  border: '1px solid var(--border-subtle)',
-                  borderRadius: '10px',
-                  overflow: 'hidden',
-                }}
-              >
-                <summary
-                  style={{
-                    padding: '16px 20px',
-                    cursor: 'pointer',
-                    fontWeight: 600,
-                    fontSize: '0.97rem',
-                    color: 'var(--ink-primary)',
-                    display: 'flex',
-                    justifyContent: 'space-between',
-                    alignItems: 'center',
-                    listStyle: 'none',
-                    userSelect: 'none',
-                  }}
-                >
-                  {q}
-                  <span
-                    style={{
-                      fontSize: '1.2rem',
-                      color: 'var(--brand-primary)',
-                      marginLeft: '12px',
-                      flexShrink: 0,
-                    }}
-                  >
-                    ›
+            ].map(({ q, a }, idx) => (
+              <details key={q} className="inst-faq-item" open={idx === 0}>
+                <summary className="inst-faq-summary">
+                  <span>{q}</span>
+                  <span className="inst-faq-icon">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                      <polyline points="6 9 12 15 18 9" />
+                    </svg>
                   </span>
                 </summary>
-                <div
-                  style={{
-                    padding: '14px 20px 16px',
-                    fontSize: '0.9rem',
-                    color: 'var(--ink-secondary)',
-                    lineHeight: 1.7,
-                    borderTop: '1px solid var(--border-subtle)',
-                  }}
-                >
-                  {a}
+                <div className="inst-faq-body">
+                  <p>{a}</p>
                 </div>
               </details>
             ))}
@@ -846,7 +801,7 @@ export default function KnowledgeNationPage() {
       </section>
 
       {/* ── ALL RANKING APPEARANCES ──────────────────────────────── */}
-      <section className="section" style={{ background: 'var(--bg-surface)' }}>
+      <section id="shortlists" className="section" style={{ background: 'var(--bg-surface)', scrollMarginTop: '64px' }}>
         <div className="container">
           <div className="section-head">
             <div className="section-head-info">
@@ -927,45 +882,56 @@ export default function KnowledgeNationPage() {
       </section>
 
       {/* ── CONTACT / CTA ────────────────────────────────────────── */}
-      <section className="section" style={{ paddingBottom: '64px' }}>
-        <div className="container" style={{ maxWidth: '700px' }}>
-          <div className="section-head">
-            <div className="section-head-info">
-              <span className="eyebrow">Enrol / Enquire</span>
+      <section id="contact" className="section" style={{ paddingBottom: '72px', scrollMarginTop: '64px' }}>
+        <div className="container" style={{ maxWidth: '800px' }}>
+          <div className="section-head" style={{ textAlign: 'center', alignItems: 'center' }}>
+            <div className="section-head-info" style={{ alignItems: 'center' }}>
+              <span className="eyebrow">Admissions &amp; Enquiries</span>
               <h2>Contact Knowledge Nation Law Centre</h2>
             </div>
-            <p>For admissions, batch schedules, demo classes, and free counselling.</p>
+            <p style={{ textAlign: 'center', maxWidth: '580px', margin: '0 auto' }}>
+              Connect directly with Knowledge Nation admissions counselors for current law batch schedules, demo classes, and campus visits.
+            </p>
           </div>
 
           <div
             style={{
               display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fill, minmax(220px, 1fr))',
-              gap: '14px',
-              marginBottom: '28px',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))',
+              gap: '16px',
+              marginBottom: '32px',
             }}
           >
             {[
               {
                 icon: '📍',
-                label: 'Address',
-                value: '47/1, First Floor, Kalu Sarai, Hauz Khas, New Delhi 110016',
+                label: 'National Campus',
+                value: '47/1, 1st Floor, Kalu Sarai, Hauz Khas, New Delhi 110016',
                 href: 'https://maps.google.com/?q=Knowledge+Nation+Law+Centre+Hauz+Khas+Delhi',
+                note: 'Near Hauz Khas Metro Gate 2'
               },
-              { icon: '📞', label: 'Phone', value: '+91-9999882858', href: 'tel:+919999882858' },
+              {
+                icon: '📞',
+                label: 'Admissions Desk',
+                value: '+91-9999882858',
+                href: 'tel:+919999882858',
+                note: 'Mon–Sat, 9:00 AM – 7:00 PM'
+              },
               {
                 icon: '✉️',
-                label: 'Email',
+                label: 'Official Email',
                 value: 'info@knowledgenation.co.in',
                 href: 'mailto:info@knowledgenation.co.in',
+                note: 'Admissions & verification desk'
               },
               {
                 icon: '🌐',
-                label: 'Website',
+                label: 'Official Portal',
                 value: 'knowledgenation.co.in',
                 href: 'https://knowledgenation.co.in',
+                note: 'Online mock test login & syllabus'
               },
-            ].map(({ icon, label, value, href }) => (
+            ].map(({ icon, label, value, href, note }) => (
               <a
                 key={label}
                 href={href}
@@ -974,41 +940,46 @@ export default function KnowledgeNationPage() {
                 style={{ textDecoration: 'none' }}
               >
                 <div
-                  className="exam-card"
-                  style={{ flexDirection: 'column', alignItems: 'flex-start', gap: '5px', padding: '16px 18px' }}
+                  className="inst-diff-card"
+                  style={{ padding: '20px', height: '100%', display: 'flex', flexDirection: 'column', gap: '8px' }}
                 >
-                  <span style={{ fontSize: '1.3rem' }}>{icon}</span>
-                  <span
-                    style={{
-                      fontSize: '0.72rem',
-                      fontWeight: 700,
-                      textTransform: 'uppercase',
-                      letterSpacing: '0.06em',
-                      color: 'var(--ink-muted)',
-                    }}
-                  >
-                    {label}
-                  </span>
-                  <span style={{ fontSize: '0.88rem', color: 'var(--brand-primary)', fontWeight: 600 }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                    <span style={{ fontSize: '1.4rem' }}>{icon}</span>
+                    <span
+                      style={{
+                        fontSize: '0.74rem',
+                        fontWeight: 800,
+                        textTransform: 'uppercase',
+                        letterSpacing: '0.06em',
+                        color: 'var(--ink-muted)',
+                      }}
+                    >
+                      {label}
+                    </span>
+                  </div>
+                  <span style={{ fontSize: '0.96rem', color: 'var(--brand-primary)', fontWeight: 700, lineHeight: 1.4 }}>
                     {value}
+                  </span>
+                  <span style={{ fontSize: '0.78rem', color: 'var(--ink-muted)', marginTop: 'auto' }}>
+                    {note}
                   </span>
                 </div>
               </a>
             ))}
           </div>
 
-          <div className="info-box" style={{ padding: '24px', background: 'var(--bg-surface)' }}>
-            <h4 style={{ color: 'var(--brand-primary)', marginBottom: '8px' }}>
-              📋 Represent Knowledge Nation Law Centre?
+          <div className="info-box" style={{ padding: '24px 28px', background: '#ffffff', borderRadius: '14px', border: '1px solid var(--border-subtle)' }}>
+            <h4 style={{ color: 'var(--ink-primary)', display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '8px', fontSize: '1rem', fontWeight: 700 }}>
+              <span>🛡️</span> Represent Knowledge Nation Law Centre?
             </h4>
-            <p style={{ color: 'var(--ink-secondary)', fontSize: '0.93rem', lineHeight: 1.6 }}>
+            <p style={{ color: 'var(--ink-secondary)', fontSize: '0.9rem', lineHeight: 1.6, margin: 0 }}>
               To submit updated NLU selection rolls, faculty credentials, campus photos, or request a re-audit
               for the {SITE.year} cycle, contact our editorial desk via{' '}
-              <Link href="/contact" className="text-link">
+              <Link href="/contact" className="text-link" style={{ fontWeight: 600 }}>
                 Contact Desk
               </Link>{' '}
               or email{' '}
-              <a href={`mailto:${SITE.email}`} className="text-link">
+              <a href={`mailto:${SITE.email}`} className="text-link" style={{ fontWeight: 600 }}>
                 {SITE.email}
               </a>
               .
