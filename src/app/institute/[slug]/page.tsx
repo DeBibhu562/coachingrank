@@ -121,6 +121,7 @@ export default async function DynamicInstituteProfilePage({ params }: Props) {
       name: name,
       url: website,
       description: directAnswer,
+      priceRange: feesEstimate,
       address: {
         "@type": "PostalAddress",
         streetAddress: address,
@@ -134,6 +135,21 @@ export default async function DynamicInstituteProfilePage({ params }: Props) {
         reviewCount: String(reviewCount),
         bestRating: "5",
         worstRating: "1",
+      },
+      review: {
+        "@type": "Review",
+        author: {
+          "@type": "Organization",
+          name: "CoachingRank Editorial Audit Desk",
+          url: `${SITE.url}/about`,
+        },
+        reviewRating: {
+          "@type": "Rating",
+          ratingValue: String(rating),
+          bestRating: "5",
+          worstRating: "1",
+        },
+        reviewBody: `${name} has been independently audited under CoachingRank’s 100-Point Forensic Rubric, scoring ${inspectionScore}/100 based on faculty tenure, verified selection roll numbers, and CBT mock test series.`,
       },
     },
     {

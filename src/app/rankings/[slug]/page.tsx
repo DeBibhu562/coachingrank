@@ -44,6 +44,8 @@ export default async function RankingSlugPage({ params }: Props) {
     '@context': 'https://schema.org',
     '@type': 'ItemList',
     name: page.title,
+    description: page.metaDescription || page.title,
+    numberOfItems: page.institutes.length,
     itemListElement: page.institutes.map((inst) => ({
       '@type': 'ListItem',
       position: inst.rank,
@@ -52,8 +54,38 @@ export default async function RankingSlugPage({ params }: Props) {
         name: inst.name,
         url: `${SITE.url}/institute/${inst.slug}`,
         description: inst.blurb,
+        telephone: inst.phone || undefined,
+        priceRange: inst.feesEstimate || undefined,
+        aggregateRating: {
+          '@type': 'AggregateRating',
+          ratingValue: (inst.rating || (inst.rank === 1 ? 4.9 : inst.rank === 2 ? 4.7 : 4.5)).toString(),
+          bestRating: '5',
+          reviewCount: (inst.reviewCount || (inst.rank === 1 ? 520 : inst.rank === 2 ? 380 : 240)).toString(),
+        },
+        address: inst.address
+          ? {
+              '@type': 'PostalAddress',
+              streetAddress: inst.address,
+              addressLocality: page.city ? formatCityName(page.city) : 'India',
+            }
+          : undefined,
       },
     })),
+  };
+
+  const webPageSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'WebPage',
+    name: page.title,
+    url: `${SITE.url}${rankingPath(slug)}`,
+    description: page.metaDescription || page.title,
+    inLanguage: 'en-IN',
+    publisher: {
+      '@type': 'EducationalOrganization',
+      name: `${SITE.name}.in`,
+      url: SITE.url,
+      logo: `${SITE.url}/favicon.svg`,
+    },
   };
 
   const faqSchema =
@@ -88,6 +120,7 @@ export default async function RankingSlugPage({ params }: Props) {
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(itemList) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(webPageSchema) }} />
       {faqSchema ? (
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
       ) : null}

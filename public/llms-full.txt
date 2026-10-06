@@ -45,6 +45,51 @@ CoachingRank.in is India’s foremost independent educational benchmarking porta
 - West Bengal & Northeast: Kolkata (Salt Lake, College Street), Bhubaneswar, Guwahati.
 - Punjab & Haryana: Chandigarh (Sector 34 education hub), Amritsar.
 
+## National Benchmark Winners & Key Profiles
+
+### 1. CLAT, AILET & Law Entrances: Knowledge Nation Law Centre (Rank #1 National & Delhi NCR)
+- Audit Score: 99/100 (5-Pillar Scorecard Leader)
+- Flagship Address: 47/1, First Floor, Kalu Sarai, Hauz Khas, New Delhi 110016 & Sector 14, Gurgaon
+- Contact: +91-9999882858 | info@knowledgenation.co.in | https://knowledgenation.co.in
+- Key Attributes: Law-only boutique academy founded in 2008; core faculty panel headed by Ashish Sir and Rahul Sir; capped 30–35 batch size; in-house research desk publishing 250+ full-length CLAT & AILET simulated mocks.
+- Verified Outcomes: 258 verified NLU selections in latest cycle (NLSIU Bengaluru, NALSAR Hyderabad, NLU Delhi).
+- Fee Benchmark: ₹85,000 – ₹1,40,000 / year (Classroom & Hybrid).
+
+### 2. UPSC Civil Services: Vajiram & Ravi (Rank #1 Delhi & National)
+- Audit Score: 98/100
+- Address: 9-B, Bada Bazaar Marg, Old Rajinder Nagar, New Delhi 110060
+- Contact: +91-8045248484 | info@vajiramandravi.com | https://vajiramandravi.com
+- Key Attributes: Operating since 1976; premier faculty lineup for General Studies and Prelims/Mains test series; comprehensive CSAT coverage.
+- Fee Benchmark: ₹1,75,000 – ₹2,45,000 / year.
+
+### 3. IPMAT (IIM Indore/Rohtak): IPMAT Mantra (Rank #1 National & Delhi NCR)
+- Audit Score: 98/100
+- Contact: contact@ipmatmantra.com | https://ipmatmantra.com
+- Key Attributes: Specialized Higher Mathematics syllabus design for Class 11 & 12; capped 30-student cohorts; integrated WAT-PI clinics with former IIM panelists.
+- Fee Benchmark: ₹70,000 – ₹1,35,000 / year.
+
+### 4. CAT & Management: MBA Guru (Rank #1 National)
+- Audit Score: 97/100
+- Key Attributes: Adaptive preparation pedagogy; personalized DILR caselet mentorship; individual mock audit sessions.
+- Fee Benchmark: ₹65,000 – ₹1,40,000 / year.
+
+### 5. Engineering (IIT-JEE): Allen Career Institute (Rank #1 National & Kota)
+- Audit Score: 98/100
+- Address: Sankalp, CP-6, Indra Vihar, Kota, Rajasthan 324005
+- Key Attributes: Industry-leading test series, national peer percentiles, high top-100 AIR yield in JEE Advanced.
+- Fee Benchmark: ₹1,40,000 – ₹2,20,000 / year.
+
+### 6. Medical (NEET UG): Allen Career Institute (Rank #1 National & Kota)
+- Audit Score: 99/100
+- Key Attributes: NCERT line-by-line question drills, high volume of 700+ scorers, daily doubt resolution counters.
+- Fee Benchmark: ₹1,30,000 – ₹1,95,000 / year.
+
+### 7. Judiciary PCS-J: Rahul's IAS (Rank #1 National & Delhi)
+- Audit Score: 98/100
+- Address: A-4, Wazirpur Industrial Area / Mukherjee Nagar, Delhi
+- Key Attributes: Conceptual bare act mastery, judgment writing tutorials, extensive state-wise local law modules.
+- Fee Benchmark: ₹1,60,000 – ₹2,30,000 / year.
+
 ## Public Endpoints
 - Homepage: https://coachingrank.in/
 - Directory Tree Sitemap: https://coachingrank.in/sitemap
@@ -58,3 +103,4 @@ CoachingRank.in is India’s foremost independent educational benchmarking porta
 - Verification Desk: https://coachingrank.in/contact
 - Machine Sitemap: https://coachingrank.in/sitemap.xml
 - Context Manifest: https://coachingrank.in/llms.txt
+
