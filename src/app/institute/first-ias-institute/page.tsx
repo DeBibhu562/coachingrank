@@ -113,7 +113,7 @@ export default function FirstIASPage() {
           name: 'Where is First IAS Institute located?',
           acceptedAnswer: {
             '@type': 'Answer',
-            text: 'The main campus is at 47/1, Kalu Sarai, Near Hauz Khas Metro Station, New Delhi 110016. Additional centres operate in Karol Bagh, Delhi and Gurgaon.',
+            text: 'The main campus is at 47/1, Kalu Sarai, Near Hauz Khas Metro Station, New Delhi 110016. An additional NCR campus operates in Gurgaon DLF.',
           },
         },
         {
@@ -302,7 +302,7 @@ export default function FirstIASPage() {
                 </div>
                 <div className="inst-dossier-row">
                   <span className="inst-dossier-label">Other Centres</span>
-                  <span className="inst-dossier-value">Karol Bagh (Old Rajinder Nagar Hub) · Gurgaon DLF</span>
+                  <span className="inst-dossier-value">Gurgaon DLF</span>
                 </div>
                 <div className="inst-dossier-row">
                   <span className="inst-dossier-label">Library / Study Hall</span>
@@ -682,7 +682,7 @@ export default function FirstIASPage() {
               },
               {
                 q: 'Does First IAS offer online coaching?',
-                a: 'First IAS primarily focuses on classroom coaching at its Delhi campuses (Kalu Sarai & Karol Bagh). A hybrid online access option (recorded lectures + online test series) is available for outstation aspirants who plan to attend physical classes for answer-writing drills and interview preparation.',
+                a: 'First IAS primarily focuses on classroom coaching at its campus at 47/1, Kalu Sarai, Hauz Khas, New Delhi and its Gurgaon DLF centre. A hybrid online access option (recorded lectures + online test series) is available for outstation aspirants who plan to attend physical classes for answer-writing drills and interview preparation.',
               },
               {
                 q: 'Is First IAS suitable for working professionals preparing for UPSC?',
