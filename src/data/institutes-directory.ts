@@ -68,7 +68,7 @@ export const VERIFIED_INSTITUTES: Record<string, VerifiedInstitute> = {
     established: 2012,
     batchSize: '35–45 Students',
     studentFacultyRatio: '15:1',
-    feesEstimate: '₹1,10,000 – ₹1,75,000',
+    feesEstimate: '₹1,71,500 – ₹3,46,500',
     address: {
       street: '47/1, Kalu Sarai, Near Hauz Khas Metro Station',
       locality: 'Kalu Sarai / Hauz Khas',
@@ -93,7 +93,7 @@ export const VERIFIED_INSTITUTES: Record<string, VerifiedInstitute> = {
       { criterion: 'Fee Transparency & Value for Money', score: 9.8, weight: '5%', verdict: 'Transparent pricing with flexible installment options.' },
     ],
     programs: [
-      { name: 'GS Foundation (Prelims + Mains + CSAT)', duration: '12 Months', fee: '₹1,45,000', mode: 'Classroom & Live Hybrid', description: 'Comprehensive coverage of General Studies Papers I–IV, CSAT, Essay, and Answer Writing.' },
+      { name: 'GS Foundation (Prelims + Mains + CSAT)', duration: '12 Months', fee: '₹1,71,500 (w/o Opt) / ₹2,21,500 (with Opt)', mode: 'Classroom & Live Hybrid', description: 'Comprehensive coverage of General Studies Papers I–IV, CSAT, Essay, and Answer Writing.' },
       { name: 'UPSC Mains Mentorship & Test Series', duration: '5 Months', fee: '₹45,000', mode: 'Classroom & Online', description: 'Intensive 24-test series with individual faculty review sessions.' },
       { name: 'CSAT Masterclass & Prelims Booster', duration: '3 Months', fee: '₹28,000', mode: 'Classroom & Online', description: 'Targeted preparation for paper-2 quantitative aptitude and comprehension.' },
     ],
@@ -103,7 +103,7 @@ export const VERIFIED_INSTITUTES: Record<string, VerifiedInstitute> = {
       { title: 'Verified Topper Track Record', description: 'Consistently produces top 100 rankers in the UPSC Civil Services Examination.', icon: '🏆' },
     ],
     faqs: [
-      { question: 'What is the fee structure at First IAS Institute?', answer: 'First IAS Institute charges between ₹1,10,000 and ₹1,75,000 for full-year UPSC CSE Foundation programs, payable in convenient installments.' },
+      { question: 'What is the fee structure at First IAS Institute?', answer: 'First IAS Institute charges ₹1,71,500 to ₹3,46,500 for full UPSC CSE Foundation programs (1-year: ₹1,71,500 without Optional / ₹2,21,500 with Optional; 2-year: ₹2,47,500 / ₹2,97,500; 3-year: ₹2,97,500 / ₹3,46,500), payable in convenient installments.' },
       { question: 'What is the batch size at First IAS Institute?', answer: 'Batches are strictly capped at 35 to 45 students per classroom to ensure every aspirant gets personalized attention.' },
     ],
   },
